@@ -1,0 +1,89 @@
+body {
+	background-color: #EEEEEE;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: blue;
+}
+
+h2,h3,h4 {
+	margin: 0;
+}
+
+#container {
+	background-color: white;
+	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#header {
+	background-color: #0CDCE5;
+	text-align: left;
+	padding: 10px;
+}
+
+#content {
+	padding: 10px;
+}
+
+#nav {
+	width: 150px;
+	float: right;
+}
+#nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+#nav .selected {
+	font-weight: bold;
+}
+
+#patients {
+	width: 1030px;
+	float: left;
+}
+
+#name {
+	margin: auto;
+	float: center;
+	padding: 10px;
+}
+
+#alert {
+	margin: auto;
+	width: 50px;
+	float: left;
+	padding-left: 15px;
+	padding-right: 10px;
+	padding-top: 50px;
+	padding-bottom: 50px;	
+}
+
+#temperature {
+	margin: auto;
+	width: 400px%;
+	float: left;
+	padding-left: 10px;
+	padding-right: 25px;
+	padding-bottom: 20px;
+}
+
+#humidity {
+	margin: auto;
+	width: 400px;
+	float: left;
+	padding-left: 25px;
+	padding-bottom: 20px;
+}
+
+#footer {
+	clear: both;
+	padding: 10px;
+	background-color: #0CDCE5;
+	color: white;
+	text-align: right;
+}
