@@ -10,3 +10,11 @@ class Sensor():
     patient = models.TextField()
     history = models.TextField()
     active = models.BooleanField()
+
+class Patient():
+    firstname = models.TextField()
+    lastname = models.TextField()
+
+class Admin():
+    username = models.TextField()
+    password = models.TextField()

@@ -18,5 +18,6 @@ import sensors.views
 urlpatterns = [
     path("", sensors.views.index, name="index"),
     path("db/", sensors.views.db, name="db"),
+    path("dashboard/", sensors.views.dashboard, name="db"),
     path("admin/", admin.site.urls),
 ]

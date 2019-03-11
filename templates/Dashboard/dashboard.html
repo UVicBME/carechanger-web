@@ -1,13 +1,14 @@
+{% load static %}
 <html>
 	<head>
 		<title>Dashboard</title>
-		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
 	</head>
 	<body>
 		<div id="container">
 			<!-- Header containing CareChanger logo -->
 			<div id="header">
-			<img src="CareChangerLogo.png" width="200" height="65" alt="CareChanger Logo"/>
+			<img src="{% static "CareChangerLogo.png" %}" width="200" height="65" alt="CareChanger Logo"/>
 			</div>
 			<div id="content">
 				<!-- Navigation menu -->
@@ -28,7 +29,7 @@
 					</div>
 					<!-- TODO: Make the image displayed conditional -->
 						<div id="alert">
-							<img src="green.jpg" width="50" height="50" alt="Void Event Status"/>
+							<img src=" {% static "green.jpg" %}" width="50" height="50" alt="Void Event Status"/>
 						</div>
 					<!-- TODO: Receive input graph -->
 						<div id="temperature">

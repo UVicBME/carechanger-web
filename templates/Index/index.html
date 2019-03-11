@@ -1,12 +1,14 @@
+{% load static %}
+
 <html>
 	<head>
 		<title>Login</title>
-		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
 	</head>
 	<!-- TODO: Login action form -->
 	<body>
 		<div id="header">
-			<img src="CareChangerLogo.png" width="200" height="65" alt="CareChanger Logo"/>
+			<img src="{% static "CareChangerLogo.png" %}" width="200" height="65" alt="CareChanger Logo"/>
 		</div>
 		<form action="login.todo">
 			<div class="container" id="inputs">
