@@ -22,6 +22,7 @@ input {
 	text-align: center;
 	width:50%;
 	color: white;
+	font-size:10pt;
 }
 
 input::placeholder {
@@ -48,8 +49,9 @@ button {
 	text-align: center;
 	width:50%;
 	color: white;
-
+	font-size:10pt;
 }
+
 button:hover {
 	background-color: #FFFFFF;
 	color:#323232;
@@ -64,7 +66,8 @@ form {
 	margin:auto;
 	border-radius: 50px;
 	background-color: #0CDCE5;
-	box-shadow: 5px 5px 0px 0px;
+	box-shadow: -2px 2px 2px 0px grey;
+	padding:10px;
 }
 
 #container {
@@ -147,4 +150,5 @@ form {
 	text-align: center;
 	width: 100%;
 	bottom: 0px;
+	font-size:10pt;
 }
