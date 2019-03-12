@@ -34,6 +34,11 @@ input:hover {
 	color:#323232;
 	transition:.5s;
 }
+
+input:focus {
+	outline:none;
+}
+
 input:hover::placeholder {
 	color:#323232;
 	transition:.5s;
@@ -56,6 +61,10 @@ button:hover {
 	background-color: #FFFFFF;
 	color:#323232;
 	transition:.5s;
+}
+
+button:focus {
+	outline:none;
 }
 
 form {
