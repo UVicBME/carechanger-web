@@ -1,5 +1,5 @@
 body {
-	background-color: #EEEEEE;
+	background-color: #FFFFFF;
 	font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -12,17 +12,70 @@ h2,h3,h4 {
 	margin: 0;
 }
 
+input {
+	padding:10px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: white;
+	border-radius: 20px;
+	background-color: #0CDCE5;
+	text-align: center;
+	width:50%;
+	color: white;
+}
+
+input::placeholder {
+	color:#ffffff;
+}
+
+input:hover {
+	background-color: #FFFFFF;
+	color:#323232;
+	transition:.5s;
+}
+input:hover::placeholder {
+	color:#323232;
+	transition:.5s;
+}
+
+button {
+	padding:10px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: white;
+	border-radius: 20px;
+	background-color: #0CDCE5;
+	text-align: center;
+	width:50%;
+	color: white;
+
+}
+button:hover {
+	background-color: #FFFFFF;
+	color:#323232;
+	transition:.5s;
+}
+
+form {
+	position: absolute;
+	top:0px;left:0px;bottom:0px;right:0px;
+	width:300px;
+	height:300px;
+	margin:auto;
+	border-radius: 50px;
+	background-color: #0CDCE5;
+	box-shadow: 5px 5px 0px 0px;
+}
+
 #container {
-	background-color: white;
-	width: 1200px;
+	background-color: black;
+	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#header {
-	background-color: #0CDCE5;
-	text-align: left;
-	padding: 10px;
+#logo {
+	width:80;
 }
 
 #inputs {
@@ -86,9 +139,12 @@ h2,h3,h4 {
 }
 
 #footer {
+	position:absolute;
 	clear: both;
 	padding: 10px;
-	background-color: #0CDCE5;
-	color: white;
-	text-align: right;
+	background-color: white;
+	color: #969696;
+	text-align: center;
+	width: 100%;
+	bottom: 0px;
 }

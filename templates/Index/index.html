@@ -7,22 +7,21 @@
 	</head>
 	<!-- TODO: Login action form -->
 	<body>
-		<div id="header">
-			<img src="{% static "CareChangerLogo.png" %}" width="200" height="65" alt="CareChanger Logo"/>
-		</div>
 		<form action="login.todo">
 			<div class="container" id="inputs">
-
+				<img id="logo" src="{% static "carechangerlogo.png" %}" alt="CareChanger Logo"/>
+				<br>
+				<br>
 				<!-- Username -->
-				<label for="user">Username</label>
 				<input type="text" placeholder="Username" name="user" required>
-
+				<br>
+				<br>
 				<!-- Password -->
-				<label for="pwd">Password</label>
 				<input type="text" placeholder="Password" name="pwd" required>
-
+				<br>
+				<br>
 				<!-- Login button -->
-				<button type="submit">Login</button>
+				<button id="login" type="submit">Login</button>
 			</div>
 
 		</form>
