@@ -21,11 +21,13 @@
 					<br>
 					<br>
 					<!-- Login field -->
-					{{ form.username }}
+					<input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}"
+						   placeholder="Username" required>
 					<br>
 					<br>
 					<!-- Password field -->
-					{{ form.password }}
+					<input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}"
+						   placeholder="Password" required>
 					<br>
 					<br>
 					<!-- Login button -->
