@@ -1,0 +1,36 @@
+{% load static %}
+
+<html>
+	<head>
+		<title>Login</title>
+		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
+	</head>
+	<!-- Redirect to dashboard if user is logged in -->
+	{% if user.is_authenticated %}
+		<meta http-equiv="refresh" content="0; url=/dashboard/" />
+	<!-- Load login page if user is not logged in -->
+	{% else %}
+		<body>
+			<div id="container">
+				<div id="header">
+					<img src="{% static "CareChangerLogo.png" %}" width="200" height="65" alt="CareChanger Logo"/>
+				</div>
+				<div class="container" id="inputs">
+				<form method="post">
+					<!-- Sends login data -->
+					{% csrf_token %}
+					{{ form.as_p }}
+					<!-- Login button -->
+					<button type="submit">Login</button>
+					</div>
+
+				</form>
+				<footer>
+					<div id="footer">
+						Copyright &copy; 2019 CareChanger
+					</div>
+				</footer>
+			</div>
+		</body>
+	{% endif %}
+</html>

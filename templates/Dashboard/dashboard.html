@@ -4,11 +4,12 @@
 		<title>Dashboard</title>
 		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
 	</head>
+	{% if user.is_authenticated %}
 	<body>
 		<div id="container">
 			<!-- Header containing CareChanger logo -->
 			<div id="header">
-			<img src="{% static "CareChangerLogo.png" %}" width="200" height="65" alt="CareChanger Logo"/>
+				<img src="{% static "CareChangerLogo.png" %}" width="200" height="65" alt="CareChanger Logo"/>
 			</div>
 			<div id="content">
 				<!-- Navigation menu -->
@@ -18,6 +19,8 @@
 					<ul>
 						<li><a class="selected" href="">Dashboard</a></li>
 						<li><a href="">Settings</a></li>
+						<li><a href="{% url 'logout'%}">Logout</a></li>
+
 					</ul>
 				</div>
 				<!-- Patient information -->
@@ -47,4 +50,8 @@
 		</div>
 
 	</body>
+	{% else %}
+	<p>You are not logged in.</p>
+	<a href="{% url 'login' %}">Login</a>
+	{% endif %}
 </html>
