@@ -11,26 +11,32 @@
 	<!-- Load login page if user is not logged in -->
 	{% else %}
 		<body>
-			<div id="container">
-				<div id="header">
-					<img src="{% static "CareChangerLogo.png" %}" width="200" height="65" alt="CareChanger Logo"/>
-				</div>
-				<div class="container" id="inputs">
+			<div class="container" id="inputs">
 				<form method="post">
 					<!-- Sends login data -->
 					{% csrf_token %}
-					{{ form.as_p }}
+					<br>
+					<!-- CareChanger logo -->
+					<img id="logo" src="{% static "carechangerlogo.png" %}" alt="CareChanger Logo"/>
+					<br>
+					<br>
+					<!-- Login field -->
+					{{ form.username }}
+					<br>
+					<br>
+					<!-- Password field -->
+					{{ form.password }}
+					<br>
+					<br>
 					<!-- Login button -->
 					<button type="submit">Login</button>
-					</div>
-
 				</form>
-				<footer>
-					<div id="footer">
-						Copyright &copy; 2019 CareChanger
-					</div>
-				</footer>
 			</div>
 		</body>
+		<footer>
+		<div id="footer">
+			Copyright &copy; 2019 CareChanger
+		</div>
+	</footer>
 	{% endif %}
 </html>
