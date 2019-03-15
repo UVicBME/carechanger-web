@@ -10,6 +10,7 @@
 		<meta http-equiv="refresh" content="0; url=/dashboard/" />
 	<!-- Load login page if user is not logged in -->
 	{% else %}
+<<<<<<< HEAD
 	<body>
 		<form method="post">
 			<div class="container" id="inputs">
@@ -29,5 +30,37 @@
 				Copyright &copy; 2019 CareChanger
 			</div>
 		</footer>
+=======
+		<body>
+			<div class="container" id="inputs">
+				<form method="post">
+					<!-- Sends login data -->
+					{% csrf_token %}
+					<br>
+					<!-- CareChanger logo -->
+					<img id="logo" src="{% static "CareChangerLogo.png" %}" alt="CareChanger Logo"/>
+					<br>
+					<br>
+					<!-- Login field -->
+					<input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}"
+						   placeholder="Username" required>
+					<br>
+					<br>
+					<!-- Password field -->
+					<input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}"
+						   placeholder="Password" required>
+					<br>
+					<br>
+					<!-- Login button -->
+					<button type="submit">Login</button>
+				</form>
+			</div>
+		</body>
+		<footer>
+		<div id="footer">
+			Copyright &copy; 2019 CareChanger
+		</div>
+	</footer>
+>>>>>>> a17bce71ca84424366ab34e79c33ef192afefbb0
 	{% endif %}
 </html>
