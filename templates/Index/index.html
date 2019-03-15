@@ -5,25 +5,30 @@
 		<title>Login</title>
 		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
 	</head>
-	<!-- TODO: Login action form -->
+	<!-- Redirect to dashboard if user is logged in -->
+	{% if user.is_authenticated %}
+		<meta http-equiv="refresh" content="0; url=/dashboard/" />
+	<!-- Load login page if user is not logged in -->
+	{% else %}
 	<body>
-		<form action="login.todo">
+		<form method="post">
 			<div class="container" id="inputs">
 				<img id="logo" src="{% static "carechangerlogo.png" %}" alt="CareChanger Logo"/>
 				<br>
 				<br>
-				<!-- Username -->
+				{% csrf_token %}
+				{{ form.as_p }}
+				<!--
 				<input type="text" placeholder="Username" name="user" required>
 				<br>
 				<br>
-				<!-- Password -->
 				<input type="text" placeholder="Password" name="pwd" required>
 				<br>
 				<br>
+				-->
 				<!-- Login button -->
 				<button id="login" type="submit">Login</button>
 			</div>
-
 		</form>
 	</body>
 	<footer>
@@ -31,4 +36,5 @@
 			Copyright &copy; 2019 CareChanger
 		</div>
 	</footer>
+	{% endif %}
 </html>
