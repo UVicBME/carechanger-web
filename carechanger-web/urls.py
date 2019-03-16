@@ -16,7 +16,10 @@ import sensors.views
 
 urlpatterns = [
     path("", sensors.views.index, name="index"),
+<<<<<<< HEAD
     path("db/", sensors.views.db, name="db"),
+=======
+>>>>>>> 7db89dbfad26fbffd7a395884ae19a975b98fa55
     path("dashboard/", sensors.views.dashboard, name="dashboard"),
     path("admin/", admin.site.urls),
     path("accounts/", include('accounts.urls')),
