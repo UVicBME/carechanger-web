@@ -9,28 +9,9 @@
 	{% if user.is_authenticated %}
 		<meta http-equiv="refresh" content="0; url=/dashboard/" />
 	<!-- Load login page if user is not logged in -->
+	{% elif form.errors %}
+	  <p>Your username and password didn't match. Please try again.</p>
 	{% else %}
-<<<<<<< HEAD
-	<body>
-		<form method="post">
-			<div class="container" id="inputs">
-				<img id="logo" src="{% static "carechangerlogo.png" %}" alt="CareChanger Logo"/>
-				<br>
-				<br>
-				<!-- Sends login data -->
-				{% csrf_token %}
-				{{ form.as_p }}
-				<!-- Login button -->
-				<button id="login" type="submit">Login</button>
-			</div>
-		</form>
-	</body>
-		<footer>
-			<div id="footer">
-				Copyright &copy; 2019 CareChanger
-			</div>
-		</footer>
-=======
 		<body>
 			<div class="container" id="inputs">
 				<form method="post">
@@ -55,12 +36,9 @@
 					<button type="submit">Login</button>
 				</form>
 			</div>
+			<div id="footer">
+				Copyright &copy; 2019 CareChanger
+			</div>
 		</body>
-		<footer>
-		<div id="footer">
-			Copyright &copy; 2019 CareChanger
-		</div>
-	</footer>
->>>>>>> a17bce71ca84424366ab34e79c33ef192afefbb0
 	{% endif %}
 </html>

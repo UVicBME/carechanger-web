@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # https://docs.djangoproject.com/en/2.1/ref/models/fields/
 # Create your models here.
@@ -14,7 +15,3 @@ class Sensor():
 class Patient():
     firstname = models.TextField()
     lastname = models.TextField()
-
-class Admin():
-    username = models.TextField()
-    password = models.TextField()

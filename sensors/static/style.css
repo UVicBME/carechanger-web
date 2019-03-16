@@ -79,6 +79,34 @@ form {
 	padding:10px;
 }
 
+ul {
+	list-style-type: lower-latin;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	background-color: #333333;
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+}
+
+li {
+	float:left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
 #container {
 	background-color: #0CDCE5;
 	width: 100%;
@@ -100,8 +128,7 @@ form {
 }
 
 #nav {
-	width: 150px;
-	float: right;
+	float: left;
 }
 #nav ul {
 	list-style-type: none;
@@ -151,13 +178,14 @@ form {
 }
 
 #footer {
-	position:absolute;
+	position:fixed;
 	clear: both;
 	padding: 10px;
 	background-color: white;
 	color: #969696;
 	text-align: center;
-	width: 100%;
-	bottom: 0px;
 	font-size:10pt;
+	width:100%;
+	left:0px;
+	bottom:0px;
 }

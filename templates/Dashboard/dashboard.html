@@ -6,22 +6,15 @@
 	</head>
 	{% if user.is_authenticated %}
 	<body>
-		<div id="container">
-			<!-- Header containing CareChanger logo -->
-			<div id="header">
-				<div id="nav">
-					<!-- Navigation menu -->
-					<!-- TODO: Fill in href fields for menu items -->
-					<h3>Navigation</h3>
-					<ul>
-						<li><a class="selected" href="">Dashboard</a></li>
-						<li><a href="">Settings</a></li>
-						<li><a href="{% url 'logout'%}">Logout</a></li>
-
-					</ul>
-				</div>
-			</div>
-			<div id="content">
+		<div id="nav">
+			<!-- Navigation menu -->
+			<ul>
+				<li><a class="selected" href="">Dashboard</a></li>
+				<li><a href="">Settings</a></li>
+				<li><a href="{% url 'logout'%}">Logout</a></li>
+			</ul>
+		</div>
+		<div id="content">
 
 				<!-- Patient information -->
 				<div id="patients">
@@ -31,24 +24,22 @@
 						<h4>Patient Name</h4>
 					</div>
 					<!-- TODO: Make the image displayed conditional -->
-						<div id="alert">
-							<img src=" {% static "green.jpg" %}" width="50" height="50" alt="Void Event Status"/>
-						</div>
+					<div id="alert">
+						<img src=" {% static "green.jpg" %}" width="50" height="50" alt="Void Event Status"/>
+					</div>
+				<!-- TODO: Receive input graph -->
+					<div id="temperature">
+						<input type="image" src="" alt="Temperature Graphs" width="400" height="150">
+					</div>
 					<!-- TODO: Receive input graph -->
-						<div id="temperature">
-							<input type="image" src="" alt="Temperature Graphs" width="400" height="150">
-						</div>
-						<!-- TODO: Receive input graph -->
-						<div id="humidity">
-							<input type="image" src="" alt="Humidity Graphs" width="400" height="150">
-						</div>
-				</div>
-			</div>
-			<div id="footer">
-				Copyright &copy; 2019 CareChanger
+					<div id="humidity">
+						<input type="image" src="" alt="Humidity Graphs" width="400" height="150">
+					</div>
 			</div>
 		</div>
-
+		<div id="footer">
+			Copyright &copy; 2019 CareChanger
+		</div>
 	</body>
 	{% else %}
 	<p>You are not logged in.</p>
