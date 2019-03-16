@@ -1,0 +1,42 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>Create User</title>
+        <link rel="stylesheet" type="text/css" href='{% static "style.css" %}' />
+    </head>
+    <body>
+        <div class="container" id="inputs">
+            <form method="post">
+                {% csrf_token %}
+                <br>
+                <!-- CareChanger logo -->
+                <img id="logo" src="{% static "CareChangerLogo.png" %}" alt="CareChanger Logo"/>
+                <br>
+                <br>
+                <!-- Login field -->
+                <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}"
+                       placeholder="Username" required>
+                <br>
+                <br>
+                <!-- Password field -->
+                <input type="password" id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}"
+                       placeholder="Password" required>
+                <br>
+                <br>
+                <!-- Password confirmation field -->
+                <input type="password" id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}"
+                       placeholder="Confirm Password" required>
+                <br>
+                <br>
+                <!-- Create User button -->
+                <button type="submit">Create User</button>
+            </form>
+        </div>
+    </body>
+    <footer>
+        <div id="footer">
+			Copyright &copy; 2019 CareChanger
+		</div>
+    </footer>
+</html>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "hello",
     "sensors",
+    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
