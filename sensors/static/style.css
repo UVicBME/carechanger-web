@@ -1,7 +1,9 @@
 body {
-	background-color: #FFFFFF;
+	/*background-color: #FFFFFF;*/
 	font-family: Helvetica, Arial, sans-serif;
+	background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
 }
+/* https://webgradients.com/ */
 
 a {
 	text-decoration: none;
@@ -18,7 +20,8 @@ h2,h3,h4 {
 	border-width: 2px;
 	border-color: white;
 	border-radius: 20px;
-	background-color: #0CDCE5;
+	background-color: inherit;
+	/*background-color: #0CDCE5;*/
 	text-align: center;
 	width:50%;
 	color: white;
@@ -51,8 +54,11 @@ form {
 	height:300px;
 	margin:auto;
 	border-radius: 50px;
-	background-color: #0CDCE5;
-	box-shadow: 0px 2px 5px 0px grey;
+	border-color: white;
+	border-width: 2px;
+	/*border-style: solid;*/
+	box-shadow: 0px 0px 5px 0px white;
+	background-color: rgba(255, 255, 255, 0.1);
 	padding:10px;
 }
 
@@ -128,7 +134,7 @@ li a:hover {
 }
 
 .patient {
-	background-color: #dddddd;
+	background-color: rgba(255, 255, 255, 0.1);
 	border-radius:10px;
 	margin:10px;
 	padding:10px;
@@ -178,8 +184,8 @@ li a:hover {
 	position:fixed;
 	clear: both;
 	padding: 10px;
-	background-color: white;
-	color: #969696;
+	background-color: rgba(255, 255, 255, 0.0);
+	color: #ffffff;
 	text-align: center;
 	font-size:10pt;
 	width:100%;
