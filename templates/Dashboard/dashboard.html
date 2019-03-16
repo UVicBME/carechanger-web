@@ -12,29 +12,37 @@
 				<li><a class="selected" href="">Dashboard</a></li>
 				<li><a href="">Settings</a></li>
 				<li><a href="{% url 'logout'%}">Logout</a></li>
+				<li><a href="">{{ user.get_username }}</a></li>
+
 			</ul>
 		</div>
 		<div id="content">
-
+			<button class="basic"> Add New Device </button>
+			<button class="basic"> Add New Patient </button>
 				<!-- Patient information -->
-				<div id="patients">
-					<h2> Patient Information </h2>
-					<!-- TODO: Make this a list of patients somehow -->
-					<div id="name">
-						<h4>Patient Name</h4>
-					</div>
-					<!-- TODO: Make the image displayed conditional -->
-					<div id="alert">
-						<img src=" {% static "green.jpg" %}" width="50" height="50" alt="Void Event Status"/>
-					</div>
+			<div id="patients">
+				<!-- TODO: Make this a list of patients somehow -->
+				<div class="patient">
+					<img class="inline" src=" {% static "green_circle.png" %}" width="25" height="25" alt="Void Event Status"/>
+					<h2 class="inline">John Smith</h2>
+					<h3 class="inline">52</h3>
+				</div>
+				<div class="patient">
+					<img class="inline" src=" {% static "green_circle.png" %}" width="25" height="25" alt="Void Event Status"/>
+					<h2 class="inline">Jane Fonda</h2>
+					<h3 class="inline">21</h3>
+				</div>
+				<!-- TODO: Make the image displayed conditional -->
+				<div id="alert">
+				</div>
+			<!-- TODO: Receive input graph -->
+				<div id="temperature">
+					<input type="image" src="" alt="Temperature Graphs" width="400" height="150">
+				</div>
 				<!-- TODO: Receive input graph -->
-					<div id="temperature">
-						<input type="image" src="" alt="Temperature Graphs" width="400" height="150">
-					</div>
-					<!-- TODO: Receive input graph -->
-					<div id="humidity">
-						<input type="image" src="" alt="Humidity Graphs" width="400" height="150">
-					</div>
+				<div id="humidity">
+					<input type="image" src="" alt="Humidity Graphs" width="400" height="150">
+				</div>
 			</div>
 		</div>
 		<div id="footer">
