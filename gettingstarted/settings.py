@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&2isabsceqob&!fasrac0wpcy!27x3&va)+jzs79&bk6y=b1px'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*', '.herokuapp.com']
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "hello",
     "sensors",
+    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
