@@ -4,8 +4,8 @@
     <list default="true" id="07bfc104-ccdc-4eef-9ec6-9b39ae5c8f3d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettingstarted/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/gettingstarted/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gettingstarted/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gettingstarted/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carechanger-web/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/carechanger-web/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carechanger-web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/carechanger-web/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +37,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gettingstarted/settings.py">
+        <entry file="file://$PROJECT_DIR$/carechanger-web/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
               <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
@@ -59,9 +59,9 @@
         <option value="$PROJECT_DIR$/sensors/static/style.css" />
         <option value="$PROJECT_DIR$/templates/Index/index.html" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
-        <option value="$PROJECT_DIR$/gettingstarted/urls.py" />
+        <option value="$PROJECT_DIR$/carechanger-web/urls.py" />
         <option value="$PROJECT_DIR$/templates/registration/signup.html" />
-        <option value="$PROJECT_DIR$/gettingstarted/settings.py" />
+        <option value="$PROJECT_DIR$/carechanger-web/settings.py" />
       </list>
     </option>
   </component>
@@ -91,7 +91,7 @@
             <path>
               <item name="carechanger-web-master" type="b2602c69:ProjectViewProjectNode" />
               <item name="carechanger-web-master" type="462c0819:PsiDirectoryNode" />
-              <item name="gettingstarted" type="462c0819:PsiDirectoryNode" />
+              <item name="carechanger-web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="carechanger-web-master" type="b2602c69:ProjectViewProjectNode" />
@@ -246,7 +246,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gettingstarted/urls.py">
+    <entry file="file://$PROJECT_DIR$/carechanger-web/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
@@ -280,7 +280,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gettingstarted/settings.py">
+    <entry file="file://$PROJECT_DIR$/carechanger-web/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />

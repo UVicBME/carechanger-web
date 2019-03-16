@@ -4,7 +4,6 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-import hello.views
 import sensors.views
 
 # To add a new path, first import the app:
