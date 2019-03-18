@@ -3,4 +3,5 @@ venv
 staticfiles
 .env
 db.sqlite3
-getting-started/*.idea
+getting-started/
+*.idea
