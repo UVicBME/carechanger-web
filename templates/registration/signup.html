@@ -14,9 +14,24 @@
                 <img id="logo" src="{% static "CareChangerLogo.png" %}" alt="CareChanger Logo"/>
                 <br>
                 <br>
-                <!-- Login field -->
+                <!-- Username field -->
                 <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}"
                        placeholder="Username" required>
+                <br>
+                <br>
+                <!-- Email address field -->
+                <input type="text" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}"
+                       placeholder="Email Address" required>
+                <br>
+                <br>
+                <!-- First name field (optional) -->
+                <input type="text" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}"
+                       placeholder="First Name (Optional)">
+                <br>
+                <br>
+                <!-- Last name field (optional) -->
+                <input type="text" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.html_name }}"
+                       placeholder="Last Name (Optional)">
                 <br>
                 <br>
                 <!-- Password field -->
