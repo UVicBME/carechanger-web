@@ -18,6 +18,7 @@ urlpatterns = [
     path("", sensors.views.index, name="index"),
     path("dashboard/", sensors.views.dashboard, name="dashboard"),
     path("admin/", admin.site.urls),
+    path("addpatient/", sensors.views.AddPatient, name="addpatient"),
     path("accounts/", include('accounts.urls')),
     path("accounts/", include('django.contrib.auth.urls')),
 ]

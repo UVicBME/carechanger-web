@@ -9,6 +9,7 @@ class Sensor():
     history = models.TextField()
     active = models.BooleanField()
 
-class Patient():
-    firstname = models.TextField()
-    lastname = models.TextField()
+class Patient(models.Model):
+    firstname = models.CharField(max_length=20)
+    lastname = models.CharField(max_length=40)
+    age = models.IntegerField()

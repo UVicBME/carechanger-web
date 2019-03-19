@@ -1,8 +1,8 @@
-from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from accounts.forms import SignUpForm
 
 def SignUp(request):
+    # If the form has been submitted
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
