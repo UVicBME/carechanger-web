@@ -1,5 +1,12 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	overflow-x: hidden;
+}
+
 body {
-	/*background-color: #FFFFFF;*/
 	font-family: Helvetica, Arial, sans-serif;
 	background-image: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);
 }
@@ -48,11 +55,12 @@ h2,h3,h4 {
 }
 
 form {
-	position: absolute;
-	top:0px;left:0px;bottom:0px;right:0px;
+	text-align: center;
 	width:300px;
 	height:300px;
-	margin:auto;
+	margin-top:14%;
+	margin-left:auto;
+	margin-right:auto;
 	border-radius: 25px;
 	/*
 	border-style: solid;
@@ -67,7 +75,7 @@ ul {
 	list-style-type: lower-latin;
 	margin:0;
 	padding:0;
-	overflow:hidden;
+	/*overflow:hidden;*/
 	background-color: rgba(255, 255, 255, 0);
 	position:fixed;
 	left:0;
@@ -83,6 +91,7 @@ li {
 	border-right-style:solid;
 	border-right-width:1px;
 	border-right-color: rgba(255, 255, 255, 0.2);
+	text-transform: uppercase;
 }
 
 li a {
@@ -99,13 +108,6 @@ li a:hover {
 	transition: 0.5s;
 }
 
-#container {
-	background-color: #0CDCE5;
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 #logo {
 	width:80;
 }
@@ -115,17 +117,22 @@ li a:hover {
 	padding-top: 20px;
 }
 
-#content {
-	position: fixed;
-	padding: 10px;
-	top:50px;
+.content {
+	background-color: white;
+	margin-left:10%;
+	margin-right:10%;
+	margin-top:100px;
+	padding:5%;
+	top:100px;
 	left:0px;
-	width:100%;
+	border-radius: 10px;
 }
 
 #nav {
 	float: left;
+	margin-bottom: 60px;
 }
+
 #nav ul {
 	list-style-type: none;
 	padding: 0;
@@ -133,6 +140,27 @@ li a:hover {
 
 #nav .selected {
 	font-weight: bold;
+}
+
+.home_nav {
+	float: left;
+	width:100%;
+	/*overflow:hidden;*/
+	position:fixed;
+	top:0px;
+}
+
+.home_nav ul {
+	list-style-type: none;
+}
+
+.home_nav .selected {
+	font-weight: bold;
+}
+
+.home_nav .scrolled {
+  background-color: #fff !important;
+  transition: background-color 200ms linear;
 }
 
 #patients {
@@ -194,8 +222,6 @@ li a:hover {
 }
 
 #footer {
-	position:fixed;
-	clear: both;
 	padding: 10px;
 	background-color: rgba(255, 255, 255, 0.0);
 	color: #ffffff;
@@ -204,4 +230,37 @@ li a:hover {
 	width:100%;
 	left:0px;
 	bottom:0px;
+}
+
+.basic {
+	padding:10px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 0.5);
+	border-radius: 20px;
+	background-color: inherit;
+	/*background-color: #0CDCE5;*/
+	text-align: center;
+	width:50%;
+	color: white;
+	font-size:10pt;
+}
+
+.basic:hover {
+	background-color: #FFFFFF;
+	color:#323232;
+	transition:.5s;
+}
+
+.basic:hover::placeholder {
+	color:#323232;
+	transition:.5s;
+}
+
+.basic::placeholder {
+	color:#ffffff;
+}
+
+.basic:focus {
+	outline:none;
 }

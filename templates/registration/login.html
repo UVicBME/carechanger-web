@@ -13,7 +13,6 @@
 	  <p>Your username and password didn't match. Please try again.</p>
 	{% else %}
 		<body>
-			<div class="container" id="inputs">
 				<form method="post">
 					<!-- Sends login data -->
 					{% csrf_token %}
@@ -35,7 +34,6 @@
 					<!-- Login button -->
 					<button class="login" type="submit">Login</button>
 				</form>
-			</div>
 			<div id="footer">
 				Copyright &copy; 2019 CareChanger
 			</div>
