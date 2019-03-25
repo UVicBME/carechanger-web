@@ -11,26 +11,26 @@
                 {% csrf_token %}
                 <br>
                 <!-- CareChanger logo -->
-                <img id="logo" src="{% static "CareChangerLogo.png" %}" alt="CareChanger Logo"/>
+                <img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/>
                 <br>
                 <br>
                 <!-- Patient's first name field -->
-                <input type="text" id="{{ form.firstname.id_for_label }}" name="{{ form.firstname.html_name }}"
+                <input class="basic" type="text" id="{{ form.firstname.id_for_label }}" name="{{ form.firstname.html_name }}"
                        placeholder="First Name" required>
                 <br>
                 <br>
                 <!-- Patient's last name field -->
-                <input type="text" id="{{ form.lastname.id_for_label }}" name="{{ form.lastname.html_name }}"
+                <input class="basic" type="text" id="{{ form.lastname.id_for_label }}" name="{{ form.lastname.html_name }}"
                        placeholder="Last Name" required>
                 <br>
                 <br>
 				<!-- Patient's age field -->
-				<input type="number" id="{{ form.age.id_for_label }}" name="{{ form.age.html_name }}"
+				<input class="basic" type="number" id="{{ form.age.id_for_label }}" name="{{ form.age.html_name }}"
 					   placeholder="Age">
 				<br>
 				<br>
                 <!-- Submit button -->
-                <button type="submit">Add Patient</button>
+                <button class="basic" type="submit">Add Patient</button>
             </form>
         </div>
     </body>

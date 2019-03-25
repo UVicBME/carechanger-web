@@ -10,15 +10,14 @@
 			<!-- Navigation menu -->
 			<ul>
 				<li><a class="selected" href="">Dashboard</a></li>
-				<li><a href="">Settings</a></li>
-				<li><a href="{% url 'logout' %}">Logout</a></li>
+				<li><a href="">Admin</a></li>
 				<li><a href="">{{ user.get_username }}</a></li>
-
+				<li><a href="{% url 'logout' %}">Logout</a></li>
 			</ul>
 		</div>
 		<div class="content">
 			<button class="basic"> Add New Device </button>
-			<button class="basic"><a href="{% url 'addpatient' %}"><font color="black"> Add New Patient </font></a></button>
+			<button class="basic"><a href="{% url 'addpatient' %}"> Add New Patient</a></button>
 				<!-- Patient information -->
 			<div id="patients">
 				<!-- TODO: Make this a list of patients somehow -->
@@ -46,7 +45,7 @@
 			</div>
 		</div>
 		<div id="footer">
-			Copyright &copy; 2019 CareChanger
+			&copy; CareChanger
 		</div>
 	</body>
 	{% else %}

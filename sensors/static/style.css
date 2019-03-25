@@ -75,7 +75,7 @@ ul {
 	list-style-type: lower-latin;
 	margin:0;
 	padding:0;
-	/*overflow:hidden;*/
+	overflow:hidden;
 	background-color: rgba(255, 255, 255, 0);
 	position:fixed;
 	left:0;
@@ -92,20 +92,28 @@ li {
 	border-right-width:1px;
 	border-right-color: rgba(255, 255, 255, 0.2);
 	text-transform: uppercase;
+	height:80px;
+	line-height: 80px;
 }
 
 li a {
-	display: block;
+	display: inline-block;
 	color: white;
-	text-align: center;
-	padding: 14px 16px;
+	padding-left:20px;
+	padding-right:20px;
+
 	text-decoration: none;
+	text-align: center;
+	vertical-align:middle;
 }
 
 li a:hover {
 	background-color: rgba(255, 255, 255, 1);
 	color:#323232;
 	transition: 0.5s;
+	border-top-style:solid;
+	border-top-width:10px;
+	border-top-color: white;
 }
 
 #logo {
@@ -158,9 +166,10 @@ li a:hover {
 	font-weight: bold;
 }
 
-.home_nav .scrolled {
+.scrolled {
   background-color: #fff !important;
   transition: background-color 200ms linear;
+	color:#323232;
 }
 
 #patients {

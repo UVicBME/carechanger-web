@@ -4,12 +4,13 @@
 	<head>
 		<title>Home</title>
 		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
-		<script type="text/javascript" src="{% static "jquery-3.3.1.min.js" %}"> </script>
+		<script type="text/javascript" src="{% static 'jquery-3.3.1.min.js' %}"> </script>
 	</head>
 		<body>
 			<div class="home_nav">
 				<!-- Navigation menu -->
 				<ul>
+					<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/></li>
 					<li><a href="">Contact</a></li>
 					<li><a href="">About</a></li>
 
@@ -40,15 +41,23 @@ Authentic mumblecore keffiyeh chia, flexitarian Bushwick McSweeney's mlkshk cray
 You probably haven't heard of them tattooed Etsy, tote bag skateboard hashtag keffiyeh Helvetica fanny pack bicycle rights. Umami Intelligentsia freegan, Wes Anderson 8-bit normcore slow-carb tattooed lo-fi fanny pack gluten-free mlkshk. Banjo Neutra YOLO, wolf pour-over put a bird on it vinyl hashtag blog letterpress actually dreamcatcher viral. Mixtape semiotics iPhone, sustainable vegan ethical swag roof party keytar leggings. Williamsburg ethical Bushwick jean shorts, Tumblr skateboard aesthetic bicycle rights retro Blue Bottle polaroid cliche semiotics occupy. VHS PBR fingerstache, iPhone leggings Kickstarter Tonx normcore retro 90's paleo direct trade Pitchfork. Lo-fi Truffaut craft beer, forage +1 bitters 8-bit retro master cleanse jean shorts chillwave. </p>
 			</div>
 			<div id="footer">
-				Copyright &copy; 2019 CareChanger
+				&copy; CareChanger
 			</div>
 			<script>
+				/*
+				$( document ).ready(function() {
+    			alert( "ready!" );
+				});*/
 				$(function () {
-					$(document).scroll(function () {
+					$('body').scroll(function () {
 						var $nav = $(".home_nav");
-						$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+						var $ul = $("ul");
+						var $li = $("li");
+						$ul.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+						$li.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+
 						console.log($(this).scrollTop());
-						console.log($nav.height);
+						console.log("NAV HEIGHT:", $nav.height());
 					});
 				});
 			</script>
