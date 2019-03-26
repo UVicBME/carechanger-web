@@ -10,7 +10,7 @@
 			<div class="home_nav">
 				<!-- Navigation menu -->
 				<ul>
-					<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/></li>
+					<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/><img id="logo_black" src="{% static "carechanger_logo.png" %}" alt="CareChanger Logo"/></li>
 					<li><a href="">Contact</a></li>
 					<li><a href="">About</a></li>
 
@@ -52,9 +52,9 @@ You probably haven't heard of them tattooed Etsy, tote bag skateboard hashtag ke
 					$('body').scroll(function () {
 						var $nav = $(".home_nav");
 						var $ul = $("ul");
-						var $li = $("li");
+						var $a = $("a");
 						$ul.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-						$li.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+						$a.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
 
 						console.log($(this).scrollTop());
 						console.log("NAV HEIGHT:", $nav.height());
