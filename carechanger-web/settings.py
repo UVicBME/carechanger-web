@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "sensors",
-    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [

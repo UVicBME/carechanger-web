@@ -5,15 +5,15 @@ from django.contrib.auth.models import User
 
 # Form for adding a new patient to the database
 class PatientCreationForm(forms.ModelForm):
-    firstname = forms.CharField(max_length=20)
-    lastname = forms.CharField(max_length=40)
+    first_name = forms.CharField(max_length=20)
+    last_name = forms.CharField(max_length=40)
     age = forms.IntegerField()
 
     class Meta:
         model = Patient
         fields = (
-            'firstname',
-            'lastname',
+            'first_name',
+            'last_name',
             'age',
         )
 
