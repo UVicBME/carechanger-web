@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 
 # https://docs.djangoproject.com/en/2.1/ref/models/fields/
@@ -13,3 +14,6 @@ class Patient(models.Model):
     firstname = models.CharField(max_length=20)
     lastname = models.CharField(max_length=40)
     age = models.IntegerField()
+
+class CareGroup(models.Model):
+    admin = ArrayField()
