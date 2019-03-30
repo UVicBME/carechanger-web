@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "sensors",
-    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
@@ -98,7 +97,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Redirection URLs
 LOGIN_REDIRECT_URL = '/dashboard/'
-LOGOUT_REDIRECT_URL = '/accounts/login'
+LOGOUT_REDIRECT_URL = '/login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
