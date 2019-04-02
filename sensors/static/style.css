@@ -139,20 +139,6 @@ li a:hover {
 	left:0px;
 }
 
-#nav {
-	float: left;
-	margin-bottom: 60px;
-}
-
-#nav ul {
-	list-style-type: none;
-	padding: 0;
-}
-
-#nav .selected {
-	font-weight: bold;
-}
-
 .home_nav {
 	float: left;
 	width:100%;

@@ -22,12 +22,12 @@
 					<br>
 					<!-- Login field -->
 					<input class="login" type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}"
-						   placeholder="Username" required>
+						   placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required>
 					<br>
 					<br>
 					<!-- Password field -->
 					<input class="login" type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}"
-						   placeholder="Password" required>
+						   placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required>
 					<br>
 					<br>
 					<!-- Login button -->

@@ -3,10 +3,11 @@
 	<head>
 		<title>Dashboard</title>
 		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
+		<script type="text/javascript" src="{% static 'jquery-3.3.1.min.js' %}"> </script>
 	</head>
 	{% if user.is_authenticated %}
 	<body>
-		<div id="nav">
+		<div class="home_nav">
 			<!-- Navigation menu -->
 			<ul>
 				<li><a class="selected" href="">Dashboard</a></li>
@@ -47,6 +48,24 @@
 		<div id="footer">
 			&copy; CareChanger
 		</div>
+		<script>
+			/*
+			$( document ).ready(function() {
+				alert( "ready!" );
+			});*/
+			$(function () {
+				$('body').scroll(function () {
+					var $nav = $(".home_nav");
+					var $ul = $("ul");
+					var $a = $("a");
+					$ul.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+					$a.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+					/* https://jsfiddle.net/we9L9h2r/ */
+					console.log($(this).scrollTop());
+					console.log("NAV HEIGHT:", $nav.height());
+				});
+			});
+		</script>
 	</body>
 	{% else %}
 	<p>You are not logged in.</p>
