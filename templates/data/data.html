@@ -8,6 +8,7 @@
     <body>
         <div class="container" id="inputs">
             <form method="post">
+                {% csrf_token %}
                 <br>
                 <!-- Patient's name field -->
                 <input class="basic" type="number" id="{{ form.event.id_for_label }}" name="{{ form.event.html_name }}"
