@@ -1,7 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from sensors.models import Patient, CareGroup
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, User
+from sensors.models import Patient, CareGroup, Data
 from django.contrib.auth.hashers import make_password
 
 
@@ -62,3 +61,15 @@ class CareGroupCreationForm(forms.ModelForm):
         if password and password_confirmation and password_confirmation != password:
             raise forms.ValidationError("Passwords do not match.")
         return password_confirmation
+
+
+# Form for receiving data
+class DataForm(forms.ModelForm):
+
+    class Meta:
+        model = Data
+        fields = (
+            'patient',
+            'temperature',
+            'humidity',
+        )

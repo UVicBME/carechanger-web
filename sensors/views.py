@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
-from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm
+from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm
 from django.contrib.auth.password_validation import validate_password
 
 
@@ -50,3 +51,14 @@ def add_care_group(request):
     else:
         form = CareGroupCreationForm()
     return render(request, 'registration/addcaregroup.html', {'form': form})
+
+
+def receive_data(request):
+    if request.method == 'POST':
+        form = DataForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("We got your data!")
+    else:
+        form = DataForm()
+    return render(request, 'data/data.html', {'form': form})

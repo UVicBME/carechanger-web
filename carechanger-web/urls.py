@@ -22,4 +22,5 @@ urlpatterns = [
     path("", include('django.contrib.auth.urls')),
     path("signup/", sensors.views.signup, name='signup'),
     path("addcaregroup/", sensors.views.add_care_group, name='addcaregroup'),
+    path("data/", sensors.views.receive_data, name='data')
 ]

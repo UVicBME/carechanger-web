@@ -1,0 +1,39 @@
+{% load static %}
+<!-- Form for adding data to the database -->
+<html>
+    <head>
+        <title>Data</title>
+        <link rel="stylesheet" type="text/css" href='{% static "style.css" %}' />
+    </head>
+    <body>
+        <div class="container" id="inputs">
+            <form method="post">
+                {% csrf_token %}
+                <br>
+                <br>
+                <!-- Patient's name field -->
+                <input class="basic" type="text" id="{{ form.patient.id_for_label }}" name="{{ form.patient.html_name }}"
+                       placeholder="Patient Name" required>
+                <br>
+                <br>
+                <!-- Temperature -->
+                <input class="basic" type="number" step="0.01" id="{{ form.temperature.id_for_label }}"
+                       name="{{ form.temperature.html_name }}" placeholder="Temperature" required>
+                <br>
+                <br>
+				<!-- Humidity -->
+				<input class="basic" type="number" step="0.01" id="{{ form.humidity.id_for_label }}"
+                       name="{{ form.humidity.html_name }}" placeholder="Humidity">
+				<br>
+				<br>
+                <!-- Submit button -->
+                <button class="basic" type="submit">Submit Data</button>
+            </form>
+        </div>
+    </body>
+    <footer>
+        <div id="footer">
+			Copyright &copy; 2019 CareChanger
+		</div>
+    </footer>
+</html>

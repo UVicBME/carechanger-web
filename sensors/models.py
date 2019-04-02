@@ -22,3 +22,9 @@ class CareGroup(models.Model):
     password = models.CharField(max_length=50)
     user_list = models.ManyToManyField(User)
     admin_email = models.EmailField(max_length=254)
+
+
+class Data(models.Model):
+    patient = models.CharField(max_length=50)
+    temperature = models.FloatField()
+    humidity = models.FloatField()
