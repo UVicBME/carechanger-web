@@ -69,7 +69,7 @@ class DataForm(forms.ModelForm):
     class Meta:
         model = Data
         fields = (
-            'patient',
             'temperature',
             'humidity',
+            'event',
         )

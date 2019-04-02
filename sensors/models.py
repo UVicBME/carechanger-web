@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 
 # https://docs.djangoproject.com/en/2.1/ref/models/fields/
@@ -25,6 +24,7 @@ class CareGroup(models.Model):
 
 
 class Data(models.Model):
-    patient = models.CharField(max_length=50)
     temperature = models.FloatField()
     humidity = models.FloatField()
+    event = models.PositiveIntegerField(default=0)
+    sensor_id = models.IntegerField(default=-1)
