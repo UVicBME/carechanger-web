@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm
 from django.contrib.auth.password_validation import validate_password
+import logging
+logger = logging.getLogger(__name__)
 
 
 def index(request, *args, **kwargs):
@@ -61,4 +63,8 @@ def receive_data(request):
             return HttpResponse("We got your data!")
     else:
         form = DataForm()
+    print("FLAG!!!")
+    print(request)
+    logger.debug("FLAG!!!")
+    logger.debug(request)
     return render(request, 'data/data.html', {'form': form})
