@@ -72,4 +72,5 @@ class DataForm(forms.ModelForm):
             'temperature',
             'humidity',
             'event',
+            'sensor_id',
         )
