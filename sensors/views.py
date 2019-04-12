@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm
 from django.contrib.auth.password_validation import validate_password
+from sensors.models import CareGroup
 import logging
 logger = logging.getLogger(__name__)
 
@@ -12,6 +13,9 @@ def index(request, *args, **kwargs):
 
 
 def dashboard(request, *args, **kwargs):
+    print(CareGroup.objects.all())
+
+
     return render(request, "dashboard/dashboard.html", {})
 
 
