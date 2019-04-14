@@ -2,15 +2,13 @@
 <!-- TODO: Add confirmation message that the patient has been successfully added -->
 <html>
     <head>
-        <title>Add Patient</title>
+        <title>Add Device</title>
         <link rel="stylesheet" type="text/css" href='{% static "style.css" %}' />
     </head>
     <body>
         <div class="container" id="inputs">
             <form method="post">
                 {% csrf_token %}
-                <br>
-                <!-- CareChanger logo -->
                 <br>
                 <!-- Patient's first name field -->
                 <input class="basic" type="text" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}"

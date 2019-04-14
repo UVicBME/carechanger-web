@@ -3,9 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm
 from django.contrib.auth.password_validation import validate_password
-from sensors.models import CareGroup
-import logging
-logger = logging.getLogger(__name__)
+from sensors.models import CareGroup, Patient
+from django.contrib.auth.models import User
 
 
 def index(request, *args, **kwargs):
@@ -13,11 +12,9 @@ def index(request, *args, **kwargs):
 
 
 def dashboard(request, *args, **kwargs):
-    print(CareGroup.objects.all())
-
-
-    return render(request, "dashboard/dashboard.html", {})
-
+    print("TESTING")
+    patients = Patient.objects.all()
+    return render(request, "dashboard/dashboard.html", {'patients': patients})
 
 def add_patient(request, *args, **kwargs):
     # If the form has been submitted
@@ -29,6 +26,31 @@ def add_patient(request, *args, **kwargs):
     else:
         form = PatientCreationForm() # Unbound form
     return render(request, 'registration/addpatient.html', { 'form': form })
+
+def add_device(request):
+    if request.method == 'POST':
+        form = DeviceCreationForm(request.POST) # Form bound to POST data
+        if form.is_valid(): # If the form passes all validation rules
+            form.save()
+            return(redirect('dashboard')) # Redirect to the dashboard (TODO: change redirect location?)
+    else:
+        form = DeviceCreationForm() # Unbound form
+    return render(request, 'registration/adddevice.html', { 'form': form })
+
+def add_care_group(request):
+    if request.method == 'POST':
+        form = CareGroupCreationForm(request.POST)
+        if form.is_valid():
+            validate_password(form.cleaned_data.get('password'))  # Ensure password is strong enough
+            form.validate()  # Ensure password matches password_confirmation
+            caregroup=form.save()  # Save the form
+            user = User.objects.get(id=request.user.id)
+            caregroup.users.add(user)
+            return redirect('dashboard')  # Redirect to the dashboard TODO: Add confirmation that group was added
+
+    else:
+        form = CareGroupCreationForm()
+    return render(request, 'registration/addcaregroup.html', {'form': form})
 
 
 def signup(request):
@@ -44,20 +66,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
-
-
-def add_care_group(request):
-    if request.method == 'POST':
-        form = CareGroupCreationForm(request.POST)
-        if form.is_valid():
-            validate_password(form.cleaned_data.get('password'))  # Ensure password is strong enough
-            form.validate()  # Ensure password matches password_confirmation
-            form.save()  # Save the form
-            return redirect('dashboard')  # Redirect to the dashboard TODO: Add confirmation that group was added
-    else:
-        form = CareGroupCreationForm()
-    return render(request, 'registration/addcaregroup.html', {'form': form})
-
 
 def receive_data(request):
     if request.method == 'POST':

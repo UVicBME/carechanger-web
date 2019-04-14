@@ -21,6 +21,26 @@ h2,h3,h4 {
 	margin: 0;
 }
 
+table {
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 0.5);
+	margin-top:10px;
+}
+
+td, th {
+	padding:10px;
+	text-align: left;
+}
+
+tr:nth-child(even){
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+tr:hover {
+	background-color: white;
+}
+
 .login {
 	padding:10px;
 	border-style: solid;
@@ -132,8 +152,8 @@ li a:hover {
 
 .content {
 	color:white;
-	margin-left:10%;
-	margin-right:10%;
+	margin-left:0%;
+	margin-right:0%;
 	margin-top:100px;
 	padding:5%;
 	left:0px;
@@ -176,13 +196,6 @@ li a:hover {
 	display:none;
 }
 
-#patients {
-	width: 80%;
-	height:100%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .patient {
 	background-color: rgba(255, 255, 255, 0.1);
 	margin:10px;
@@ -217,32 +230,14 @@ li a:hover {
 	padding-bottom: 50px;
 }
 
-#temperature {
-	margin: auto;
-	width: 400px%;
-	float: left;
-	padding-left: 10px;
-	padding-right: 25px;
-	padding-bottom: 20px;
-}
-
-#humidity {
-	margin: auto;
-	width: 400px;
-	float: left;
-	padding-left: 25px;
-	padding-bottom: 20px;
-}
-
 #footer {
-	padding: 10px;
 	background-color: rgba(255, 255, 255, 0.0);
 	color: #ffffff;
 	text-align: center;
 	font-size:10pt;
-	width:100%;
-	left:0px;
 	bottom:0px;
+	width:100%;
+	position:fixed;
 }
 
 .basic {
@@ -250,11 +245,9 @@ li a:hover {
 	border-style: solid;
 	border-width: 2px;
 	border-color: rgba(255, 255, 255, 0.5);
-	border-radius: 20px;
 	background-color: inherit;
 	/*background-color: #0CDCE5;*/
 	text-align: center;
-	width:50%;
 	color: white;
 	font-size:10pt;
 }
@@ -274,6 +267,14 @@ li a:hover {
 	color:#ffffff;
 }
 
+
 .basic:focus {
 	outline:none;
+}
+
+a:link {
+	color: white;
+}
+a:visited {
+	color: white;
 }

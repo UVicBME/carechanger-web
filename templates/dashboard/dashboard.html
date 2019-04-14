@@ -17,45 +17,28 @@
 			</ul>
 		</div>
 		<div class="content">
+			<button class="basic"><a href="{% url 'addpatient' %}">ADD PATIENT</a></button>
+			<button class="basic"><a href="">ADD DEVICE</a></button>
+			<button class="basic"><a href="">JOIN CAREGROUP</a></button>
+			<button class="basic"><a href="">NEW CAREGROUP</a></button>
+
+
+				<!-- Patient information -->
 			<table>
 		    <tr>
-		        <th>Field 1</th>
-		        <th>Field N</th>
+						<th>Device</th>
+		        <th>Name</th>
+		        <th>Age</th>
 		    </tr>
-		    {% for item in query_results %}
+		    {% for item in patients %}
 		    <tr>
-		        <td>{{ item.field1 }}</td>
-		        <td>{{ item.fieldN }}</td>
+						<td>{{item.id}}</td>
+		        <td>{{item.first_name}} {{item.last_name}}</td>
+		        <td>{{item.age}}</td>
 		    </tr>
 		    {% endfor %}
 			</table>
-			<button class="basic"> Add New Device </button>
-			<button class="basic"><a href="{% url 'addpatient' %}"> Add New Patient</a></button>
-				<!-- Patient information -->
-			<div id="patients">
-				<!-- TODO: Make this a list of patients somehow -->
-				<div class="patient">
-					<img class="inline" src=" {% static "GreenCircle.png" %}" width="25" height="25" alt="Void Event Status"/>
-					<h2 class="inline">John Smith</h2>
-					<h3 class="inline">52</h3>
-				</div>
-				<div class="patient">
-					<img class="inline" src=" {% static "GreenCircle.png" %}" width="25" height="25" alt="Void Event Status"/>
-					<h2 class="inline">Jane Fonda</h2>
-					<h3 class="inline">21</h3>
-				</div>
-				<!-- TODO: Make the image displayed conditional -->
-				<div id="alert">
-				</div>
-			<!-- TODO: Receive input graph -->
-				<div id="temperature">
-					<input type="image" src="" alt="Temperature Graphs" width="400" height="150">
-				</div>
-				<!-- TODO: Receive input graph -->
-				<div id="humidity">
-					<input type="image" src="" alt="Humidity Graphs" width="400" height="150">
-				</div>
-			</div>
+			<div id="alert"></div>
 		</div>
 		<div id="footer">
 			&copy; CareChanger
