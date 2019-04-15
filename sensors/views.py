@@ -1,10 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm
 from django.contrib.auth.password_validation import validate_password
+from django.template import RequestContext
 import logging
 logger = logging.getLogger(__name__)
+
+
+def handler403(request, *args, **argv):
+    response = render_to_response('errors/403.html', {}, context_instance=RequestContext(request))
+    response.status_code = 403
+    return response
 
 
 def index(request, *args, **kwargs):
