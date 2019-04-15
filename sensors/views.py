@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
-from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm
+from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm, DeviceCreationForm
 from django.contrib.auth.password_validation import validate_password
 from sensors.models import CareGroup, Patient
 from django.contrib.auth.models import User
