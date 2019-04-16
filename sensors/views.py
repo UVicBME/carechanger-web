@@ -12,7 +12,6 @@ def index(request, *args, **kwargs):
 
 
 def dashboard(request, *args, **kwargs):
-    print("TESTING")
     patients = Patient.objects.all()
     return render(request, "dashboard/dashboard.html", {'patients': patients})
 

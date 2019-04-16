@@ -2,6 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # https://docs.djangoproject.com/en/2.1/ref/models/fields/
+"""
+class userProfile(models.Model):
+    userName = models.OneToOneField(User, related_name='profile')
+    caregroupstate = models.IntegerField()
+
+    def __unicode__(self):  # __str__
+        return unicode(self.userName)
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+    userProfile.objects.create(userName=instance)
+post_save.connect(create_user_profile, sender=User)
+"""
 
 class CareGroup(models.Model):
     name = models.CharField(max_length=50)
