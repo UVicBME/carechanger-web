@@ -3,15 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm, DeviceCreationForm
 from django.contrib.auth.password_validation import validate_password
-<<<<<<< HEAD
 from django.template import RequestContext
-import logging
-logger = logging.getLogger(__name__)
-=======
 from sensors.models import CareGroup, Patient
 from django.contrib.auth.models import User
->>>>>>> cc3aa70da66814c7c58c3f2e713812b65db58554
-
 
 def handler403(request, *args, **argv):
     response = render_to_response('errors/403.html', {}, context_instance=RequestContext(request))
