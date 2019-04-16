@@ -39,6 +39,6 @@ class Data(models.Model):
     temperature = models.FloatField()
     humidity = models.FloatField()
     event = models.PositiveIntegerField(default=0)
-    time = models.DateTimeField()
+    time = models.IntegerField()
     device = models.ForeignKey(Device, on_delete=models.PROTECT)
     patient = models.ForeignKey(Patient, on_delete=models.PROTECT) # this form, originally

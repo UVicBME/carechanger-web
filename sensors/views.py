@@ -82,6 +82,4 @@ def receive_data(request):
         form = DataForm()
     print("FLAG!!!")
     print(request)
-    logger.debug("FLAG!!!")
-    logger.debug(request)
     return render(request, 'data/data.html', {'form': form})
