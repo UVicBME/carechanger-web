@@ -7,41 +7,44 @@
 	</head>
 	{% if user.is_authenticated %}
 	<body>
-		<div class="home_nav">
-			<!-- Navigation menu -->
-			<ul>
-				<li><a class="selected" href="">Dashboard</a></li>
-				<li><a href="">Caregroups</a></li>
-				<li><a href="">{{ user.get_username }}</a></li>
-				<li><a href="{% url 'logout' %}">Logout</a></li>
-			</ul>
-		</div>
-		<div class="content">
-			<button class="basic"><a href="{% url 'addpatient' %}">ADD PATIENT</a></button>
-			<button class="basic"><a href="">ADD DEVICE</a></button>
-			<button class="basic"><a href="">JOIN CAREGROUP</a></button>
-			<button class="basic"><a href="{% url 'addcaregroup' %}">NEW CAREGROUP</a></button>
+		<div id="page-container">
+
+			<div class="home_nav">
+				<!-- Navigation menu -->
+				<ul>
+					<li><a class="selected" href="">Dashboard</a></li>
+					<li><a href="">Caregroups</a></li>
+					<li><a href="">{{ user.get_username }}</a></li>
+					<li><a href="{% url 'logout' %}">Logout</a></li>
+				</ul>
+			</div>
+			<div class="content">
+				<button class="basic"><a href="{% url 'addpatient' %}">ADD PATIENT</a></button>
+				<button class="basic"><a href="">ADD DEVICE</a></button>
+				<button class="basic"><a href="">JOIN CAREGROUP</a></button>
+				<button class="basic"><a href="{% url 'addcaregroup' %}">NEW CAREGROUP</a></button>
 
 
-				<!-- Patient information -->
-			<table>
-		    <tr>
-						<th>Device</th>
-		        <th>Name</th>
-		        <th>Age</th>
-		    </tr>
-		    {% for item in patients %}
-		    <tr>
-						<td>{{item.id}}</td>
-		        <td>{{item.first_name}} {{item.last_name}}</td>
-		        <td>{{item.age}}</td>
-		    </tr>
-		    {% endfor %}
-			</table>
-			<div id="alert"></div>
-		</div>
-		<div id="footer">
-			&copy; CareChanger
+					<!-- Patient information -->
+				<table>
+			    <tr>
+							<th>Device</th>
+			        <th>Name</th>
+			        <th>Age</th>
+			    </tr>
+			    {% for item in patients %}
+			    <tr>
+							<td>{{item.id}}</td>
+			        <td>{{item.first_name}} {{item.last_name}}</td>
+			        <td>{{item.age}}</td>
+			    </tr>
+			    {% endfor %}
+				</table>
+				<div id="alert"></div>
+			</div>
+			<div id="footer">
+				&copy; CareChanger
+			</div>
 		</div>
 		<script>
 			/*

@@ -237,7 +237,21 @@ li a:hover {
 	font-size:10pt;
 	bottom:0px;
 	width:100%;
-	position:fixed;
+}
+
+footer {
+	background-color: rgba(255, 255, 255, 0.0);
+	color: #ffffff;
+	text-align: center;
+	font-size:10pt;
+	bottom:0px;
+	width:100%;
+	position: absolute;
+}
+
+#page-container {
+	position: relative;
+	min-height: 100vh;
 }
 
 .basic {
@@ -272,9 +286,9 @@ li a:hover {
 	outline:none;
 }
 
-a:link {
+.basic a:link {
 	color: white;
 }
-a:visited {
+.basic a:visited {
 	color: white;
 }

@@ -6,20 +6,21 @@ from django.contrib.auth.password_validation import validate_password
 from django.template import RequestContext
 from sensors.models import CareGroup, Patient
 from django.contrib.auth.models import User
+import logging
+logger = logging.getLogger(__name__)
+
 
 def handler403(request, *args, **argv):
     response = render_to_response('errors/403.html', {}, context_instance=RequestContext(request))
     response.status_code = 403
     return response
 
-
 def index(request, *args, **kwargs):
     return render(request, "index/index.html", {})
 
-
 def dashboard(request, *args, **kwargs):
     patients = Patient.objects.all()
-    return render(request, "dashboard/dashboard.html", {'patients': patients})
+    return render(request, "dashboard/dashboard.html", {})
 
 def add_patient(request, *args, **kwargs):
     # If the form has been submitted
