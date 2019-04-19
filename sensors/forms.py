@@ -92,4 +92,5 @@ class DataForm(forms.ModelForm):
             'event',
             'device',
             'patient',
+            'time',
         )
