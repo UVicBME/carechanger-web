@@ -48,6 +48,7 @@ def add_device(request):
         form = DeviceCreationForm() # Unbound form
     return render(request, 'registration/adddevice.html', { 'form': form })
 
+
 def add_care_group(request):
     if request.method == 'POST':
         form = CareGroupCreationForm(request.POST)
