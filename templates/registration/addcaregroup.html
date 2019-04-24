@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href='{% static "style.css" %}' />
     </head>
     <body>
+      <div id="page-container">
         <div class="container" id="inputs">
             <form method="post">
                 {% csrf_token %}
@@ -34,10 +35,7 @@
                 <button class="basic" type="submit">Create Care Group</button>
             </form>
         </div>
+        <footer>&copy; CareChanger</footer>
+      </div>
     </body>
-    <footer>
-        <div id="footer">
-			Copyright &copy; 2019 CareChanger
-		</div>
-    </footer>
 </html>

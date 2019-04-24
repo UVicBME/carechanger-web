@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href='{% static "style.css" %}' />
     </head>
     <body>
+      <div id="page-container">
         <div class="container" id="inputs">
             <form method="post">
                 {% csrf_token %}
@@ -44,8 +45,7 @@
                 <button class="login" type="submit">Create User</button>
             </form>
         </div>
+        <footer>&copy; CareChanger</footer>
+      </div>
     </body>
-    <footer>
-        <div id="footer">&copy; CareChanger</div>
-    </footer>
 </html>

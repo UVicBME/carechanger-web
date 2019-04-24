@@ -7,17 +7,17 @@
 	</head>
 	{% if user.is_authenticated %}
 	<body>
-		<div id="page-container">
-
-			<div class="home_nav">
+		<div id="page-container" class="dashboard">
+			<div id="nav">
 				<!-- Navigation menu -->
 				<ul>
-					<li><a class="selected" href="">Dashboard</a></li>
-					<li><a href="">Caregroups</a></li>
-					<li><a href="">{{ user.get_username }}</a></li>
-					<li><a href="{% url 'logout' %}">Logout</a></li>
+					<li><a class="nav_link" href="">Dashboard</a></li>
+					<li><a class="nav_link" href="">Caregroups</a></li>
+					<li><a class="nav_link" href="">{{ user.get_username }}</a></li>
+					<li><a class="nav_link" href="{% url 'logout' %}">Logout</a></li>
 				</ul>
 			</div>
+
 			<div class="content">
 				<button class="basic"><a href="{% url 'addpatient' %}">ADD PATIENT</a></button>
 				<button class="basic"><a href="">ADD DEVICE</a></button>
@@ -26,6 +26,7 @@
 
 
 					<!-- Patient information -->
+					<!--
 				<table>
 			    <tr>
 							<th>Device</th>
@@ -40,11 +41,43 @@
 			    </tr>
 			    {% endfor %}
 				</table>
+			-->
+				<table>
+					<tr>
+							<th>Device</th>
+							<th>Name</th>
+							<th>Age</th>
+							<th>Status</th>
+					</tr>
+					<tr>
+							<td>1</td>
+							<td>Bob Ross</td>
+							<td>42</td>
+					</tr>
+					<tr>
+							<td>2</td>
+							<td>Axel Rose</td>
+							<td>68</td>
+					</tr>
+					<tr>
+							<td>3</td>
+							<td>Thom Yorke</td>
+							<td>50</td>
+					</tr>
+					<tr>
+							<td>4</td>
+							<td>Jimmy Kimmel</td>
+							<td>52</td>
+					</tr>
+					<tr>
+							<td>5</td>
+							<td>Harry Potter</td>
+							<td>27</td>
+					</tr>
+				</table>
 				<div id="alert"></div>
 			</div>
-			<div id="footer">
-				&copy; CareChanger
-			</div>
+			<footer>&copy; CareChanger</div>
 		</div>
 		<script>
 			/*
@@ -53,11 +86,11 @@
 			});*/
 			$(function () {
 				$('body').scroll(function () {
-					var $nav = $(".home_nav");
+					var $nav = $("#nav");
 					var $ul = $("ul");
-					var $a = $("a");
+					var $nav_link = $(".nav_link");
 					$ul.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-					$a.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+					$nav_link.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
 					/* https://jsfiddle.net/we9L9h2r/ */
 					//console.log($(this).scrollTop());
 					//console.log("NAV HEIGHT:", $nav.height());

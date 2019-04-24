@@ -10,6 +10,7 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 	background-image: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);
 }
+
 /* https://webgradients.com/ */
 
 a {
@@ -25,12 +26,15 @@ table {
 	border-style: solid;
 	border-width: 2px;
 	border-color: rgba(255, 255, 255, 0.5);
+	background-color: #fff;
+	width:100%;
 	margin-top:10px;
 }
 
 td, th {
 	padding:10px;
 	text-align: left;
+	color: #323232;
 }
 
 tr:nth-child(even){
@@ -91,22 +95,6 @@ form {
 	padding:10px;
 }
 
-ul {
-	list-style-type: lower-latin;
-	margin:0;
-	padding:0;
-	overflow:hidden;
-	background-color: rgba(255, 255, 255, 0);
-	position:fixed;
-	left:0;
-	top:0;
-	width:100%;
-	border-bottom-style:solid;
-	border-bottom-width:1px;
-	border-bottom-color: rgba(255, 255, 255, 0.2);
-	transition:0.5s;
-}
-
 li {
 	float:left;
 	border-right-style:solid;
@@ -159,26 +147,31 @@ li a:hover {
 	left:0px;
 }
 
-.home_nav {
-	float: left;
+#nav {
 	width:100%;
-	position:fixed;
 	top:0px;
 }
 
-.home_nav ul {
+#nav ul {
 	list-style-type: none;
-}
-
-.home_nav .selected {
-	font-weight: bold;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	background-color: rgba(255, 255, 255, 0);
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color: rgba(255, 255, 255, 0.2);
+	transition:0.5s;
 }
 
 .scrolled {
   background-color: #fff !important;
   transition: background-color 200ms linear;
 	color:#323232;
-
 }
 
 .scrolled li{
@@ -230,15 +223,6 @@ li a:hover {
 	padding-bottom: 50px;
 }
 
-#footer {
-	background-color: rgba(255, 255, 255, 0.0);
-	color: #ffffff;
-	text-align: center;
-	font-size:10pt;
-	bottom:0px;
-	width:100%;
-}
-
 footer {
 	background-color: rgba(255, 255, 255, 0.0);
 	color: #ffffff;
@@ -251,7 +235,7 @@ footer {
 
 #page-container {
 	position: relative;
-	min-height: 100vh;
+	min-height: 75vh;
 }
 
 .basic {

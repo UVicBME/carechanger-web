@@ -8,7 +8,7 @@
 	</head>
 		<body>
 			<div id="page-container">
-				<div class="home_nav">
+				<div id="nav">
 					<!-- Navigation menu -->
 					<ul>
 						<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/><img id="logo_black" src="{% static "carechanger_logo.png" %}" alt="CareChanger Logo"/></li>
@@ -47,7 +47,7 @@
 				<script>
 					$(function () {
 						$('body').scroll(function () {
-							var $nav = $(".home_nav");
+							var $nav = $("#nav");
 							var $ul = $("ul");
 							var $a = $("a");
 							$ul.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
