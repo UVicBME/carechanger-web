@@ -292,3 +292,43 @@ footer {
 .basic a:visited {
 	color: white;
 }
+
+.login_error {
+    background-color: white;
+    border-radius: 7px;
+    width: 150px;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    text-size: 6;
+    left: 680px;
+    top: 50px;
+}
+
+.dot1 {
+  height: 5px;
+  width: 5px;
+  background-color: white;
+  border-radius: 50%;
+  left: 650px;
+  top: 210px;
+  position: absolute;}
+
+.dot2 {
+  height: 10px;
+  width: 10px;
+  background-color: white;
+  border-radius: 50%;
+  left: 660px;
+  top: 195px;
+  position: absolute;
+}
+
+.dot3 {
+  height: 15px;
+  width: 15px;
+  background-color: white;
+  border-radius: 50%;
+  left: 670px;
+  top: 175px;
+  position: absolute;}
