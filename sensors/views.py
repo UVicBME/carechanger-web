@@ -7,6 +7,7 @@ from django.template import RequestContext
 from sensors.models import CareGroup, Patient
 from django.contrib.auth.models import User
 import logging
+from django.contrib import messages
 logger = logging.getLogger(__name__)
 
 
@@ -15,12 +16,15 @@ def handler403(request, *args, **argv):
     response.status_code = 403
     return response
 
+
 def index(request, *args, **kwargs):
     return render(request, "index/index.html", {})
+
 
 def dashboard(request, *args, **kwargs):
     patients = Patient.objects.all()
     return render(request, "dashboard/dashboard.html", {})
+
 
 def add_patient(request, *args, **kwargs):
     # If the form has been submitted
@@ -33,12 +37,13 @@ def add_patient(request, *args, **kwargs):
         form = PatientCreationForm() # Unbound form
     return render(request, 'registration/addpatient.html', { 'form': form })
 
+
 def add_device(request):
     if request.method == 'POST':
         form = DeviceCreationForm(request.POST) # Form bound to POST data
-        if form.is_valid(): # If the form passes all validation rules
+        if form.is_valid():  # If the form passes all validation rules
             form.save()
-            return(redirect('dashboard')) # Redirect to the dashboard (TODO: change redirect location?)
+            return(redirect('dashboard'))  # Redirect to the dashboard (TODO: change redirect location?)
     else:
         form = DeviceCreationForm() # Unbound form
     return render(request, 'registration/adddevice.html', { 'form': form })
@@ -72,6 +77,7 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
 
 def receive_data(request):
     if request.method == 'POST':

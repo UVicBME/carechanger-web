@@ -34,6 +34,16 @@
 					<!-- Login button -->
 					<button class="login" type="submit">Login</button>
 				</form>
+				<!-- Error Message -->
+				{% if form.non_field_errors %}
+				<div id="login_error" class="login_error">
+					{% for error in form.non_field_errors %}
+						{{ error }}
+					{% endfor %}
+				</div>
+				<span class="dot1"></span>
+				<span class="dot2"></span>
+				<span class="dot3"></span>
 			<footer>
 				 &copy; CareChanger
 			</footer>

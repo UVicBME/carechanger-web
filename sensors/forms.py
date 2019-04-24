@@ -1,14 +1,14 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, User
+from django.contrib.auth.forms import UserCreationForm, User, authenticate
 from sensors.models import Patient, CareGroup, Data
 from django.contrib.auth.hashers import make_password
+
 
 # Form for adding a new patient to the database
 class PatientCreationForm(forms.ModelForm):
     first_name = forms.CharField(max_length=20)
     last_name = forms.CharField(max_length=40)
     age = forms.IntegerField()
-
 
     class Meta:
         model = Patient
