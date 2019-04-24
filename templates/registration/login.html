@@ -36,14 +36,15 @@
 				</form>
 				<!-- Error Message -->
 				{% if form.non_field_errors %}
-				<div id="login_error" class="login_error">
-					{% for error in form.non_field_errors %}
-						{{ error }}
-					{% endfor %}
-				</div>
-				<span class="dot1"></span>
-				<span class="dot2"></span>
-				<span class="dot3"></span>
+					<div id="login_error" class="login_error">
+						{% for error in form.non_field_errors %}
+							{{ error }}
+						{% endfor %}
+					</div>
+					<span class="dot1"></span>
+					<span class="dot2"></span>
+					<span class="dot3"></span>
+				{% endif %}
 			<footer>
 				 &copy; CareChanger
 			</footer>

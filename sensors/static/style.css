@@ -26,16 +26,28 @@ table {
 	border-style: solid;
 	border-width: 2px;
 	border-color: rgba(255, 255, 255, 0.5);
+	border-radius: 10px;
 	background-color: #fff;
 	width:100%;
 	margin-top:10px;
+	padding:10px;
 }
 
-td, th {
+th {
+	color: rgba(0, 0, 0, 0.5);
+	padding:10px;
+	text-align: left;
+}
+
+td{
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: rgba(0, 0, 0, 0.2);
 	padding:10px;
 	text-align: left;
 	color: #323232;
 }
+
 
 tr:nth-child(even){
 	background-color: rgba(255, 255, 255, 0.5);
@@ -235,7 +247,7 @@ footer {
 
 #page-container {
 	position: relative;
-	min-height: 75vh;
+	min-height: 70vh;
 }
 
 .basic {
