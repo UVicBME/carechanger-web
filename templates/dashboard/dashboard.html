@@ -7,83 +7,129 @@
 	</head>
 	{% if user.is_authenticated %}
 	<body>
-		<div id="page-container" class="dashboard">
-			<div id="nav">
-				<!-- Navigation menu -->
-				<ul>
-					<li><a class="nav_link" href="">Dashboard</a></li>
-					<li><a class="nav_link" href="">Caregroups</a></li>
-					<li><a class="nav_link" href="">{{ user.get_username }}</a></li>
-					<li><a class="nav_link" href="{% url 'logout' %}">Logout</a></li>
-				</ul>
+		<div id="nav">
+			<!-- Navigation menu -->
+			<ul>
+				<li><a class="nav_link" href="">Caregroup</a></li>
+				<li><a class="nav_link" href="">{{ user.get_username }}</a></li>
+				<li><a class="nav_link" href="{% url 'logout' %}">Logout</a></li>
+			</ul>
+
+			<div id="dash_nav">
+				<button class="dash_nav_button"><a href="{% url 'addpatient' %}">Add Patient</a></button>
+				<button class="dash_nav_button"><a href="">Add Device</a></button>
+				<button class="dash_nav_button"><a href="">Join Caregroup</a></button>
+				<button class="dash_nav_button"><a href="{% url 'addcaregroup' %}">New Caregroup</a></button>
 			</div>
+		</div>
 
-			<div class="content">
-				<button class="basic"><a href="{% url 'addpatient' %}">ADD PATIENT</a></button>
-				<button class="basic"><a href="">ADD DEVICE</a></button>
-				<button class="basic"><a href="">JOIN CAREGROUP</a></button>
-				<button class="basic"><a href="{% url 'addcaregroup' %}">NEW CAREGROUP</a></button>
+		<div id="dash_content">
+				<!-- Patient information -->
+				<!--
+			<table>
+		    <tr>
+						<th>Device</th>
+		        <th>Name</th>
+		        <th>Age</th>
+		    </tr>
+		    {% for item in patients %}
+		    <tr>
+						<td>{{item.id}}</td>
+		        <td>{{item.first_name}} {{item.last_name}}</td>
+		        <td>{{item.age}}</td>
+		    </tr>
+		    {% endfor %}
+			</table>
+		-->
+			<table>
+				<tr>
+						<th>Device</th>
+						<th>Name</th>
+						<th>Age</th>
+						<th>Status</th>
+				</tr>
+				<tr>
+						<td>1</td>
+						<td>Bob Ross</td>
+						<td>42</td>
+						<td></td>
 
-					<!-- Patient information -->
-					<!--
-				<table>
-			    <tr>
-							<th>Device</th>
-			        <th>Name</th>
-			        <th>Age</th>
-			    </tr>
-			    {% for item in patients %}
-			    <tr>
-							<td>{{item.id}}</td>
-			        <td>{{item.first_name}} {{item.last_name}}</td>
-			        <td>{{item.age}}</td>
-			    </tr>
-			    {% endfor %}
-				</table>
-			-->
-				<table>
-					<tr>
-							<th>Device</th>
-							<th>Name</th>
-							<th>Age</th>
-							<th>Status</th>
-					</tr>
-					<tr>
-							<td>1</td>
-							<td>Bob Ross</td>
-							<td>42</td>
-							<td></td>
+				</tr>
+				<tr>
+						<td>2</td>
+						<td>Axel Rose</td>
+						<td>68</td>
+						<td></td>
 
-					</tr>
-					<tr>
-							<td>2</td>
-							<td>Axel Rose</td>
-							<td>68</td>
-							<td></td>
-
-					</tr>
-					<tr>
-							<td>3</td>
-							<td>Thom Yorke</td>
-							<td>50</td>
-							<td></td>
-					</tr>
-					<tr>
-							<td>4</td>
-							<td>Jimmy Kimmel</td>
-							<td>52</td>
-							<td></td>
-					</tr>
-					<tr>
-							<td>5</td>
-							<td>Harry Potter</td>
-							<td>27</td>
-							<td></td>
-					</tr>
-				</table>
-				<div id="alert"></div>
-			</div>
-			<footer>&copy; CareChanger</div>
+				</tr>
+				<tr>
+						<td>3</td>
+						<td>Thom Yorke</td>
+						<td>50</td>
+						<td></td>
+				</tr>
+				<tr>
+						<td>4</td>
+						<td>Jimmy Kimmel</td>
+						<td>52</td>
+						<td></td>
+				</tr>
+				<tr>
+						<td>5</td>
+						<td>Harry Potter</td>
+						<td>27</td>
+						<td></td>
+				</tr>
+				<tr>
+						<td>6</td>
+						<td>Thom Yorke</td>
+						<td>50</td>
+						<td></td>
+				</tr>
+				<tr>
+						<td>7</td>
+						<td>Jimmy Kimmel</td>
+						<td>52</td>
+						<td></td>
+				</tr>
+				<tr>
+						<td>8</td>
+						<td>Harry Potter</td>
+						<td>27</td>
+						<td></td>
+				</tr>
+				<tr>
+						<td>9</td>
+						<td>Thom Yorke</td>
+						<td>50</td>
+						<td></td>
+				</tr>
+				<tr>
+						<td>10</td>
+						<td>Jimmy Kimmel</td>
+						<td>52</td>
+						<td></td>
+				</tr>
+				<tr>
+						<td>11</td>
+						<td>Harry Potter</td>
+						<td>27</td>
+						<td></td>
+				</tr>
+				<tr>
+						<td>12</td>
+						<td>Thom Yorke</td>
+						<td>50</td>
+						<td></td>
+				</tr>
+				<tr>
+						<td>13</td>
+						<td>Jimmy Kimmel</td>
+						<td>52</td>
+						<td></td>
+				</tr>
+			</table>
+			<footer id="dash_footer">&copy; CareChanger</footer>
 		</div>
 		<script>
 			/*
@@ -95,8 +141,20 @@
 					var $nav = $("#nav");
 					var $ul = $("ul");
 					var $nav_link = $(".nav_link");
+					var $dash_nav = document.getElementById('dash_nav');
+
+					console.log($ul.height())
+
+					$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
 					$ul.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
 					$nav_link.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+					if($(this).scrollTop() > $nav.height()){
+						$dash_nav.style.top = 60;
+					} else {
+						$dash_nav.style.top = 100;
+					}
+					//$dash_nav.style.top = $ul.height();
+
 					/* https://jsfiddle.net/we9L9h2r/ */
 					//console.log($(this).scrollTop());
 					//console.log("NAV HEIGHT:", $nav.height());

@@ -1,3 +1,4 @@
+
 html, body {
 	width: 100%;
 	height: 100%;
@@ -8,10 +9,10 @@ html, body {
 
 body {
 	font-family: Helvetica, Arial, sans-serif;
+	background-color:#eeeeee;
 	background-image: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);
+	/* https://webgradients.com/ */
 }
-
-/* https://webgradients.com/ */
 
 a {
 	text-decoration: none;
@@ -29,8 +30,11 @@ table {
 	border-radius: 10px;
 	background-color: #fff;
 	width:100%;
-	margin-top:10px;
+	margin:auto;
+	margin-top:30px;
 	padding:10px;
+	box-shadow: 0px 0px 10px #dddddd;
+
 }
 
 th {
@@ -54,7 +58,7 @@ tr:nth-child(even){
 }
 
 tr:hover {
-	background-color: white;
+	background-color: #eeeeee;
 }
 
 .login {
@@ -64,7 +68,6 @@ tr:hover {
 	border-color: rgba(255, 255, 255, 0.5);
 	border-radius: 20px;
 	background-color: inherit;
-	/*background-color: #0CDCE5;*/
 	text-align: center;
 	width:50%;
 	color: white;
@@ -98,10 +101,6 @@ form {
 	margin-left:auto;
 	margin-right:auto;
 	border-radius: 25px;
-	/*
-	border-style: solid;
-	border-width: 2px;
-	border-color: rgba(255, 255, 255, 0.5);*/
 	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
 	background-color: rgba(255, 255, 255, 0.0);
 	padding:10px;
@@ -154,8 +153,9 @@ li a:hover {
 	color:white;
 	margin-left:0%;
 	margin-right:0%;
-	margin-top:100px;
-	padding:5%;
+	padding-top:140px;
+	padding-right:5%;
+	padding-left:5%;
 	left:0px;
 }
 
@@ -169,7 +169,6 @@ li a:hover {
 	margin:0;
 	padding:0;
 	overflow:hidden;
-	background-color: rgba(255, 255, 255, 0);
 	position:fixed;
 	left:0;
 	top:0;
@@ -180,10 +179,47 @@ li a:hover {
 	transition:0.5s;
 }
 
+#dash_nav {
+	position:fixed;
+	background-color: white;
+	width:100%;
+	transition:0.5s;
+	top:100px;
+	padding:5px;
+	box-shadow: 0px 5px 5px #dddddd;
+
+}
+
+#dash_content {
+	color:white;
+	background-color: #eeeeee;
+	margin-left:0%;
+	margin-right:0%;
+	/*padding-top:150px;*/
+	margin-top:100px;
+	padding-top:70px;
+	padding-bottom:10px;
+
+	padding-right:5%;
+	padding-left:5%;
+	left:0px;
+}
+
+
 .scrolled {
-  background-color: #fff !important;
+	background-color: #fff; !important;
   transition: background-color 200ms linear;
 	color:#323232;
+}
+.scrolled ul{
+	background-color: #fff; !important;
+	/*background-image: linear-gradient(120deg, #fff 0%, #fff 100%);*/
+	transition: background-color 200ms linear;
+}
+
+.scrolled #dash_nav{
+	top:60px;
+	transition:0.5s;
 }
 
 .scrolled li{
@@ -207,7 +243,6 @@ li a:hover {
 	padding:10px;
 	color:#323232;
 	border-radius: 10px;
-	/*border-style: solid;*/
 	background-color: #ffffff;
 	padding:10px;
 }
@@ -236,57 +271,33 @@ li a:hover {
 }
 
 footer {
-	background-color: rgba(255, 255, 255, 0.0);
 	color: #ffffff;
 	text-align: center;
 	font-size:10pt;
-	bottom:0px;
-	width:100%;
-	position: absolute;
-}
-
-#page-container {
+	clear: both;
 	position: relative;
-	min-height: 70vh;
-}
-
-.basic {
+	height:auto;
 	padding:10px;
-	border-style: solid;
-	border-width: 2px;
-	border-color: rgba(255, 255, 255, 0.5);
+}
+
+.dash_nav_button {
+	padding:10px;
+	border-style: none;
 	background-color: inherit;
-	/*background-color: #0CDCE5;*/
 	text-align: center;
-	color: white;
+	color: #323232;
 	font-size:10pt;
+	margin:0px;
 }
 
-.basic:hover {
-	background-color: #FFFFFF;
-	color:#323232;
-	transition:.5s;
+.dash_nav_button a {
+	color: #323232;
 }
 
-.basic:hover::placeholder {
-	color:#323232;
-	transition:.5s;
-}
-
-.basic::placeholder {
-	color:#ffffff;
-}
-
-
-.basic:focus {
-	outline:none;
-}
-
-.basic a:link {
-	color: white;
-}
-.basic a:visited {
-	color: white;
+.dash_nav_button:hover a{
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #323232;
 }
 
 .login_error {
@@ -327,4 +338,5 @@ footer {
   border-radius: 50%;
   left: 670px;
   top: 175px;
-  position: absolute;}
+  position: absolute;
+}
