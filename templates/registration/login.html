@@ -13,42 +13,38 @@
 	  <p>Your username and password didn't match. Please try again.</p>
 	{% else %}
 		<body>
-			<div id="page-container" class="dashboard">
-				<form method="post">
-					<!-- Sends login data -->
-					{% csrf_token %}
-					<br>
-					<!-- CareChanger logo -->
-					<img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/>
-					<br>
-					<!-- Login field -->
-					<input class="login" type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}"
-						   placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required>
-					<br>
-					<br>
-					<!-- Password field -->
-					<input class="login" type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}"
-						   placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required>
-					<br>
-					<br>
-					<!-- Login button -->
-					<button class="login" type="submit">Login</button>
-				</form>
-				<!-- Error Message -->
-				{% if form.non_field_errors %}
-					<div id="login_error" class="login_error">
-						{% for error in form.non_field_errors %}
-							{{ error }}
-						{% endfor %}
-					</div>
-					<span class="dot1"></span>
-					<span class="dot2"></span>
-					<span class="dot3"></span>
-				{% endif %}
-				<footer>
-					 &copy; CareChanger
-				</footer>
-			</div>
+			<form method="post">
+				<!-- Sends login data -->
+				{% csrf_token %}
+				<br>
+				<!-- CareChanger logo -->
+				<img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/>
+				<br>
+				<!-- Login field -->
+				<input class="login" type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}"
+					   placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required>
+				<br>
+				<br>
+				<!-- Password field -->
+				<input class="login" type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}"
+					   placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required>
+				<br>
+				<br>
+				<!-- Login button -->
+				<button class="login" type="submit">Login</button>
+			</form>
+			<!-- Error Message -->
+			{% if form.non_field_errors %}
+				<div id="login_error" class="login_error">
+					{% for error in form.non_field_errors %}
+						{{ error }}
+					{% endfor %}
+				</div>
+				<span class="dot1"></span>
+				<span class="dot2"></span>
+				<span class="dot3"></span>
+			{% endif %}
+			<footer>&copy; CareChanger</footer>
 		</body>
 	{% endif %}
 </html>

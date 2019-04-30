@@ -23,14 +23,17 @@ def index(request, *args, **kwargs):
 
 def dashboard(request, *args, **kwargs):
     patients = Patient.objects.all()
-    return render(request, "dashboard/dashboard.html", {})
+    return render(request, "dashboard/dashboard.html", {'patients':patients})
 
 
 def add_patient(request, *args, **kwargs):
     # If the form has been submitted
     if request.method == 'POST':
+        print("ADD PATIENT REQUEST:")
+        print(request.POST)
         form = PatientCreationForm(request.POST) # Form bound to POST data
         if form.is_valid(): # If the form passes all validation rules
+            print("Patient Form Valid")
             form.save()
             return(redirect('dashboard')) # Redirect to the dashboard (TODO: change redirect location?)
     else:
@@ -69,6 +72,7 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
+            print("Signup Form Valid")
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
@@ -76,6 +80,7 @@ def signup(request):
             login(request, user)
             return redirect('index')
     else:
+        print("Signup Form Invalid")
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
 

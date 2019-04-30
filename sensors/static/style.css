@@ -23,38 +23,60 @@ h2,h3,h4 {
 	margin: 0;
 }
 
-table {
+.patient {
 	border-style: solid;
 	border-width: 2px;
 	border-color: rgba(255, 255, 255, 0.5);
 	border-radius: 10px;
 	background-color: #fff;
-	width:100%;
-	margin:auto;
+	margin-left:10px;
+	margin-right:10px;
 	margin-top:30px;
 	padding:10px;
 	box-shadow: 0px 0px 10px #dddddd;
-
+	border-spacing: 0px;
+	cursor:pointer;
+	/*display: inline-block;*/ /*makes divs smaller, rather than a list that takes up full width */
 }
 
-th {
+.patient_last_event {
+	float:right;
+}
+
+.patient_graph {
+	margin:auto;
+}
+
+.th {
 	color: rgba(0, 0, 0, 0.5);
 	padding:10px;
 	text-align: left;
+	display:inline-block;
+	margin:0px;
 }
 
-td{
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	border-bottom-color: rgba(0, 0, 0, 0.2);
-	padding:10px;
-	text-align: left;
-	color: #323232;
+.status_clean {
+	background-color: #66dd44;
+	border-radius:50px;
+	text-align: center;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
 }
 
+.status_dirty {
+	background-color: #dd6644;
+	border-radius:50px;
+	text-align: center;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
 
-tr:nth-child(even){
-	background-color: rgba(255, 255, 255, 0.5);
+tr {
+	cursor:pointer;
 }
 
 tr:hover {
@@ -173,10 +195,10 @@ li a:hover {
 	left:0;
 	top:0;
 	width:100%;
-	border-bottom-style:solid;
-	border-bottom-width:1px;
-	border-bottom-color: rgba(255, 255, 255, 0.2);
+
 	transition:0.5s;
+	z-index:1;
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
 }
 
 #dash_nav {
@@ -186,7 +208,7 @@ li a:hover {
 	transition:0.5s;
 	top:100px;
 	padding:5px;
-	box-shadow: 0px 5px 5px #dddddd;
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
 
 }
 
@@ -199,12 +221,11 @@ li a:hover {
 	margin-top:100px;
 	padding-top:70px;
 	padding-bottom:10px;
-
 	padding-right:5%;
 	padding-left:5%;
 	left:0px;
+	height:100%;
 }
-
 
 .scrolled {
 	background-color: #fff; !important;
@@ -237,23 +258,6 @@ li a:hover {
 	display:none;
 }
 
-.patient {
-	background-color: rgba(255, 255, 255, 0.1);
-	margin:10px;
-	padding:10px;
-	color:#323232;
-	border-radius: 10px;
-	background-color: #ffffff;
-	padding:10px;
-}
-
-.patient .inline{
-	clear:both;
-	display:
-	float:left;
-}
-
-
 #name {
 	margin: auto;
 	float: center;
@@ -276,8 +280,11 @@ footer {
 	font-size:10pt;
 	clear: both;
 	position: relative;
-	height:auto;
 	padding:10px;
+}
+
+#dash_footer {
+	background-color: #eeeeee;
 }
 
 .dash_nav_button {

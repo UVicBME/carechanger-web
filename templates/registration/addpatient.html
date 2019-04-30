@@ -7,30 +7,30 @@
     </head>
     <body>
       <div class="container" id="inputs">
-          <form method="post">
-              {% csrf_token %}
-              <br>
-              <!-- CareChanger logo -->
-              <br>
-              <!-- Patient's first name field -->
-              <input class="login" type="text" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}"
-                     placeholder="First Name" required>
-              <br>
-              <br>
-              <!-- Patient's last name field -->
-              <input class="login" type="text" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.html_name }}"
-                     placeholder="Last Name" required>
-              <br>
-              <br>
-      				<!-- Patient's age field -->
-      				<input class="login" type="number" id="{{ form.age.id_for_label }}" name="{{ form.age.html_name }}"
-      					   placeholder="Age">
-      				<br>
-      				<br>
+        <form method="post">
+          {% csrf_token %}
+          <br>
+          <!-- CareChanger logo -->
+          <br>
+          <!-- Patient's first name field -->
+          <input class="login" type="text" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}"
+                 placeholder="First Name" required>
+          <br>
+          <br>
+          <!-- Patient's last name field -->
+          <input class="login" type="text" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.html_name }}"
+                 placeholder="Last Name" required>
+          <br>
+          <br>
+  				<!-- Patient's age field -->
+  				<input class="login" type="number" id="{{ form.age.id_for_label }}" name="{{ form.age.html_name }}"
+  					   placeholder="Age">
+  				<br>
+  				<br>
 
-              <!-- Submit button -->
-              <button class="login" type="submit">Add Patient</button>
-          </form>
+          <!-- Submit button -->
+          <button class="login" type="submit">Add Patient</button>
+        </form>
       </div>
       <footer>&copy; CareChanger</footer>
     </body>

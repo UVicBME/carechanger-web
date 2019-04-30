@@ -6,19 +6,19 @@ from django.contrib.auth.hashers import make_password
 
 # Form for adding a new patient to the database
 class PatientCreationForm(forms.ModelForm):
+    """
     first_name = forms.CharField(max_length=20)
     last_name = forms.CharField(max_length=40)
     age = forms.IntegerField()
-
+    """
     class Meta:
         model = Patient
         fields = (
             'first_name',
             'last_name',
             'age',
-            'device',
-            'caregroup',
         )
+
 
 # Form for adding a new patient to the database
 class DeviceCreationForm(forms.ModelForm):

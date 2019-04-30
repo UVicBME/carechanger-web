@@ -1,4 +1,5 @@
 {% load static %}
+
 <html>
 	<head>
 		<title>Dashboard</title>
@@ -10,6 +11,7 @@
 		<div id="nav">
 			<!-- Navigation menu -->
 			<ul>
+				<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/><img id="logo_black" src="{% static "carechanger_logo.png" %}" alt="CareChanger Logo"/></li>
 				<li><a class="nav_link" href="">Caregroup</a></li>
 				<li><a class="nav_link" href="">{{ user.get_username }}</a></li>
 				<li><a class="nav_link" href="{% url 'logout' %}">Logout</a></li>
@@ -24,113 +26,57 @@
 		</div>
 
 		<div id="dash_content">
-				<!-- Patient information -->
-				<!--
-			<table>
-		    <tr>
-						<th>Device</th>
-		        <th>Name</th>
-		        <th>Age</th>
-		    </tr>
-		    {% for item in patients %}
-		    <tr>
-						<td>{{item.id}}</td>
-		        <td>{{item.first_name}} {{item.last_name}}</td>
-		        <td>{{item.age}}</td>
-		    </tr>
-		    {% endfor %}
-			</table>
-		-->
-			<table>
-				<tr>
-						<th>Device</th>
-						<th>Name</th>
-						<th>Age</th>
-						<th>Status</th>
-				</tr>
-				<tr>
-						<td>1</td>
-						<td>Bob Ross</td>
-						<td>42</td>
-						<td></td>
+			<!-- Patient information -->
 
-				</tr>
-				<tr>
-						<td>2</td>
-						<td>Axel Rose</td>
-						<td>68</td>
-						<td></td>
+			{% for item in patients %}
+				<div class="patient">
+						{% if item.status == "c" %}
+							<p class="th status_clean">clean</p>
+						{% else %}
+							<p class="th status_dirty">dirty</p>
+						{% endif %}
+						<p class="th">{{item.first_name}} {{item.last_name}}</p>
+						<p class="th">Device: {{item.id}}</p>
+						<p class="th">Age: {{item.age}}</p>
+						<p class="th patient_last_event">Last Event: {{item.last_event}}</p>
+						<img class= "patient_graph" style="display:none" src="{% static 'graph.png' %}">
+				</div>
+			{% endfor %}
 
-				</tr>
-				<tr>
-						<td>3</td>
-						<td>Thom Yorke</td>
-						<td>50</td>
-						<td></td>
-				</tr>
-				<tr>
-						<td>4</td>
-						<td>Jimmy Kimmel</td>
-						<td>52</td>
-						<td></td>
-				</tr>
-				<tr>
-						<td>5</td>
-						<td>Harry Potter</td>
-						<td>27</td>
-						<td></td>
-				</tr>
-				<tr>
-						<td>6</td>
-						<td>Thom Yorke</td>
-						<td>50</td>
-						<td></td>
-				</tr>
-				<tr>
-						<td>7</td>
-						<td>Jimmy Kimmel</td>
-						<td>52</td>
-						<td></td>
-				</tr>
-				<tr>
-						<td>8</td>
-						<td>Harry Potter</td>
-						<td>27</td>
-						<td></td>
-				</tr>
-				<tr>
-						<td>9</td>
-						<td>Thom Yorke</td>
-						<td>50</td>
-						<td></td>
-				</tr>
-				<tr>
-						<td>10</td>
-						<td>Jimmy Kimmel</td>
-						<td>52</td>
-						<td></td>
-				</tr>
-				<tr>
-						<td>11</td>
-						<td>Harry Potter</td>
-						<td>27</td>
-						<td></td>
-				</tr>
-				<tr>
-						<td>12</td>
-						<td>Thom Yorke</td>
-						<td>50</td>
-						<td></td>
-				</tr>
-				<tr>
-						<td>13</td>
-						<td>Jimmy Kimmel</td>
-						<td>52</td>
-						<td></td>
-				</tr>
-			</table>
-			<footer id="dash_footer">&copy; CareChanger</footer>
+			<div class="patient">
+					<p class="th status_clean">clean</p>
+					<p class="th">Bob Ross</p>
+					<p class="th">Device: 1</p>
+					<p class="th">Age: 42</p>
+					<p class="th patient_last_event">Last Event: 3 hours ago</p>
+					<img class= "patient_graph" style="display:none" src="{% static 'graph.png' %}">
+
+			</div>
+			<div class="patient">
+					<p class="th status_clean">clean</p>
+					<p class="th">Axel Rose</p>
+					<p class="th">Device: 2</p>
+					<p class="th">Age: 68</p>
+					<p class="th patient_last_event">Last Event: 7 hours ago</p>
+			</div>
+			<div class="patient">
+					<p class="th status_dirty">dirty</p>
+					<p class="th">Thom Yorke</p>
+					<p class="th">Device: 3</p>
+					<p class="th">Age: 50</p>
+					<p class="th patient_last_event">Last Event: 5 hours ago</p>
+
+			</div>
+			<div class="patient">
+					<p class="th status_clean">clean</p>
+					<p class="th">Jimmy Kimmel</p>
+					<p class="th">Device: 4</p>
+					<p class="th">Age: 52</p>
+					<p class="th patient_last_event">Last Event: 1 hour ago</p>
+
+			</div>
 		</div>
+		<footer id="dash_footer">&copy; CareChanger</footer>
 		<script>
 			/*
 			$( document ).ready(function() {
@@ -160,6 +106,31 @@
 					//console.log("NAV HEIGHT:", $nav.height());
 				});
 			});
+
+			$(function(){
+				var i=0;
+				$(".patient").click(function(){
+					i=(i+1)%2;
+					if(i==1){ // open the div
+						$(this).find("img").css("display", "block"); // Open the image
+						$(this).css('height', 'auto'); // Set div to auto height
+						var ch = $(this).height(); // save curr height
+						$(this).find("img").css("display", "none"); // close the image
+						$(this).animate({height:ch},200);
+						$(this).find("img").css("display", "block"); // Open the image
+
+					} else { // close the div
+						$(this).find("img").css("display", "none"); // close the image
+						$(this).css('height', 'auto'); // Set div to auto height
+						var ah = $(this).height(); // save auto height
+						$(this).find("img").css("display", "block"); // Open the image
+						$(this).animate({height:ah},200);
+						$(this).find("img").css("display", "none"); // close the image
+					}
+				});
+			});
+
+
 		</script>
 	</body>
 	{% else %}
