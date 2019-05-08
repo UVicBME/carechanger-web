@@ -147,8 +147,7 @@ li a {
 	padding-right:20px;
 	text-decoration: none;
 	text-align: center;
-	transition-property: height, border-top-width, border-top-color;
-	transition-duration: 0.5s;
+
 	height:inherit;
 }
 
@@ -159,6 +158,8 @@ li:hover a{
 	border-top-style:solid;
 	border-top-width:10px;
 	border-top-color: white;
+	transition-property: height, border-top-width, border-top-color, background-color;
+	transition-duration: 0.5s;
 	height:90px;
 }
 
@@ -211,7 +212,8 @@ li:hover a{
 	border-top-width:10px;
 	border-top-color: white;
 	transition: 0.5s;
-	transition-property: border-top-width, border-top-color, background-color;
+	transition-property: border-top-width, border-top-color, background-color, height;
+	height:90px;
 }
 
 #caregroups_list:hover .dropdown_link {
@@ -223,6 +225,7 @@ li:hover a{
 
 #active_caregroup {
 	width:100%;
+	height:100px;
 	padding:0px;
 	margin:0px;
 	overflow:hidden;
