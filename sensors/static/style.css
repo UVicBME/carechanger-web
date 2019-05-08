@@ -137,6 +137,7 @@ li {
 	height:100px;
 	line-height: 100px;
 	transition:0.5s;
+	text-align:center;
 }
 
 li a {
@@ -146,21 +147,91 @@ li a {
 	padding-right:20px;
 	text-decoration: none;
 	text-align: center;
-	vertical-align:middle;
+	transition-property: height, border-top-width, border-top-color;
+	transition-duration: 0.5s;
+	height:inherit;
 }
 
-li a:hover {
-	background-color: rgba(255, 255, 255, 1);
+li:hover a{
+	position:relative;
 	color:#323232;
-	transition: 0.5s;
+	background-color: #fff;
 	border-top-style:solid;
 	border-top-width:10px;
 	border-top-color: white;
+	height:90px;
+}
+
+.dropdown_link {
+	position:relative;
+	color:#323232;
+	background-color: #ffffff;
+	visibility:hidden;
+	display:block;
+	padding:5px;
+	border-style:none; /* clears the previous border style */
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color: #dddddd;
+	line-height:30px;
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
+	text-align:center;
+	text-transform: uppercase;
+	width:100%;
+	transition:0.5s;
+	transition-property: border-top-style, border-top-color, background-color;
+}
+
+.dropdown_link a{
+	padding:0px;
+	margin:0px;
+}
+
+.dropdown_link:hover {
+	background-color: #eeeeee;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color: #dddddd;
+}
+
+.dropdown_link:focus {
+    outline:none;
+}
+#caregroups_list {
+	width:150px;
+
+}
+
+#caregroups_list:hover #active_caregroup {
+	position:relative;
+	color:#323232;
+	background-color: white;
+	border-style:none;
+	border-top-style:solid;
+	border-top-width:10px;
+	border-top-color: white;
+	transition: 0.5s;
+	transition-property: border-top-width, border-top-color, background-color;
+}
+
+#caregroups_list:hover .dropdown_link {
+	visibility:visible;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color: #eeeeee;
+}
+
+#active_caregroup {
+	width:100%;
+	padding:0px;
+	margin:0px;
+	overflow:hidden;
 }
 
 #logo {
 	width:100;
 }
+
 #logo_black {
 	display:none;
 	width:100;
@@ -190,12 +261,10 @@ li a:hover {
 	list-style-type: none;
 	margin:0;
 	padding:0;
-	overflow:hidden;
 	position:fixed;
 	left:0;
 	top:0;
 	width:100%;
-
 	transition:0.5s;
 	z-index:1;
 	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
@@ -209,7 +278,6 @@ li a:hover {
 	top:100px;
 	padding:5px;
 	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
-
 }
 
 #dash_content {
@@ -227,6 +295,11 @@ li a:hover {
 	height:100%;
 }
 
+.scrolled a{
+	position:relative;
+	/*top:-1px;*/
+}
+
 .scrolled {
 	background-color: #fff; !important;
   transition: background-color 200ms linear;
@@ -234,7 +307,6 @@ li a:hover {
 }
 .scrolled ul{
 	background-color: #fff; !important;
-	/*background-image: linear-gradient(120deg, #fff 0%, #fff 100%);*/
 	transition: background-color 200ms linear;
 }
 
@@ -245,9 +317,21 @@ li a:hover {
 
 .scrolled li{
   height:60px;
-	line-height: 60px;
 	transition:0.5s;
+	line-height: 60px;
 }
+
+.scrolled #caregroups_list:hover #active_caregroup { /* when scrolled, keep active_caregroup element from moving */
+	border-top-width: 0px;
+	height:60px;
+}
+
+.scrolled li:hover a{
+	border-top-width: 0px;
+	height:60px;
+	background-color: #eeeeee;
+}
+
 
 .scrolled #logo_black {
 	display:block;

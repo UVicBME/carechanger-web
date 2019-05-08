@@ -10,78 +10,60 @@
 	<body>
 		<div id="nav">
 			<!-- Navigation menu -->
-			<ul>
+			<ul id="nav_ul">
 				<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/><img id="logo_black" src="{% static "carechanger_logo.png" %}" alt="CareChanger Logo"/></li>
-				<li><a class="nav_link" href="">Caregroup</a></li>
-				<li><a class="nav_link" href="">{{ user.get_username }}</a></li>
-				<li><a class="nav_link" href="{% url 'logout' %}">Logout</a></li>
+				{% if user.active_caregroup is not none %}
+					<li class="nav_li" id="caregroups_list">
+						<a class="nav_link nav_a" id="active_caregroup">{{ user.active_caregroup.name }}</a>
+						{% for c in caregroups %}
+							{% if c.name != user.active_caregroup.name %}
+								<button class="dropdown_link nav_a" value="{{c.id}}">{{c.name}}</button>
+							{% endif %}
+						{% endfor %}
+					</li>
+				{% endif %}
+				<li class="nav_li"><a class="nav_link nav_a" href="">{{ user.get_username }}</a></li>
+				<li class="nav_li"><a class="nav_link nav_a" href="{% url 'logout' %}">Logout</a></li>
 			</ul>
 
 			<div id="dash_nav">
-				<button class="dash_nav_button"><a href="{% url 'addpatient' %}">Add Patient</a></button>
-				<button class="dash_nav_button"><a href="">Add Device</a></button>
+				{% if user.active_caregroup is not none %}
+					<button class="dash_nav_button"><a href="{% url 'addpatient' %}">Add Patient</a></button>
+					<button class="dash_nav_button"><a href="">Add Device</a></button>
+				{% endif %}
 				<button class="dash_nav_button"><a href="">Join Caregroup</a></button>
 				<button class="dash_nav_button"><a href="{% url 'addcaregroup' %}">New Caregroup</a></button>
 			</div>
 		</div>
 
 		<div id="dash_content">
-			<!-- Patient information -->
+			{% if user.active_caregroup is not none %}
 
-			{% for item in patients %}
-				<div class="patient">
-						{% if item.status == "c" %}
-							<p class="th status_clean">clean</p>
-						{% else %}
-							<p class="th status_dirty">dirty</p>
-						{% endif %}
-						<p class="th">{{item.first_name}} {{item.last_name}}</p>
-						<p class="th">Device: {{item.id}}</p>
-						<p class="th">Age: {{item.age}}</p>
-						<p class="th patient_last_event">Last Event: {{item.last_event}}</p>
-						<img class= "patient_graph" style="display:none" src="{% static 'graph.png' %}">
-				</div>
-			{% endfor %}
+				<!-- Patient information -->
+				{% for item in patients %}
+					<div class="patient">
+							{% if item.status == "c" %}
+								<p class="th status_clean">clean</p>
+							{% else %}
+								<p class="th status_dirty">dirty</p>
+							{% endif %}
+							<p class="th">{{item.first_name}} {{item.last_name}}</p>
 
-			<div class="patient">
-					<p class="th status_clean">clean</p>
-					<p class="th">Bob Ross</p>
-					<p class="th">Device: 1</p>
-					<p class="th">Age: 42</p>
-					<p class="th patient_last_event">Last Event: 3 hours ago</p>
-					<img class= "patient_graph" style="display:none" src="{% static 'graph.png' %}">
+							<p class="th">Device: {{item.device}}</p>
+							<p class="th">Age: {{item.age}}</p>
+							<p class="th patient_last_event">Last Event: {{item.last_event}}</p>
+							<img class= "patient_graph" style="display:none" src="{% static 'graph.png' %}">
+					</div>
+				{% endfor %}
+			{% else %}
+				<p>Create a new caregroup in order to get started.</p>
+			{% endif %}
 
-			</div>
-			<div class="patient">
-					<p class="th status_clean">clean</p>
-					<p class="th">Axel Rose</p>
-					<p class="th">Device: 2</p>
-					<p class="th">Age: 68</p>
-					<p class="th patient_last_event">Last Event: 7 hours ago</p>
-			</div>
-			<div class="patient">
-					<p class="th status_dirty">dirty</p>
-					<p class="th">Thom Yorke</p>
-					<p class="th">Device: 3</p>
-					<p class="th">Age: 50</p>
-					<p class="th patient_last_event">Last Event: 5 hours ago</p>
-
-			</div>
-			<div class="patient">
-					<p class="th status_clean">clean</p>
-					<p class="th">Jimmy Kimmel</p>
-					<p class="th">Device: 4</p>
-					<p class="th">Age: 52</p>
-					<p class="th patient_last_event">Last Event: 1 hour ago</p>
-
-			</div>
 		</div>
 		<footer id="dash_footer">&copy; CareChanger</footer>
 		<script>
-			/*
-			$( document ).ready(function() {
-				alert( "ready!" );
-			});*/
+
+			/* This function controls the dynamic nav bar color/height change due to a user scroll*/
 			$(function () {
 				$('body').scroll(function () {
 					var $nav = $("#nav");
@@ -107,6 +89,7 @@
 				});
 			});
 
+			/* This function controls the toggle of a patient object to open/close a patient graph */
 			$(function(){
 				var i=0;
 				$(".patient").click(function(){
@@ -118,7 +101,6 @@
 						$(this).find("img").css("display", "none"); // close the image
 						$(this).animate({height:ch},200);
 						$(this).find("img").css("display", "block"); // Open the image
-
 					} else { // close the div
 						$(this).find("img").css("display", "none"); // close the image
 						$(this).css('height', 'auto'); // Set div to auto height
@@ -130,7 +112,29 @@
 				});
 			});
 
-
+			/* This function changes the caregroup patients being currently viewed */
+			$(".dropdown_link").on('click', function () {
+				var caregroup = $(this).val();
+				console.log(caregroup)
+	      $.ajax({
+	        url: '/ajax/change_caregroup/',
+	        data: {
+	          'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+	          'caregroup': caregroup
+	        },
+	        dataType: 'json',
+	        success: function (data) {
+	          if (data.success) {
+	            console.log("ajax call success.");
+	            // here you update the HTML to change the active to innactive
+							window.location.reload();
+	          }else{
+	            console.log("ajax call not success.");
+							window.location.reload();
+	          }
+	        }
+	      });
+			});
 		</script>
 	</body>
 	{% else %}

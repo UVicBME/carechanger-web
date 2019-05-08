@@ -41,8 +41,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+
+    # local
     "sensors",
+    #"sensors.apps.UsersConfig", # new
 ]
+
+AUTH_USER_MODEL = "sensors.User" # new
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

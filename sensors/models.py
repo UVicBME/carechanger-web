@@ -1,34 +1,29 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.db.models.signals import post_save
 
-# https://docs.djangoproject.com/en/2.1/ref/models/fields/
-class UserProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile', on_delete=models.CASCADE)
-    caregroupstate = models.IntegerField(null=True)
-
-"""
-    def __unicode__(self):  # __str__
-        return unicode(self.userName)
-"""
-
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-post_save.connect(create_user_profile, sender=User)
-
 class CareGroup(models.Model):
-    name = models.CharField(max_length=254)
+    name = models.CharField(max_length=254, unique=True)
     password = models.CharField(max_length=254)
-    users = models.ManyToManyField(User) # many users to many caregroups
+    users = models.ManyToManyField(settings.AUTH_USER_MODEL) # many users to many caregroups
     admin_email = models.EmailField(max_length=254)
 
+class User(AbstractUser):
+    active_caregroup = models.ForeignKey(CareGroup, related_name='%(class)s_active_caregroup', null=True, on_delete=models.SET_NULL)
+    caregroups = models.ManyToManyField(CareGroup, related_name='%(class)s_caregroups')
+"""
+    say you want to list all users in a caregroup, without a "users" many to many relationship in model.
+    then you have to parse through all userprofiles
+
+"""
+
+# https://docs.djangoproject.com/en/2.1/ref/models/fields/
 # Each device
 class Device(models.Model):
     history = models.TextField()
     active = models.BooleanField()
-    caregroup = models.ForeignKey(CareGroup, on_delete=models.CASCADE) # many devices to one care group
+    caregroup = models.ForeignKey(CareGroup, on_delete=models.CASCADE) # many devices to one care group; if caregroup deleted cascade delete devices
 
 class Patient(models.Model):
     STATUSES = (
