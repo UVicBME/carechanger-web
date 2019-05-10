@@ -439,3 +439,7 @@ footer {
   top: 175px;
   position: absolute;
 }
+
+#note {
+	color:#323232;
+}

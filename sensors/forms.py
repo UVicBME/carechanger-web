@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, User, authenticate
-from sensors.models import Patient, CareGroup, Data
+from django.contrib.auth.forms import UserCreationForm, authenticate
+from sensors.models import Patient, CareGroup, Data, User
 from django.contrib.auth.hashers import make_password
 
 
