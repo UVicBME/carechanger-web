@@ -5,140 +5,68 @@
 		<title>Dashboard</title>
 		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
 		<script type="text/javascript" src="{% static 'jquery-3.3.1.min.js' %}"> </script>
+		<script type="text/javascript" src="{% static 'sensors.js' %}"> </script>
 	</head>
 	{% if user.is_authenticated %}
-	<body>
-		<div id="nav">
-			<!-- Navigation menu -->
-			<ul id="nav_ul">
-				<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/><img id="logo_black" src="{% static "carechanger_logo.png" %}" alt="CareChanger Logo"/></li>
-				{% if user.active_caregroup is not none %}
-					<li class="nav_li" id="caregroups_list">
-						<a class="nav_link nav_a" id="active_caregroup">{{ user.active_caregroup.name }}</a>
-						{% for c in caregroups %}
-							{% if c.name != user.active_caregroup.name %}
-								<button class="dropdown_link nav_a" value="{{c.id}}">{{c.name}}</button>
-							{% endif %}
-						{% endfor %}
-					</li>
-				{% endif %}
-				<li class="nav_li"><a class="nav_link nav_a" href="">{{ user.get_username }}</a></li>
-				<li class="nav_li"><a class="nav_link nav_a" href="{% url 'logout' %}">Logout</a></li>
-			</ul>
+		<body>
+			<div id="nav">
+				<!-- Navigation menu -->
+				<ul id="nav_ul">
+					<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/><img id="logo_black" src="{% static "carechanger_logo.png" %}" alt="CareChanger Logo"/></li>
+					<!-- Check if user has any active caregroups. If so, show dropdown caregroup list selector -->
+					{% if user.active_caregroup is not none %}
+						<li class="nav_li" id="caregroups_list">
+							<a class="nav_link nav_a" id="active_caregroup">{{ user.active_caregroup.name }}</a>
+							{% for c in caregroups %}
+								<!-- List all inactive caregroups-->
+								{% if c.name != user.active_caregroup.name %}
+									<button class="dropdown_link nav_a" value="{{c.id}}">{{c.name}}</button>
+								{% endif %}
+							{% endfor %}
+						</li>
+					{% endif %}
+					<li class="nav_li"><a class="nav_link nav_a" href="">{{ user.get_username }}</a></li>
+					<li class="nav_li"><a class="nav_link nav_a" href="{% url 'logout' %}">Logout</a></li>
+				</ul>
 
-			<div id="dash_nav">
-				{% if user.active_caregroup is not none %}
-					<button class="dash_nav_button"><a href="{% url 'addpatient' %}">Add Patient</a></button>
-					<button class="dash_nav_button"><a href="">Add Device</a></button>
-				{% endif %}
-				<button class="dash_nav_button"><a href="">Join Caregroup</a></button>
-				<button class="dash_nav_button"><a href="{% url 'addcaregroup' %}">New Caregroup</a></button>
+				<div id="dash_nav">
+					<!-- Check if user has any active caregroups. If so, show caregroup modification options -->
+					{% if user.active_caregroup is not none %}
+						<button class="dash_nav_button"><a href="{% url 'addpatient' %}">Add Patient</a></button>
+						<button class="dash_nav_button"><a href="">Add Device</a></button>
+					{% endif %}
+					<button class="dash_nav_button"><a href="">Join Caregroup</a></button>
+					<button class="dash_nav_button"><a href="{% url 'addcaregroup' %}">New Caregroup</a></button>
+				</div>
 			</div>
-		</div>
 
-		<div id="dash_content">
-			{% if user.active_caregroup is not none %}
+			<div id="dash_content">
+				<!-- Only iterate through patients when an active caregroup has been selected. -->
+				{% if user.active_caregroup is not none %}
+					<!-- Patient information -->
+					{% for item in patients %}
+						<div class="patient">
+								{% if item.status == "c" %}
+									<p class="th status_clean">clean</p>
+								{% else %}
+									<p class="th status_dirty">dirty</p>
+								{% endif %}
+								<p class="th">{{item.first_name}} {{item.last_name}}</p>
 
-				<!-- Patient information -->
-				{% for item in patients %}
-					<div class="patient">
-							{% if item.status == "c" %}
-								<p class="th status_clean">clean</p>
-							{% else %}
-								<p class="th status_dirty">dirty</p>
-							{% endif %}
-							<p class="th">{{item.first_name}} {{item.last_name}}</p>
-
-							<p class="th">Device: {{item.device}}</p>
-							<p class="th">Age: {{item.age}}</p>
-							<p class="th patient_last_event">Last Event: {{item.last_event}}</p>
-							<img class= "patient_graph" style="display:none" src="{% static 'graph.png' %}">
-					</div>
-				{% endfor %}
-			{% else %}
-				<p>Create a new caregroup in order to get started.</p>
-			{% endif %}
-
-		</div>
-		<footer id="dash_footer">&copy; CareChanger</footer>
-		<script>
-
-			/* This function controls the dynamic nav bar color/height change due to a user scroll*/
-			$(function () {
-				$('body').scroll(function () {
-					var $nav = $("#nav");
-					var $ul = $("ul");
-					var $nav_link = $(".nav_link");
-					var $dash_nav = document.getElementById('dash_nav');
-
-					console.log($ul.height())
-
-					$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-					$ul.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-					$nav_link.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-					if($(this).scrollTop() > $nav.height()){
-						$dash_nav.style.top = 60;
-					} else {
-						$dash_nav.style.top = 100;
-					}
-					//$dash_nav.style.top = $ul.height();
-
-					/* https://jsfiddle.net/we9L9h2r/ */
-					//console.log($(this).scrollTop());
-					//console.log("NAV HEIGHT:", $nav.height());
-				});
-			});
-
-			/* This function controls the toggle of a patient object to open/close a patient graph */
-			$(function(){
-				var i=0;
-				$(".patient").click(function(){
-					i=(i+1)%2;
-					if(i==1){ // open the div
-						$(this).find("img").css("display", "block"); // Open the image
-						$(this).css('height', 'auto'); // Set div to auto height
-						var ch = $(this).height(); // save curr height
-						$(this).find("img").css("display", "none"); // close the image
-						$(this).animate({height:ch},200);
-						$(this).find("img").css("display", "block"); // Open the image
-					} else { // close the div
-						$(this).find("img").css("display", "none"); // close the image
-						$(this).css('height', 'auto'); // Set div to auto height
-						var ah = $(this).height(); // save auto height
-						$(this).find("img").css("display", "block"); // Open the image
-						$(this).animate({height:ah},200);
-						$(this).find("img").css("display", "none"); // close the image
-					}
-				});
-			});
-
-			/* This function changes the caregroup patients being currently viewed */
-			$(".dropdown_link").on('click', function () {
-				var caregroup = $(this).val();
-				console.log(caregroup)
-	      $.ajax({
-	        url: '/ajax/change_caregroup/',
-	        data: {
-	          'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-	          'caregroup': caregroup
-	        },
-	        dataType: 'json',
-	        success: function (data) {
-	          if (data.success) {
-	            console.log("ajax call success.");
-	            // here you update the HTML to change the active to innactive
-							window.location.reload();
-	          }else{
-	            console.log("ajax call not success.");
-							window.location.reload();
-	          }
-	        }
-	      });
-			});
-		</script>
-	</body>
+								<p class="th">Device: {{item.device}}</p>
+								<p class="th">Age: {{item.age}}</p>
+								<p class="th patient_last_event">Last Event: {{item.last_event}}</p>
+								<img class= "patient_graph" style="display:none" src="{% static 'graph.png' %}">
+						</div>
+					{% endfor %}
+				{% else %}
+					<div class="patient"><p id="note">Create a new caregroup in order to get started.</p></div>
+				{% endif %}
+			</div>
+			<footer id="dash_footer">&copy; CareChanger</footer>
+		</body>
 	{% else %}
-	<p>You are not logged in.</p>
-	<a href="{% url 'login' %}">Login</a>
+		<p>You are not logged in.</p>
+		<a href="{% url 'login' %}">Login</a>
 	{% endif %}
 </html>
