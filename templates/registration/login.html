@@ -4,13 +4,12 @@
 	<head>
 		<title>Login</title>
 		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
+		<link rel="icon" type="image/png" href="{% static 'favicon.png' %}"/>
 	</head>
 	<!-- Redirect to dashboard if user is logged in -->
 	{% if user.is_authenticated %}
 		<meta http-equiv="refresh" content="0; url=/dashboard/" />
 	<!-- Load login page if user is not logged in -->
-	{% elif form.errors %}
-	  <p>Your username and password didn't match. Please try again.</p>
 	{% else %}
 		<body>
 			<form method="post">
