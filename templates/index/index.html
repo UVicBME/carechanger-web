@@ -4,6 +4,7 @@
 		<title>Home</title>
 		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
 		<script type="text/javascript" src="{% static 'jquery-3.3.1.min.js' %}"> </script>
+		<script type="text/javascript" src="{% static 'sensors.js' %}"> </script>
 	</head>
 	<body>
 		<div id="nav">
@@ -42,19 +43,5 @@ Authentic mumblecore keffiyeh chia, flexitarian Bushwick McSweeney's mlkshk cray
 You probably haven't heard of them tattooed Etsy, tote bag skateboard hashtag keffiyeh Helvetica fanny pack bicycle rights. Umami Intelligentsia freegan, Wes Anderson 8-bit normcore slow-carb tattooed lo-fi fanny pack gluten-free mlkshk. Banjo Neutra YOLO, wolf pour-over put a bird on it vinyl hashtag blog letterpress actually dreamcatcher viral. Mixtape semiotics iPhone, sustainable vegan ethical swag roof party keytar leggings. Williamsburg ethical Bushwick jean shorts, Tumblr skateboard aesthetic bicycle rights retro Blue Bottle polaroid cliche semiotics occupy. VHS PBR fingerstache, iPhone leggings Kickstarter Tonx normcore retro 90's paleo direct trade Pitchfork. Lo-fi Truffaut craft beer, forage +1 bitters 8-bit retro master cleanse jean shorts chillwave. </p>
 		</div>
 		<footer>&copy; CareChanger</footer>
-		<script>
-			$(function () {
-				$('body').scroll(function () {
-					var $nav = $("#nav");
-					var $ul = $("ul");
-					var $a = $("a");
-					$ul.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-					$a.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-					/* https://jsfiddle.net/we9L9h2r/ */
-					console.log($(this).scrollTop());
-					console.log("NAV HEIGHT:", $nav.height());
-				});
-			});
-		</script>
 	</body>
 </html>
