@@ -23,5 +23,7 @@ urlpatterns = [
     path("addcaregroup/", sensors.views.add_care_group, name='addcaregroup'),
     path("", include('django.contrib.auth.urls')),
     path("signup/", sensors.views.signup, name='signup'),
-    path("data/", sensors.views.receive_data, name='data')
+    path("data/", sensors.views.receive_data, name='data'),
+    path("login/", sensors.views.login, name='login'),
+    url(r'^ajax/change_caregroup/$', sensors.views.ajax_change_caregroup, name='ajax_change_caregroup'), # uses ajax to change the 'active_caregroup' value of a user in the database
 ]

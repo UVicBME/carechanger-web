@@ -1,39 +1,42 @@
 from django.db import models
-from django.contrib.auth.models import User
-
-# https://docs.djangoproject.com/en/2.1/ref/models/fields/
-"""
-class userProfile(models.Model):
-    userName = models.OneToOneField(User, related_name='profile')
-    caregroupstate = models.IntegerField()
-
-    def __unicode__(self):  # __str__
-        return unicode(self.userName)
-
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-    userProfile.objects.create(userName=instance)
-post_save.connect(create_user_profile, sender=User)
-"""
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+from django.db.models.signals import post_save
 
 class CareGroup(models.Model):
-    name = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    users = models.ManyToManyField(User) # many users to many caregroups
+    name = models.CharField(max_length=254, unique=True)
+    password = models.CharField(max_length=254)
+    users = models.ManyToManyField(settings.AUTH_USER_MODEL) # many users to many caregroups
     admin_email = models.EmailField(max_length=254)
 
+class User(AbstractUser):
+    active_caregroup = models.ForeignKey(CareGroup, related_name='%(class)s_active_caregroup', null=True, on_delete=models.SET_NULL)
+    caregroups = models.ManyToManyField(CareGroup, related_name='%(class)s_caregroups')
+"""
+    say you want to list all users in a caregroup, without a "users" many to many relationship in model.
+    then you have to parse through all userprofiles
+
+"""
+
+# https://docs.djangoproject.com/en/2.1/ref/models/fields/
 # Each device
 class Device(models.Model):
     history = models.TextField()
     active = models.BooleanField()
-    caregroup = models.ForeignKey(CareGroup, on_delete=models.CASCADE) # many devices to one care group
+    caregroup = models.ForeignKey(CareGroup, on_delete=models.CASCADE) # many devices to one care group; if caregroup deleted cascade delete devices
 
 class Patient(models.Model):
+    STATUSES = (
+        ('c', 'clean'),
+        ('d', 'dirty'),
+    )
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=40)
     age = models.IntegerField()
-    device = models.OneToOneField(Device, on_delete=models.PROTECT) # one patient to one device
-    caregroup = models.ForeignKey(CareGroup, on_delete=models.CASCADE) # many patients to one care group
+    device = models.OneToOneField(Device, null=True, on_delete=models.SET_NULL) # one patient to one device; if device deleted, set patient device to null
+    caregroup = models.ForeignKey(CareGroup, null=True, on_delete=models.CASCADE) # many patients to one care group
+    status = models.CharField(max_length=20, choices=STATUSES, default='c')
+    last_event = models.DateTimeField(null=True)
 
 class Data(models.Model):
     temperature = models.FloatField()
@@ -41,4 +44,4 @@ class Data(models.Model):
     event = models.PositiveIntegerField(default=0)
     time = models.IntegerField()
     device = models.ForeignKey(Device, on_delete=models.PROTECT)
-    patient = models.ForeignKey(Patient, on_delete=models.PROTECT) # this form, originally
+    patient = models.ForeignKey(Patient, null=True, on_delete=models.PROTECT) # this form, originally
