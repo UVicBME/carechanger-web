@@ -16,7 +16,7 @@ body {
 
 a {
 	text-decoration: none;
-	color: blue;
+	color: #323232;
 }
 
 h2,h3,h4 {
@@ -73,14 +73,6 @@ h2,h3,h4 {
 	padding-right:10px;
 	padding-top:5px;
 	padding-bottom:5px;
-}
-
-tr {
-	cursor:pointer;
-}
-
-tr:hover {
-	background-color: #eeeeee;
 }
 
 .login {
@@ -140,18 +132,17 @@ li {
 	text-align:center;
 }
 
-li a {
+li .nav_a {
 	display: inline-block;
 	color: white;
 	padding-left:20px;
 	padding-right:20px;
 	text-decoration: none;
 	text-align: center;
-
 	height:inherit;
 }
 
-li:hover a{
+li:hover .nav_a{ /* exclude "a" tag elements that are of class dropdown link */
 	position:relative;
 	color:#323232;
 	background-color: #fff;
@@ -169,7 +160,6 @@ li:hover a{
 	background-color: #ffffff;
 	visibility:hidden;
 	display:block;
-	padding:5px;
 	border-style:none; /* clears the previous border style */
 	border-top-style:solid;
 	border-top-width:1px;
@@ -181,10 +171,7 @@ li:hover a{
 	width:100%;
 	transition:0.5s;
 	transition-property: border-top-style, border-top-color, background-color;
-}
-
-.dropdown_link a{
-	padding:0px;
+	padding:0px; /* This might cause problems later */
 	margin:0px;
 }
 
@@ -198,12 +185,11 @@ li:hover a{
 .dropdown_link:focus {
     outline:none;
 }
-#caregroups_list {
+.nav_dropdown_list {
 	width:150px;
-
 }
 
-#caregroups_list:hover #active_caregroup {
+.nav_dropdown_list:hover .active_dropdown_list_element {
 	position:relative;
 	color:#323232;
 	background-color: white;
@@ -216,14 +202,14 @@ li:hover a{
 	height:90px;
 }
 
-#caregroups_list:hover .dropdown_link {
+.nav_dropdown_list:hover .dropdown_link {
 	visibility:visible;
 	border-top-style:solid;
 	border-top-width:1px;
 	border-top-color: #eeeeee;
 }
 
-#active_caregroup {
+li .active_dropdown_list_element { /* the "li" tag in front allows ".active_dropdown_list_element" to override ".nav_a" class. */
 	width:100%;
 	height:100px;
 	padding:0px;
@@ -298,8 +284,9 @@ li:hover a{
 	height:100%;
 }
 
-.scrolled a{
+.scrolled .nav_a{
 	position:relative;
+	color:#323232;
 	/*top:-1px;*/
 }
 
@@ -324,17 +311,17 @@ li:hover a{
 	line-height: 60px;
 }
 
-.scrolled #caregroups_list:hover #active_caregroup { /* when scrolled, keep active_caregroup element from moving */
+.scrolled .nav_dropdown_list:hover .active_dropdown_list_element { /* when scrolled, keep active_dropdown_list_element element from moving */
 	border-top-width: 0px;
 	height:60px;
 }
 
-.scrolled #active_caregroup{
+.scrolled .active_dropdown_list_element{
 	border-top-width: 0px;
 	height:60px;
 }
 
-.scrolled li:hover a{
+.scrolled li:hover .nav_a{
 	border-top-width: 0px;
 	height:60px;
 	background-color: #eeeeee;
@@ -379,6 +366,7 @@ footer {
 	background-color: #eeeeee;
 }
 
+/* Controls the style of the buttons in the second-tier nav bar in the dashboard view. */
 .dash_nav_button {
 	padding:10px;
 	border-style: none;
@@ -389,9 +377,7 @@ footer {
 	margin:0px;
 }
 
-.dash_nav_button a {
-	color: #323232;
-}
+/* Controls the style of the "a" tags of the buttons in the thesecond-tier nav bar in the dashboard view. */
 
 .dash_nav_button:hover a{
 	border-bottom-style: solid;

@@ -12,15 +12,17 @@
 				<!-- Navigation menu -->
 				<ul>
 					<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/><img id="logo_black" src="{% static "carechanger_logo.png" %}" alt="CareChanger Logo"/></li>
-					<li><a href="">Contact</a></li>
-					<li><a href="">Team</a></li>
+					<li><a class="nav_a" href="">Contact</a></li>
+					<li><a class="nav_a" href="">Team</a></li>
 
 					{% if user.is_authenticated%}
-						<li><a href="{% url 'logout' %}">Logout</a></li>
-						<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-						<li><a href="">{{ user.get_username }}</a></li>
+						<li><a class="nav_a" href="{% url 'dashboard' %}">Dashboard</a></li>
+						<li class="nav_li nav_dropdown_list">
+							<a class="nav_a active_dropdown_list_element" href="">{{ user.get_username }}</a>
+							<a class="dropdown_link" href="{% url 'logout' %}">Logout</a>
+						</li>
 					{% else %}
-						<li><a href="{% url 'login' %}">Login</a></li>
+						<li><a class="nav_a" href="{% url 'login' %}">Login</a></li>
 					{% endif %}
 				</ul>
 			</div>

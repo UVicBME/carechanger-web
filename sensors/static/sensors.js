@@ -57,7 +57,7 @@ $(function(){
 
 /* This function changes the caregroup patients being currently viewed */
 $(function(){
-	$(".dropdown_link").on('click', function () {
+	$(".ajax_trigger1").on('click', function () {
 		var caregroup = $(this).val();
 		console.log(caregroup)
 	  $.ajax({

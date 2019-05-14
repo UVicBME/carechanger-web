@@ -16,18 +16,20 @@
 					<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/><img id="logo_black" src="{% static "carechanger_logo.png" %}" alt="CareChanger Logo"/></li>
 					<!-- Check if user has any active caregroups. If so, show dropdown caregroup list selector -->
 					{% if user.active_caregroup is not none %}
-						<li class="nav_li" id="caregroups_list">
-							<a class="nav_link nav_a" id="active_caregroup">{{ user.active_caregroup.name }}</a>
+						<li class="nav_li nav_dropdown_list">
+							<a class="nav_a active_dropdown_list_element">{{ user.active_caregroup.name }}</a>
 							{% for c in caregroups %}
 								<!-- List all inactive caregroups-->
 								{% if c.name != user.active_caregroup.name %}
-									<button class="dropdown_link nav_a" value="{{c.id}}">{{c.name}}</button>
+									<button class="dropdown_link ajax_trigger1" value="{{c.id}}">{{c.name}}</button>
 								{% endif %}
 							{% endfor %}
 						</li>
 					{% endif %}
-					<li class="nav_li"><a class="nav_link nav_a" href="">{{ user.get_username }}</a></li>
-					<li class="nav_li"><a class="nav_link nav_a" href="{% url 'logout' %}">Logout</a></li>
+					<li class="nav_li nav_dropdown_list">
+						<a class="nav_a active_dropdown_list_element" href="">{{ user.get_username }}</a>
+						<a class="dropdown_link" href="{% url 'logout' %}">Logout</a>
+					</li>
 				</ul>
 
 				<div id="dash_nav">
