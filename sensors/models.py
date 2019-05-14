@@ -19,7 +19,6 @@ class User(AbstractUser):
 """
 
 # https://docs.djangoproject.com/en/2.1/ref/models/fields/
-# Each device
 class Device(models.Model):
     history = models.TextField()
     active = models.BooleanField()
