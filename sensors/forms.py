@@ -85,6 +85,5 @@ class DataForm(forms.ModelForm):
             'humidity',
             'event',
             'device',
-            'patient',
             'time',
         )
