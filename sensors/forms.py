@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, authenticate
-from sensors.models import Patient, CareGroup, Data, User
+from sensors.models import Patient, CareGroup, Data, User, Device
 from django.contrib.auth.hashers import make_password
 
 
@@ -14,20 +14,15 @@ class PatientCreationForm(forms.ModelForm):
             'age',
         )
 
-# Form for adding a new patient to the database
+# Form for adding a new device to the database
 class DeviceCreationForm(forms.ModelForm):
-    first_name = forms.CharField(max_length=20)
-    last_name = forms.CharField(max_length=40)
-    age = forms.IntegerField()
+    active = True   # TODO: figure out why this comes up as 0 in the database
 
     class Meta:
-        model = Patient
+        model = Device
         fields = (
-            'first_name',
-            'last_name',
-            'age',
-            'device',
             'caregroup',
+            'active',
         )
 
 
