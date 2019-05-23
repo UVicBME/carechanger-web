@@ -1,7 +1,7 @@
 {% load static %}
 <!-- Form for adding data to the database -->
 <html>
-{% if user.is_superuser %}
+<!--{% if user.is_superuser %}-->
     <head>
         <title>Data</title>
         <link rel="stylesheet" type="text/css" href='{% static "style.css" %}' />
@@ -47,9 +47,9 @@
 			Copyright &copy; 2019 CareChanger
 		</div>
     </footer>
-{% else %}
+<!--{% else %}
 
-    <!-- TODO: Throw a 403 here somehow (may need quite a bit of reworking -->
+    &lt;!&ndash; TODO: Throw a 403 here somehow (may need quite a bit of reworking &ndash;&gt;
 
-{% endif %}
+{% endif %}-->
 </html>
