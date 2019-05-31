@@ -36,7 +36,7 @@
 					<!-- Check if user has any active caregroups. If so, show caregroup modification options -->
 					{% if user.active_caregroup is not none %}
 						<button class="dash_nav_button"><a href="{% url 'addpatient' %}">Add Patient</a></button>
-						<button class="dash_nav_button"><a href="">Add Device</a></button>
+						<button class="dash_nav_button"><a href="{% url 'adddevice' %}">Add Device</a></button>
 					{% endif %}
 					<button class="dash_nav_button"><a href="">Join Caregroup</a></button>
 					<button class="dash_nav_button"><a href="{% url 'addcaregroup' %}">New Caregroup</a></button>
