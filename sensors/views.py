@@ -66,9 +66,13 @@ def add_patient(request, *args, **kwargs):
 
 def add_device(request):
     if request.method == 'POST':
+        user = request.user
+        caregroup = user.active_caregroup
         form = DeviceCreationForm(request.POST) # Form bound to POST data
         if form.is_valid():  # If the form passes all validation rules
-            form.save()
+            device = form.save()
+            device.caregroup=caregroup
+            device.save()
             return(redirect('dashboard'))  # Redirect to the dashboard (TODO: change redirect location?)
     else:
         form = DeviceCreationForm() # Unbound form

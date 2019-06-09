@@ -11,11 +11,6 @@
         <form method="post">
           {% csrf_token %}
           <br>
-          <!-- Patient's first name field -->
-          <input class="login" type="number" id="{{ form.caregroup.id_for_label }}" name="{{ form.caregroup.html_name }}"
-                 placeholder="Care Group" required>
-            <br>
-            <br>
           <!-- Submit button -->
           <button class="login" type="submit">Add Patient</button>
         </form>

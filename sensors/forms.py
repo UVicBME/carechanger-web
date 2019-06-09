@@ -16,15 +16,13 @@ class PatientCreationForm(forms.ModelForm):
 
 # Form for adding a new device to the database
 class DeviceCreationForm(forms.ModelForm):
-    active = True   # TODO: figure out why this comes up as 0 in the database
+    active = forms.BooleanField()   # TODO: figure out why this comes up as 0 in the database
 
     class Meta:
         model = Device
         fields = (
-            'caregroup',
             'active',
         )
-
 
 # Form for user creation TODO: Send a confirmation email to the provided address
 class SignUpForm(UserCreationForm):
