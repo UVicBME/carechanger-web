@@ -20,6 +20,9 @@ def handler403(request, *args, **argv):
 def index(request, *args, **kwargs):
     return render(request, "index/index.html", {})
 
+# TEMPORARY
+def get_data(request, *args, **kwargs):
+    return render(request, 'charts.html', {});
 
 def dashboard(request, *args, **kwargs):
     user = request.user

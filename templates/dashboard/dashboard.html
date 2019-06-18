@@ -7,6 +7,8 @@
 		<link rel="icon" type="image/png" href="{% static 'favicon.png' %}"/>
 		<script type="text/javascript" src="{% static 'jquery-3.3.1.min.js' %}"> </script>
 		<script type="text/javascript" src="{% static 'sensors.js' %}"> </script>
+		<script type="text/javascript" src="{% static 'Chart.bundle.min.js' %}"> </script>
+
 	</head>
 	{% if user.is_authenticated %}
 		<body>
@@ -59,7 +61,8 @@
 								<p class="th">Device: {{item.device}}</p>
 								<p class="th">Age: {{item.age}}</p>
 								<p class="th patient_last_event">Last Event: {{item.last_event}}</p>
-								<img class= "patient_graph" style="display:none" src="{% static 'graph.png' %}">
+								<canvas id="patient_graph" style="display:none" width="500" height="250"></canvas>
+								<!--<img class= "patient_graph" style="display:none" src="{% static 'graph.png' %}">-->
 						</div>
 					{% endfor %}
 				{% else %}
