@@ -364,6 +364,7 @@ footer {
 
 #dash_footer {
 	background-color: #eeeeee;
+	z-index: -4;
 }
 
 /* Controls the style of the buttons in the second-tier nav bar in the dashboard view. */
