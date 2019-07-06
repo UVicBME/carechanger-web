@@ -2,46 +2,115 @@
 <html>
 	<head>
 		<title>Home</title>
-		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
+		<link rel="stylesheet" type="text/css" href="{% static "home.css" %}" />
 		<link rel="icon" type="image/png" href="{% static 'favicon.png' %}"/>
 		<script type="text/javascript" src="{% static 'jquery-3.3.1.min.js' %}"> </script>
 		<script type="text/javascript" src="{% static 'sensors.js' %}"> </script>
 	</head>
-		<body>
-			<div id="nav">
+	<body>
+		<div id="nav">
 				<!-- Navigation menu -->
 				<ul>
 					<li><img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/><img id="logo_black" src="{% static "carechanger_logo.png" %}" alt="CareChanger Logo"/></li>
-					<li><a class="nav_a" href="">Contact</a></li>
-					<li><a class="nav_a" href="">Team</a></li>
+					<li><a href="">Contact</a></li>
+					<li><a href="">Team</a></li>
 
 					{% if user.is_authenticated%}
-						<li><a class="nav_a" href="{% url 'dashboard' %}">Dashboard</a></li>
-						<li class="nav_li nav_dropdown_list">
-							<a class="nav_a active_dropdown_list_element" href="">{{ user.get_username }}</a>
-							<a class="dropdown_link" href="{% url 'logout' %}">Logout</a>
-						</li>
+						<li><a href="{% url 'logout' %}">Logout</a></li>
+						<li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+						<li><a href="">{{ user.get_username }}</a></li>
 					{% else %}
-						<li><a class="nav_a" href="{% url 'login' %}">Login</a></li>
+						<li><a href="{% url 'login' %}">Login</a></li>
 					{% endif %}
 				</ul>
-			</div>
-			<div class="content">
-				<h1>CareChanger: a practical care solution for medical personnel</h1>
-				<!--<a href="{% url 'signup' %}"> Get Started </a>-->
-				<p>
-					<img src="https://www.reziew.com/wp-content/uploads/2016/03/video-player-placeholder-very-large.png"
-					style="float:right;">
-					CareChanger is a something something something that something  ipsum dolor sit amet,
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-					et dolore magna aliqua. Ut enim ad minim v.
+		</div>
 
-				</p>
-			</div>
+		<div class="headingDiv">
+				<h1 style=font-size:80px >CareChanger</h1>
+				<p style=font-size:20px >A practical care solution for medical personnel.</p>
+		</div>
 
-			<div class="content">
-				<p> try to modify some more?? </p>
-			</div>
+		<div class="contentDiv">
+				<!--    First content section     -->
+				<table>
+				<tr>
+					<td>
+						<div class="tableTextDiv">
+						<h3> Some sort of title. </h3>
+						CareChanger is a something something something that something ipsum dolor sit amet,
+							consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+						</div>
+					</td>
+					<td>
+						<div class="right-aligned-roundedImage">
+							<img src="http://www.orra.co.in/blog/wp-content/uploads/2015/08/placeholder7-650x450.jpg"/>
+						</div>
+					</td>
+				</tr>
+				</table>
+
+				<!--    Second content section     -->
+				<table>
+				<tr>
+					<td>
+						<div class="left-aligned-roundedImage">
+						<img src="http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png">
+						</div>
+					</td>
+					<td>
+						<div class="tableTextDiv">
+							<h3> Another title. </h3>
+							Some more text should also go here a something something something
+							that something ipsum dolor sit amet, consectetur adipiscing elit,
+							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							 Ut enim ad minim v.
+						</div>
+					</td>
+				</tr>
+				</table>
+
+			<!--    Third content section     -->
+			<table>
+			<tr>
+					<td>
+						<div class="tableTextDiv">
+							<h3> Easy Wi-Fi connectivity. </h3>
+							some more flipping darn text  should also go here a something
+							 something something that something ipsum r sit amet, consectetur
+							 adipiscing elit, sed do eiusmod tempor incididunt ut lab
+						</div>
+					</td>
+					<td>
+						<div class="right-aligned-roundedImage">
+							<img src="https://ieee.nitk.ac.in/res/img/placeh.jpg">
+						</div>
+					</td>
+			</tr>
+			</table>
+		</div>
+
+		<div class="aboutDiv">
+			<table>
+			<tr>
+					<td>
+						<div class="tableTextDiv">
+							<h3> Easy Wi-Fi connectivity. </h3>
+							some more flipping darn text  should also go here a something
+							 something something that something ipsum r sit amet, consectetur
+							 adipiscing elit, sed do eiusmod tempor incididunt ut lab
+						</div>
+					</td>
+					<td>
+						<div class="right-ligned-roundedImage">
+							<img src="https://cdn.pixabay.com/photo/2016/03/30/13/24/wifi-1290667__340.png">
+						</div>
+					</td>
+			</tr>
+			</table>
+		</div>
+
+
+
 			<footer>&copy; CareChanger</footer>
 
 			<script>

@@ -1,0 +1,469 @@
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	overflow-x: hidden;
+}
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	/* background-image: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);* /
+	/* https://webgradients.com/ */
+}
+
+a {
+	text-decoration: none;
+	color: blue;
+}
+
+h2,h3,h4 {
+	margin: 0;
+}
+
+table, th, td {
+	/*height: 100%; */
+  border: 0px;
+	padding: 0px;
+	font-size: 120%;
+
+}
+/* -------------------------- Design DIVS --------------------------------- */
+
+ /* Images */
+.right-aligned-roundedImage {
+  position: relative;
+  overflow: hidden;
+	padding-top: 20%;
+	padding-bottom: 20%;
+}
+
+.right-aligned-roundedImage img {
+	float: right;
+	border-top-left-radius: 5% 5%;
+	border-bottom-left-radius: 5% 5%;
+}
+
+.left-aligned-roundedImage {
+  position: relative;
+  overflow: hidden;
+	padding-top: 20%;
+	padding-bottom: 20%;
+}
+
+.left-aligned-roundedImage img {
+	float: left;
+	border-top-right-radius: 5% 5%;
+	border-bottom-right-radius: 5% 5%;
+}
+
+/* Text DIV */
+.tableTextDiv {
+	padding-left: 20%;
+	padding-right: 20%;
+	text-align: left;
+}
+
+/* DIV Headings */
+.headingDiv {
+	padding: 100px;
+	background-color: #43464B;
+	color: white;
+	text-align: center;
+}
+
+.contentDiv {
+	padding-top: 5%;
+	padding-bottom: 5%;
+	background-image: linear-gradient(to bottom, white 0%, #efeded 100%);
+	color: black;
+	text-align: left;
+}
+
+.aboutDiv {
+	padding-top: 5%;
+	padding-bottom: 5%;
+	background-image: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);
+	color: black;
+	text-align: left;
+
+}
+
+
+/* ------------------------------------------------------------------------ */
+.patient {
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 0.5);
+	border-radius: 10px;
+	background-color: #fff;
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:30px;
+	padding:10px;
+	box-shadow: 0px 0px 10px #dddddd;
+	border-spacing: 0px;
+	cursor:pointer;
+	/*display: inline-block;*/ /*makes divs smaller, rather than a list that takes up full width */
+}
+
+
+.patient_last_event {
+	float:right;
+}
+
+.patient_graph {
+	margin:auto;
+}
+
+.th {
+	color: rgba(0, 0, 0, 0.5);
+	padding:10px;
+	text-align: left;
+	display:inline-block;
+	margin:0px;
+}
+
+.status_clean {
+	background-color: #66dd44;
+	border-radius:50px;
+	text-align: center;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.status_dirty {
+	background-color: #dd6644;
+	border-radius:50px;
+	text-align: center;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+
+.login {
+	padding:10px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 0.5);
+	border-radius: 20px;
+	background-color: inherit;
+	text-align: center;
+	width:50%;
+	color: white;
+	font-size:10pt;
+}
+
+.login:hover {
+	background-color: #FFFFFF;
+	color:#323232;
+	transition:.5s;
+}
+
+.login:hover::placeholder {
+	color:#323232;
+	transition:.5s;
+}
+
+.login::placeholder {
+	color:#ffffff;
+}
+
+.login:focus {
+	outline:none;
+}
+
+form {
+	text-align: center;
+	width:300px;
+	height:300px;
+	margin-top:14%;
+	margin-left:auto;
+	margin-right:auto;
+	border-radius: 25px;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+	background-color: rgba(255, 255, 255, 0.0);
+	padding:10px;
+}
+
+li {
+	float:left;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color: rgba(255, 255, 255, 0.2);
+	text-transform: uppercase;
+	height:100px;
+	line-height: 100px;
+	transition:0.5s;
+	text-align:center;
+}
+
+li a {
+	display: inline-block;
+	color: white;
+	padding-left:20px;
+	padding-right:20px;
+	text-decoration: none;
+	text-align: center;
+
+	height:inherit;
+}
+
+li:hover a{
+	position:relative;
+	color:#323232;
+	background-color: #fff;
+	border-top-style:solid;
+	border-top-width:10px;
+	border-top-color: white;
+	transition-property: height, border-top-width, border-top-color, background-color;
+	transition-duration: 0.5s;
+	height:90px;
+}
+
+.dropdown_link {
+	position:relative;
+	color:#323232;
+	background-color: #ffffff;
+	visibility:hidden;
+	display:block;
+	padding:5px;
+	border-style:none; /* clears the previous border style */
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color: #dddddd;
+	line-height:30px;
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
+	text-align:center;
+	text-transform: uppercase;
+	width:100%;
+	transition:0.5s;
+	transition-property: border-top-style, border-top-color, background-color;
+}
+
+.dropdown_link a{
+	padding:0px;
+	margin:0px;
+}
+
+.dropdown_link:hover {
+	background-color: #eeeeee;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color: #dddddd;
+}
+
+.dropdown_link:focus {
+    outline:none;
+}
+#caregroups_list {
+	width:150px;
+
+}
+
+#caregroups_list:hover #active_caregroup {
+	position:relative;
+	color:#323232;
+	background-color: white;
+	border-style:none;
+	border-top-style:solid;
+	border-top-width:10px;
+	border-top-color: white;
+	transition: 0.5s;
+	transition-property: border-top-width, border-top-color, background-color, height;
+	height:90px;
+}
+
+#caregroups_list:hover .dropdown_link {
+	visibility:visible;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color: #eeeeee;
+}
+
+#active_caregroup {
+	width:100%;
+	height:100px;
+	padding:0px;
+	margin:0px;
+	overflow:hidden;
+}
+
+#logo {
+	width:100;
+}
+
+#logo_black {
+	display:none;
+	width:100;
+}
+
+#inputs {
+	text-align: center;
+	padding-top: 20px;
+}
+
+#nav {
+	width:100%;
+	top:0px;
+}
+
+#nav ul {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	transition:0.5s;
+	z-index:1;
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+}
+
+#dash_nav {
+	position:fixed;
+	background-color: white;
+	width:100%;
+	transition:0.5s;
+	top:100px;
+	padding:5px;
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+}
+
+#dash_content {
+	color:white;
+	background-color: #eeeeee;
+	margin-left:0%;
+	margin-right:0%;
+	/*padding-top:150px;*/
+	margin-top:100px;
+	padding-top:60px;
+	padding-bottom:10px;
+	padding-right:5%;
+	padding-left:5%;
+	left:0px;
+	height:100%;
+}
+
+.scrolled a{
+	position:relative;
+	/*top:-1px;*/
+}
+
+.scrolled {
+	background-color: #fff; !important;
+  transition: background-color 200ms linear;
+	color:#323232;
+}
+.scrolled ul{
+	background-color: #fff; !important;
+	transition: background-color 200ms linear;
+}
+
+.scrolled #dash_nav{
+	top:60px;
+	transition:0.5s;
+}
+
+.scrolled li{
+  height:60px;
+	transition:0.5s;
+	line-height: 60px;
+}
+
+.scrolled #caregroups_list:hover #active_caregroup { /* when scrolled, keep active_caregroup element from moving */
+	border-top-width: 0px;
+	height:60px;
+}
+
+.scrolled #active_caregroup{
+	border-top-width: 0px;
+	height:60px;
+}
+
+.scrolled li:hover a{
+	border-top-width: 0px;
+	height:60px;
+	background-color: #eeeeee;
+}
+
+
+.scrolled #logo_black {
+	display:block;
+	width:60px;
+}
+
+.scrolled #logo {
+	display:none;
+}
+
+#name {
+	margin: auto;
+	float: center;
+	padding: 10px;
+}
+
+#alert {
+	margin: auto;
+	width: 50px;
+	float: left;
+	padding-left: 15px;
+	padding-right: 10px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+footer {
+	background-color: #43464B;	color: #ffffff;
+	text-align: center;
+	font-size:10pt;
+	clear: both;
+	position: relative;
+	padding:10px;
+}
+
+#dash_footer {
+	background-color: #eeeeee;
+}
+
+.dash_nav_button {
+	padding:10px;
+	border-style: none;
+	background-color: inherit;
+	text-align: center;
+	color: #323232;
+	font-size:10pt;
+	margin:0px;
+}
+
+.dash_nav_button a {
+	color: #323232;
+}
+
+.dash_nav_button:hover a{
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #323232;
+}
+
+.login_error {
+    background-color: white;
+    border-radius: 7px;
+    width: 150px;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    text-size: 6;
+    left: 680px;
+    top: 50px;
+}
+
+#note {
+	color:#323232;
+}
