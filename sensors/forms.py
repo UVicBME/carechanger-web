@@ -35,7 +35,8 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
 
 
-# Form for care group creation TODO: Send a confirmation email to the provided admin address
+# Form for care group creation
+#TODO: Send a confirmation email to the provided admin address
 class CareGroupCreationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, required=True)
     password_confirmation = forms.CharField(widget=forms.PasswordInput, required=True)
