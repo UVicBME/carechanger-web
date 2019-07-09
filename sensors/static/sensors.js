@@ -117,19 +117,19 @@ $(function(){
 					*/
 				}
 			}); // end ajax
-
+		 	p = $(this);
 			cvs.css("display", "block"); // Open the image (make it visible) without animation
-			$(this).css('height', 'auto'); // Set div to auto height
-			var ch = $(this).height(); // save curr height
+			p.css('height', 'auto'); // Set div to auto height
+			var ch = p.height(); // save curr height
 			cvs.css("display", "none"); // close the image
-			$(this).animate({height:ch},200);
+			p.animate({height:ch},200);
 			cvs.css("display", "block"); // Open the image
 		} else { // close the div
 			cvs.css("display", "none"); // close the image
-			$(this).css('height', 'auto'); // Set div to auto height
-			var ah = $(this).height(); // save auto height
+			p.css('height', 'auto'); // Set div to auto height
+			var ah = p.height(); // save auto height
 			cvs.css("display", "block"); // Open the image
-			$(this).animate({height:ah},200);
+			p.animate({height:ah},200);
 			cvs.css("display", "none"); // close the image
 		}
 	});

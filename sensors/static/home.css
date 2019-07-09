@@ -35,7 +35,7 @@ table, th, td {
 .right-aligned-roundedImage {
   position: relative;
   overflow: hidden;
-	padding-top: 20%;
+	padding-top: 20px;
 	padding-bottom: 20%;
 }
 
@@ -74,7 +74,7 @@ table, th, td {
 }
 
 .contentDiv {
-	padding-top: 5%;
+	/*padding-top: 5%;*/
 	padding-bottom: 5%;
 	background-image: linear-gradient(to bottom, white 0%, #efeded 100%);
 	color: black;
