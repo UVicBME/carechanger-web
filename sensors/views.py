@@ -5,8 +5,6 @@ from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm
 from django.contrib.auth.password_validation import validate_password
 from django.template import RequestContext
 from sensors.models import CareGroup, Patient, User, Data # import custon user model
-#from django.contrib.auth.models import User
-from django.contrib import messages
 from django.core import serializers
 import logging
 
