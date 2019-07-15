@@ -71,7 +71,8 @@ $(function(){
                             var minute = "0" + date.getMinutes();       // Get the minute
                             var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
                             var time = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-							recent_times.push(time);
+							//recent_times.push(time);      TODO get this working properly
+							recent_times.push(recent[i].fields.time);
 							recent_temps.push(recent[i].fields.temperature);
 							recent_hum.push(recent[i].fields.humidity);
 						}
