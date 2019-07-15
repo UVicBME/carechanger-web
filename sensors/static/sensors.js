@@ -10,18 +10,20 @@ $(function () { /* Using $(function () {}); Ensures that the document (webpage h
 	$('body').scroll(function () {
 		var $nav = $("#nav");
 		var $ul = $("ul");
-    var $a = $("a"); //new
+        var $a = $("a"); //new
 		var $nav_link = $(".nav_link");
 		var $dash_nav = document.getElementById('dash_nav');
 
 		console.log($ul.height())
 
-		$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-		$ul.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-		$nav_link.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-    $a.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+		page = $(this)      // Don't wanna make this call a bunch, so just make a var with it
 
-		if($(this).scrollTop() > $nav.height()){
+		$nav.toggleClass('scrolled', page.scrollTop() > $nav.height());
+		$ul.toggleClass('scrolled', page.scrollTop() > $nav.height());
+		$nav_link.toggleClass('scrolled', page.scrollTop() > $nav.height());
+        $a.toggleClass('scrolled', page.scrollTop() > $nav.height());
+
+		if(page.scrollTop() > $nav.height()){
 			$dash_nav.style.top = 60;
 		} else {
 			$dash_nav.style.top = 100;
@@ -36,8 +38,9 @@ $(function () { /* Using $(function () {}); Ensures that the document (webpage h
 $(function(){
 	$(".patient").click(function(){
 		var patient_id = this.id; // gets patient id from div
+		p = $(this);
 		var ctx = document.getElementById(patient_id+'_graph').getContext('2d'); // instantiates opened graph
-		var cvs = $(this).find("canvas");
+		var cvs = p.find("canvas");
 		if(cvs.css('display') == 'none'){ // open the div
 			console.log("FLAG1");
 			$.ajax({ // this literally fires off an ajax request
@@ -55,13 +58,15 @@ $(function(){
 					var recent_times=[];
 					var recent_temps=[];
 					var recent_hum=[];
+					var num_of_samples = 100;      // Change this value to adjust amount of data shown on chart
 
-					if(len>1000){
-						recent = data.slice(data.length-1000, data.length);
+					if(len>num_of_samples){
+						recent = data.slice(data.length-num_of_samples, data.length);
 						console.log(recent.length);
 						for(var i=0; i<recent.length; i++){
 							console.log(i);
-							recent_times.push(recent[i].fields.time);
+							unix_timestamp = recent[i].fields.time;     // Grab the initial unix timestamp
+							recent_times.push(time);
 							recent_temps.push(recent[i].fields.temperature);
 							recent_hum.push(recent[i].fields.humidity);
 						}
@@ -103,33 +108,21 @@ $(function(){
 									}
 							}
 					});
-
-					/*
-					if (data.success) {
-		        console.log("ajax call success.");
-		        // here you update the HTML to change the active to innactive
-						console.log(data.patient_data);
-						window.location.reload();
-		      } else {
-		        console.log("ajax call not success.");
-						window.location.reload();
-		      }
-					*/
 				}
 			}); // end ajax
 
 			cvs.css("display", "block"); // Open the image (make it visible) without animation
-			$(this).css('height', 'auto'); // Set div to auto height
-			var ch = $(this).height(); // save curr height
+			p.css('height', 'auto'); // Set div to auto height
+			var ch = p.height(); // save curr height
 			cvs.css("display", "none"); // close the image
-			$(this).animate({height:ch},200);
+			p.animate({height:ch},200);
 			cvs.css("display", "block"); // Open the image
 		} else { // close the div
 			cvs.css("display", "none"); // close the image
-			$(this).css('height', 'auto'); // Set div to auto height
-			var ah = $(this).height(); // save auto height
+			p.css('height', 'auto'); // Set div to auto height
+			var ah = p.height(); // save auto height
 			cvs.css("display", "block"); // Open the image
-			$(this).animate({height:ah},200);
+			p.animate({height:ah},200);
 			cvs.css("display", "none"); // close the image
 		}
 	});
