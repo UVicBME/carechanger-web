@@ -58,7 +58,7 @@ $(function(){
 					var recent_times=[];
 					var recent_temps=[];
 					var recent_hum=[];
-					var num_of_samples = 101;      // Change this value to adjust amount of data shown on chart
+					var num_of_samples = 180;      // Change this value to adjust amount of data shown on chart
 
 					if(len>num_of_samples){
 						recent = data.slice(data.length-num_of_samples, data.length);
@@ -72,7 +72,6 @@ $(function(){
                             var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
                             var time = hour + ':' + minute.substr(-2) + ':' + second.substr(-2);
 							recent_times.push(time);
-							recent_times.push(recent[i].fields.time);
 							recent_temps.push(recent[i].fields.temperature);
 							recent_hum.push(recent[i].fields.humidity);
 						}
