@@ -58,7 +58,7 @@ $(function(){
 					var recent_times=[];
 					var recent_temps=[];
 					var recent_hum=[];
-					var num_of_samples = 100;      // Change this value to adjust amount of data shown on chart
+					var num_of_samples = 101;      // Change this value to adjust amount of data shown on chart
 
 					if(len>num_of_samples){
 						recent = data.slice(data.length-num_of_samples, data.length);
