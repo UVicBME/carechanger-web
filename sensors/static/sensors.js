@@ -66,6 +66,11 @@ $(function(){
 						for(var i=0; i<recent.length; i++){
 							console.log(i);
 							unix_timestamp = recent[i].fields.time;     // Grab the initial unix timestamp
+                            var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
+                            var hour = date.getHours();                 // Get the hour of day
+                            var minute = "0" + date.getMinutes();       // Get the minute
+                            var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
+                            var time = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 							recent_times.push(time);
 							recent_temps.push(recent[i].fields.temperature);
 							recent_hum.push(recent[i].fields.humidity);
@@ -85,7 +90,7 @@ $(function(){
 											borderColor: [
 													'rgba(200, 50, 50, 1)',
 											],
-											borderWidth: 3,
+											borderWidth: 0,
 									}, {
 											label: 'Humidity',
 											data: recent_hum,
@@ -95,7 +100,7 @@ $(function(){
 											borderColor: [
 													'rgba(50, 50, 200, 1)',
 											],
-											borderWidth: 3
+											borderWidth: 0,
 									}]
 							},
 							options: {
