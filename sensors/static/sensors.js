@@ -135,7 +135,7 @@ $(function(){
 
 /* This function changes the caregroup patients being currently viewed */
 $(function(){
-	$(".ajax_trigger1").on('click', function () {
+	$(".ajax_change_caregroup").on('click', function () {
 		var caregroup = $(this).val();
 		console.log(caregroup);
 	  $.ajax({ // this literally fires off an ajax request
