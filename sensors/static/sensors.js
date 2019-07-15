@@ -110,12 +110,12 @@ $(function(){
 															beginAtZero: true
 													}
 											}]
-									}
+									},
 									elements: {
 									    point: {
 									        radius = 0      // Gets rid of the data point dots on the line
 									    }
-									}
+									},
 							}
 					});
 				}
