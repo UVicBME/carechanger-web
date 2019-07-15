@@ -70,7 +70,7 @@ $(function(){
                             var hour = date.getHours();                 // Get the hour of day
                             var minute = "0" + date.getMinutes();       // Get the minute
                             var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
-                            var time = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+                            var time = hour + ':' + minute.substr(-2) + ':' + second.substr(-2);
 							recent_times.push(time);
 							recent_times.push(recent[i].fields.time);
 							recent_temps.push(recent[i].fields.temperature);
