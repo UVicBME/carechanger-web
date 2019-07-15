@@ -53,24 +53,24 @@ def ajax_change_caregroup(request):
     return JsonResponse(data)
 
 # returns patient temperature, humidity data from table in postgres
+"""
 def ajax_get_patient_data(request):
     print("FLAG0")
     patient_id = request.GET.get('patient_id', False)
     print("PATIENT ID:") # debug check patient
     print(patient_id)
     patient_data= Data.objects.filter(patient_id=1) # Contains a list of 'Data' Django objects
-    """
+"""
+"""
     data = {
         'patient_data': Data.objects.filter(patient=id),
         'success': True,
     }
-    """
+"""
+"""
     patient_data = serializers.serialize('json', patient_data) # import Django rest framework to allow serialization of django objects to JSON
     return HttpResponse(patient_data, content_type="application/json")
-    #return JsonResponse({"patient_data": queryset, "success": True})
-    #return JsonResponse({"patient_data": patient_data, "success": True})
-    #return JsonResponse(data, safe=False) # does this mean this method isn't safe??
-    #return JsonResponse(data)
+"""
 """
     try:
         return JsonResponse(data)
