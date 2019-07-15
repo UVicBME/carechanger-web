@@ -288,7 +288,7 @@ li .active_dropdown_list_element { /* the "li" tag in front allows ".active_drop
 	padding-left:5%;
 	left:0px;
 	height:100%;
-	overflow:scroll; /* this ensures dash_content background stays full height even after graphs are opened
+	overflow:scroll; /* this ensures dash_content background stays full height even after graphs are opened */
 }
 
 .scrolled .nav_a{
