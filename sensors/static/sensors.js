@@ -120,13 +120,14 @@ $(function(){
 					});
 				}
 			}); // end ajax
-		 	p = $(this);
-			cvs.css("display", "block"); // Open the image (make it visible) without animation
-			p.css('height', 'auto'); // Set div to auto height
-			var ch = p.height(); // save curr height
-			cvs.css("display", "none"); // close the image
-			p.animate({height:ch},200);
-			cvs.css("display", "block"); // Open the image
+			setTimeout(function(){ // Set timeout to ensure that the ajax request has fired and canvas has loaded...
+				cvs.css("display", "block"); // Open the image (make it visible) without animation
+				p.css('height', 'auto'); // Set div to auto height
+				var ch = p.height(); // save curr height
+				cvs.css("display", "none"); // close the image
+				p.animate({height:ch},200);
+				cvs.css("display", "block"); // Open the image
+			}, 100);
 		} else { // close the div
 			cvs.css("display", "none"); // close the image
 			p.css('height', 'auto'); // Set div to auto height
