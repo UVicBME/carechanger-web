@@ -90,7 +90,7 @@ $(function(){
 											borderColor: [
 													'rgba(200, 50, 50, 1)',
 											],
-											borderWidth: 0,
+											borderWidth: 3,
 									}, {
 											label: 'Humidity',
 											data: recent_hum,
@@ -100,7 +100,7 @@ $(function(){
 											borderColor: [
 													'rgba(50, 50, 200, 1)',
 											],
-											borderWidth: 0,
+											borderWidth: 3,
 									}]
 							},
 							options: {
