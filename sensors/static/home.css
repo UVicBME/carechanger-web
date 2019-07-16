@@ -35,8 +35,13 @@ table, th, td {
 .right-aligned-roundedImage {
   position: relative;
   overflow: hidden;
+<<<<<<< HEAD
 	padding-top: 30px;
 	padding-bottom: 30px;
+=======
+	padding-top: 20px;
+	padding-bottom: 20%;
+>>>>>>> 2ef11c6111763eb08d600fba9c5bbb094e734953
 }
 
 .right-aligned-roundedImage img {
@@ -74,8 +79,13 @@ table, th, td {
 }
 
 .contentDiv {
+<<<<<<< HEAD
 	padding-top: 30px;
 	padding-bottom: 30px;
+=======
+	/*padding-top: 5%;*/
+	padding-bottom: 5%;
+>>>>>>> 2ef11c6111763eb08d600fba9c5bbb094e734953
 	background-image: linear-gradient(to bottom, white 0%, #efeded 100%);
 	color: black;
 	text-align: left;

@@ -23,7 +23,7 @@
 							{% for c in caregroups %}
 								<!-- List all inactive caregroups-->
 								{% if c.name != user.active_caregroup.name %}
-									<button class="dropdown_link ajax_trigger1" value="{{c.id}}">{{c.name}}</button>
+									<button class="dropdown_link ajax_change_caregroup" value="{{c.id}}">{{c.name}}</button> <!-- value == one in list of caregroups-->
 								{% endif %}
 							{% endfor %}
 						</li>
@@ -49,20 +49,19 @@
 				<!-- Only iterate through patients when an active caregroup has been selected. -->
 				{% if user.active_caregroup is not none %}
 					<!-- Patient information -->
-					{% for item in patients %}
-						<div class="patient">
-								{% if item.status == "c" %}
+					{% for p in patients %}
+						<div class="patient" id="{{p.id}}">
+								{% if p.status == "c" %} <!-- if no current patient event (clean) -->
 									<p class="th status_clean">clean</p>
 								{% else %}
 									<p class="th status_dirty">dirty</p>
 								{% endif %}
-								<p class="th">{{item.first_name}} {{item.last_name}}</p>
+								<p class="th">{{p.first_name}} {{p.last_name}}</p>
 
-								<p class="th">Device: {{item.device}}</p>
-								<p class="th">Age: {{item.age}}</p>
-								<p class="th patient_last_event">Last Event: {{item.last_event}}</p>
-								<canvas id="patient_graph" style="display:none" width="500" height="250"></canvas>
-								<!--<img class= "patient_graph" style="display:none" src="{% static 'graph.png' %}">-->
+								<p class="th">Device: {{p.device}}</p>
+								<p class="th">Age: {{p.age}}</p>
+								<p class="th patient_last_event">Last Event: {{p.last_event}}</p>
+								<canvas class="patient_graph" id="{{p.id}}_graph" style="display:none" width="500" height="250"></canvas>
 						</div>
 					{% endfor %}
 				{% else %}

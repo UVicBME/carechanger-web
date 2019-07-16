@@ -4,12 +4,11 @@ from django.contrib.auth import login, authenticate
 from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm, DeviceCreationForm
 from django.contrib.auth.password_validation import validate_password
 from django.template import RequestContext
-from sensors.models import CareGroup, Patient, User
-#from django.contrib.auth.models import User
+from sensors.models import CareGroup, Patient, User, Data # import custon user model
+from django.core import serializers
 import logging
-from django.contrib import messages
-logger = logging.getLogger(__name__)
 
+logger = logging.getLogger(__name__)
 
 def handler403(request, *args, **argv):
     response = render_to_response('errors/403.html', {}, context_instance=RequestContext(request))
@@ -37,18 +36,42 @@ def dashboard(request, *args, **kwargs):
 
     return render(request, "dashboard/dashboard.html", {'patients':patients, 'user':user, 'active_caregroup':active_caregroup, 'caregroups':caregroups})
 
+# used to retreive caregroup data for changing dashboard view between caregroups for signed in user
 def ajax_change_caregroup(request):
-    print("CAREGROUP ID:")
+    print("CAREGROUP ID:") # new caregroup
     print(request.GET.get('caregroup', False))
-    caregroup_id = request.GET.get('caregroup', False)
+    caregroup_id = request.GET.get('caregroup', False) # access caregroup
     user = request.user
-    user.active_caregroup=CareGroup.objects.get(id=caregroup_id)
+    user.active_caregroup=CareGroup.objects.get(id=caregroup_id) # switch user active caregroup
     user.save()
     try:
         return JsonResponse({"success": True})
     except Exception as e:
         return JsonResponse({"success": False})
     return JsonResponse(data)
+
+# returns patient temperature, humidity data from table in postgres
+def ajax_get_patient_data(request):
+    print("FLAG0")
+    patient_id = request.GET.get('patient_id', False)
+    print("PATIENT ID:") # debug check patient
+    print(patient_id)
+    patient_data= Data.objects.filter(patient_id=1) # Contains a list of 'Data' Django objects
+    """
+    data = {
+        'patient_data': Data.objects.filter(patient=id),
+        'success': True,
+    }
+    """
+    patient_data = serializers.serialize('json', patient_data) # import Django rest framework to allow serialization of django objects to JSON
+    return HttpResponse(patient_data, content_type="application/json")
+    """
+    try:
+        return JsonResponse(data)
+    except Exception as e:
+        return JsonResponse({"success": False})
+    return JsonResponse(data)
+    """
 
 def add_patient(request, *args, **kwargs):
     # If the form has been submitted

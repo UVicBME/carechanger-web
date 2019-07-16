@@ -7,32 +7,34 @@
         <link rel="icon" type="image/png" href="{% static 'favicon.png' %}"/>
     </head>
     <body>
-      <form method="post">
-          {% csrf_token %}
-          <br>
-          <!-- Care group's name -->
-          <input class="login" type="text" id="{{ form.name.id_for_label }}" name="{{ form.name.html_name }}"
-                 placeholder="Care Group Name" required>
-          <br>
-          <br>
-          <!-- Password field -->
-          <input class="login" type="password" id="{{ form.password.id_for_label }}"
-                 name="{{ form.password.html_name }}" placeholder="Password" required>
-          <br>
-          <br>
-          <!-- Password confirmation field -->
-          <input class="login" type="password" id="{{ form.password_confirmation.id_for_label }}"
-                 name="{{ form.password_confirmation.html_name }}" placeholder="Confirm Password">
-          <br>
-          <br>
-          <!-- Admin email address field -->
-          <input class="login" type="email" id="{{ form.admin_email.id_for_label }}"
-                 name="{{ form.admin_email.html_name }}" placeholder="Admin Email Address">
-          <br>
-          <br>
-          <!-- Submit button -->
-          <button class="login" type="submit">Create Care Group</button>
-      </form>
+      <div class="container" id="inputs">
+        <form method="post">
+            {% csrf_token %}
+            <br>
+            <!-- Care group's name -->
+            <input class="login" type="text" id="{{ form.name.id_for_label }}" name="{{ form.name.html_name }}"
+                   placeholder="Care Group Name" required>
+            <br>
+            <br>
+            <!-- Password field -->
+            <input class="login" type="password" id="{{ form.password.id_for_label }}"
+                   name="{{ form.password.html_name }}" placeholder="Password" required>
+            <br>
+            <br>
+            <!-- Password confirmation field -->
+            <input class="login" type="password" id="{{ form.password_confirmation.id_for_label }}"
+                   name="{{ form.password_confirmation.html_name }}" placeholder="Confirm Password">
+            <br>
+            <br>
+            <!-- Admin email address field -->
+            <input class="login" type="email" id="{{ form.admin_email.id_for_label }}"
+                   name="{{ form.admin_email.html_name }}" placeholder="Admin Email Address">
+            <br>
+            <br>
+            <!-- Submit button -->
+            <button class="login" type="submit">Create Care Group</button>
+        </form>
+      </div>
       <footer>
         &copy; CareChanger
       </footer>

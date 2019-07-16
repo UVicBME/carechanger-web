@@ -14,6 +14,11 @@ body {
 	/* https://webgradients.com/ */
 }
 
+/* gets rid of scrollbar, which was buggy/clipped behind dash_content div*/
+::-webkit-scrollbar {
+    display: none;
+}
+
 a {
 	text-decoration: none;
 	color: #323232;
@@ -108,9 +113,8 @@ h2,h3,h4 {
 }
 
 form {
-	text-align: center;
 	width:300px;
-	height:300px;
+	text-align: center;
 	margin-top:14%;
 	margin-left:auto;
 	margin-right:auto;
@@ -118,6 +122,8 @@ form {
 	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
 	background-color: rgba(255, 255, 255, 0.0);
 	padding:10px;
+	display:inline-block;
+	padding-bottom:30px;
 }
 
 li {
@@ -255,7 +261,7 @@ li .active_dropdown_list_element { /* the "li" tag in front allows ".active_drop
 	top:0;
 	width:100%;
 	transition:0.5s;
-	z-index:1;
+	z-index:5;
 	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
 }
 
@@ -266,6 +272,7 @@ li .active_dropdown_list_element { /* the "li" tag in front allows ".active_drop
 	transition:0.5s;
 	top:100px;
 	padding:5px;
+	z-index:2;
 	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
 }
 
@@ -274,14 +281,14 @@ li .active_dropdown_list_element { /* the "li" tag in front allows ".active_drop
 	background-color: #eeeeee;
 	margin-left:0%;
 	margin-right:0%;
-	/*padding-top:150px;*/
 	margin-top:100px;
-	padding-top:60px;
+	padding-top:50px; /* this will position all of the 'patient' divs vertically from the nav bar */
 	padding-bottom:10px;
 	padding-right:5%;
 	padding-left:5%;
 	left:0px;
 	height:100%;
+	overflow:scroll; /* this ensures dash_content background stays full height even after graphs are opened */
 }
 
 .scrolled .nav_a{
