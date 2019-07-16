@@ -127,7 +127,7 @@ $(function(){
 				cvs.css("display", "none"); // close the image
 				p.animate({height:ch},200);
 				cvs.css("display", "block"); // Open the image
-			}, 100);
+			}, 500);
 		} else { // close the div
 			cvs.css("display", "none"); // close the image
 			p.css('height', 'auto'); // Set div to auto height
