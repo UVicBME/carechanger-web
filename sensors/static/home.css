@@ -35,8 +35,8 @@ table, th, td {
 .right-aligned-roundedImage {
   position: relative;
   overflow: hidden;
-	padding-top: 20%;
-	padding-bottom: 20%;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 .right-aligned-roundedImage img {
@@ -48,8 +48,8 @@ table, th, td {
 .left-aligned-roundedImage {
   position: relative;
   overflow: hidden;
-	padding-top: 20%;
-	padding-bottom: 20%;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 .left-aligned-roundedImage img {
@@ -60,30 +60,30 @@ table, th, td {
 
 /* Text DIV */
 .tableTextDiv {
-	padding-left: 20%;
-	padding-right: 20%;
+	padding-left: 10%;
+	padding-right: 10%;
 	text-align: left;
 }
 
 /* DIV Headings */
 .headingDiv {
 	padding: 100px;
-	background-color: #43464B;
+	background-image: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%) ;
 	color: white;
 	text-align: center;
 }
 
 .contentDiv {
-	padding-top: 5%;
-	padding-bottom: 5%;
+	padding-top: 30px;
+	padding-bottom: 30px;
 	background-image: linear-gradient(to bottom, white 0%, #efeded 100%);
 	color: black;
 	text-align: left;
 }
 
 .aboutDiv {
-	padding-top: 5%;
-	padding-bottom: 5%;
+	padding-top: 30px;
+	padding-bottom: 30px;
 	background-image: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);
 	color: black;
 	text-align: left;
