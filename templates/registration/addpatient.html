@@ -11,8 +11,6 @@
         <form method="post">
           {% csrf_token %}
           <br>
-          <!-- CareChanger logo -->
-          <br>
           <!-- Patient's first name field -->
           <input class="login" type="text" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}"
                  placeholder="First Name" required>
