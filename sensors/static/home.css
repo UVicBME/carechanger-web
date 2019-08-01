@@ -4,7 +4,9 @@ html, body {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
+	border: 0px;
 	overflow-x: hidden;
+	color: #464a4f;
 }
 
 body {
@@ -18,30 +20,63 @@ a {
 	color: blue;
 }
 
+a:link {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: white;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
 h2,h3,h4 {
 	margin: 0;
+}
+
+p {
+	font-weight: lighter;
 }
 
 table, th, td {
 	/*height: 100%; */
   border: 0px;
-	padding: 0px;
+	padding-top: 30px;
+	padding-bottom: 30px;
 	font-size: 120%;
 
 }
 /* -------------------------- Design DIVS --------------------------------- */
 
+/* section divider: grey line */
+.line_divider{
+    display:block;
+    height:2px;
+    background-image: linear-gradient(to bottom, white, #D3D3D3 100%);
+		border-radius: 5%;
+}
+
  /* Images */
 .right-aligned-roundedImage {
   position: relative;
   overflow: hidden;
-<<<<<<< HEAD
 	padding-top: 30px;
 	padding-bottom: 30px;
-=======
-	padding-top: 20px;
-	padding-bottom: 20%;
->>>>>>> 2ef11c6111763eb08d600fba9c5bbb094e734953
+	padding-left: 50px;
 }
 
 .right-aligned-roundedImage img {
@@ -55,6 +90,7 @@ table, th, td {
   overflow: hidden;
 	padding-top: 30px;
 	padding-bottom: 30px;
+	padding-right: 50px;
 }
 
 .left-aligned-roundedImage img {
@@ -65,8 +101,8 @@ table, th, td {
 
 /* Text DIV */
 .tableTextDiv {
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 30px;
+	padding-right: 30px;
 	text-align: left;
 }
 
@@ -79,25 +115,19 @@ table, th, td {
 }
 
 .contentDiv {
-<<<<<<< HEAD
-	padding-top: 30px;
-	padding-bottom: 30px;
-=======
-	/*padding-top: 5%;*/
-	padding-bottom: 5%;
->>>>>>> 2ef11c6111763eb08d600fba9c5bbb094e734953
+	padding-top: 0px;
+	padding-bottom: 0px;
 	background-image: linear-gradient(to bottom, white 0%, #efeded 100%);
 	color: black;
 	text-align: left;
 }
 
 .aboutDiv {
-	padding-top: 30px;
-	padding-bottom: 30px;
-	background-image: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);
+	padding-top: 0px;
+	padding-bottom: 0px;
+	background-color: white;
 	color: black;
 	text-align: left;
-
 }
 
 
@@ -430,7 +460,8 @@ li:hover a{
 }
 
 footer {
-	background-color: #43464B;	color: #ffffff;
+	background-image: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%);
+	color: #ffffff;
 	text-align: center;
 	font-size:10pt;
 	clear: both;
