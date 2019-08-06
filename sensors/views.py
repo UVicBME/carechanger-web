@@ -56,7 +56,7 @@ def ajax_get_patient_data(request):
     patient_id = request.GET.get('patient_id', False)
     print("PATIENT ID:") # debug check patient
     print(patient_id)
-    patient_data= Data.objects.filter(patient_id=1) # Contains a list of 'Data' Django objects
+    patient_data = Data.objects.filter(patient_id=patient_id) # Contains a list of 'Data' Django objects
     """
     data = {
         'patient_data': Data.objects.filter(patient=id),
