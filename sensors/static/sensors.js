@@ -53,7 +53,7 @@ function open_patient_graph(patient_id) {
 				'patient_id': patient_id
 			},
 			dataType: 'json',
-			success: function (data) {
+			success: function (data) { // this data is literally sensors data pertaining to the patient id
 				console.log(data)
 				var len = data.length;
 				var recent;
@@ -68,11 +68,11 @@ function open_patient_graph(patient_id) {
 					for(var i=0; i<recent.length; i++){
 						/*console.log(i);*/
 						unix_timestamp = recent[i].fields.time;     // Grab the initial unix timestamp
-													var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
-													var hour = date.getHours();                 // Get the hour of day
-													var minute = "0" + date.getMinutes();       // Get the minute
-													var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
-													var time = hour + ':' + minute.substr(-2) + ':' + second.substr(-2);
+						var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
+						var hour = date.getHours();                 // Get the hour of day
+						var minute = "0" + date.getMinutes();       // Get the minute
+						var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
+						var time = hour + ':' + minute.substr(-2) + ':' + second.substr(-2);
 						recent_times.push(time);
 						recent_temps.push(recent[i].fields.temperature);
 						recent_hum.push(recent[i].fields.humidity);
@@ -111,6 +111,13 @@ function open_patient_graph(patient_id) {
 												ticks: {
 														beginAtZero: true
 												}
+										}],
+										xAxes: [{
+										    //type: 'time',
+										    ticks: {
+										        autoSkip: true,
+										        maxTicksLimit: 20
+										    }
 										}]
 								},
 								elements: {
