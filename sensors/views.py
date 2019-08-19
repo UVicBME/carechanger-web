@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm, DeviceCreationForm
 from django.contrib.auth.password_validation import validate_password
 from django.template import RequestContext
-from sensors.models import CareGroup, Patient, User, Data # import custon user model
+from sensors.models import CareGroup, Patient, User, Data # import custom user model
 from django.core import serializers
 import logging
 
@@ -36,7 +36,7 @@ def dashboard(request, *args, **kwargs):
 
     return render(request, "dashboard/dashboard.html", {'patients':patients, 'user':user, 'active_caregroup':active_caregroup, 'caregroups':caregroups})
 
-# used to retreive caregroup data for changing dashboard view between caregroups for signed in user
+# used to retrieve caregroup data for changing dashboard view between caregroups for signed in user
 def ajax_change_caregroup(request):
     print("CAREGROUP ID:") # new caregroup
     print(request.GET.get('caregroup', False))
@@ -54,9 +54,10 @@ def ajax_change_caregroup(request):
 def ajax_get_patient_data(request):
     print("FLAG0")
     patient_id = request.GET.get('patient_id', False)
-    print("PATIENT ID:") # debug check patient
+    print("PATIENT ID:")  # debug check patient
     print(patient_id)
-    patient_data= Data.objects.filter(patient_id=1) # Contains a list of 'Data' Django objects
+    patient_data = Data.objects.order_by('time').filter(patient_id=patient_id) # Contains a list of 'Data' Django objects
+
     """
     data = {
         'patient_data': Data.objects.filter(patient=id),
