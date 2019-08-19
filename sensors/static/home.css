@@ -20,30 +20,35 @@ a {
 	color: blue;
 }
 
-/*
-a:link {
-  color: black;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:visited {
+#here:link {
   color: white;
   background-color: transparent;
   text-decoration: none;
 }
 
-a:hover {
+#here:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+#here:hover {
   color: white;
   background-color: transparent;
   text-decoration: underline;
 }
 
-a:active {
+#here:active {
   color: white;
   background-color: transparent;
   text-decoration: underline;
-} */
+}
+
+#underlink:hover {
+  color:#464a4f;
+  background-color: transparent;
+  text-decoration: underline;
+}
 
 h2,h3,h4 {
 	margin: 0;
@@ -55,10 +60,11 @@ p {
 
 table, th, td {
 	/*height: 100%; */
-  border: 0px;
+  border: none;
 	padding-top: 30px;
 	padding-bottom: 30px;
 	font-size: 120%;
+}
 
 iframe {
 	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
@@ -70,7 +76,7 @@ iframe {
     display:block;
     height:2px;
     background-image: linear-gradient(to bottom, white, #D3D3D3 100%);
-		border-radius: 5%;
+		border-radius: 10px;
 }
 
  /* Images */
@@ -84,8 +90,8 @@ iframe {
 
 .right-aligned-roundedImage img {
 	float: right;
-	border-top-left-radius: 5% 5%;
-	border-bottom-left-radius: 5% 5%;
+	border-top-left-radius: 10px 10px;
+	border-bottom-left-radius: 10px 10px;
 }
 
 .left-aligned-roundedImage {
@@ -98,8 +104,8 @@ iframe {
 
 .left-aligned-roundedImage img {
 	float: left;
-	border-top-right-radius: 5% 5%;
-	border-bottom-right-radius: 5% 5%;
+	border-top-right-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
 }
 
 /* Text DIV */
@@ -123,7 +129,6 @@ iframe {
 	padding-top: 0px;
 	padding-bottom: 0px;
 	background-image: linear-gradient(to bottom, white 0%, #efeded 100%);
-	color: black;
 	text-align: left;
 }
 
@@ -131,7 +136,6 @@ iframe {
 	padding-top: 0px;
 	padding-bottom: 0px;
 	background-color: white;
-	color: black;
 	text-align: left;
 }
 
@@ -206,12 +210,12 @@ iframe {
 
 .login:hover {
 	background-color: #FFFFFF;
-	color:#323232;
+	color:#464a4f;
 	transition:.5s;
 }
 
 .login:hover::placeholder {
-	color:#323232;
+	color:#464a4f;
 	transition:.5s;
 }
 
@@ -261,7 +265,7 @@ li a {
 
 li:hover a{
 	position:relative;
-	color:#323232;
+	color:#464a4f;
 	background-color: #fff;
 	border-top-style:solid;
 	border-top-width:10px;
@@ -273,7 +277,7 @@ li:hover a{
 
 .dropdown_link {
 	position:relative;
-	color:#323232;
+	color:#464a4f;
 	background-color: #ffffff;
 	visibility:hidden;
 	display:block;
@@ -313,7 +317,7 @@ li:hover a{
 
 #caregroups_list:hover #active_caregroup {
 	position:relative;
-	color:#323232;
+	color:#464a4f;
 	background-color: white;
 	border-style:none;
 	border-top-style:solid;
@@ -394,7 +398,7 @@ li:hover a{
 .scrolled {
 	background-color: #fff; !important;
   transition: background-color 200ms linear;
-	color:#323232;
+	color:#464a4f;
 }
 .scrolled ul{
 	background-color: #fff; !important;
@@ -473,19 +477,19 @@ footer {
 	border-style: none;
 	background-color: inherit;
 	text-align: center;
-	color: #323232;
+	color: #464a4f;
 	font-size:10pt;
 	margin:0px;
 }
 
 .dash_nav_button a {
-	color: #323232;
+	color: #464a4f;
 }
 
 .dash_nav_button:hover a{
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
-	border-bottom-color: #323232;
+	border-bottom-color: #464a4f;
 }
 
 .login_error {
@@ -501,5 +505,5 @@ footer {
 }
 
 #note {
-	color:#323232;
+	color:#464a4f;
 }
