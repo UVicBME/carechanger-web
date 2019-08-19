@@ -20,6 +20,7 @@ a {
 	color: blue;
 }
 
+/*
 a:link {
   color: black;
   background-color: transparent;
@@ -42,7 +43,7 @@ a:active {
   color: white;
   background-color: transparent;
   text-decoration: underline;
-}
+} */
 
 h2,h3,h4 {
 	margin: 0;
@@ -59,6 +60,8 @@ table, th, td {
 	padding-bottom: 30px;
 	font-size: 120%;
 
+iframe {
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
 }
 /* -------------------------- Design DIVS --------------------------------- */
 
@@ -108,10 +111,12 @@ table, th, td {
 
 /* DIV Headings */
 .headingDiv {
-	padding: 100px;
+	padding: 75px;
 	background-image: linear-gradient(120deg, #66a6ff 0%, #89f7fe 100%) ;
 	color: white;
 	text-align: center;
+	z-index: -5;
+	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
 }
 
 .contentDiv {
@@ -363,16 +368,6 @@ li:hover a{
 	width:100%;
 	transition:0.5s;
 	z-index:1;
-	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
-}
-
-#dash_nav {
-	position:fixed;
-	background-color: white;
-	width:100%;
-	transition:0.5s;
-	top:100px;
-	padding:5px;
 	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
 }
 
