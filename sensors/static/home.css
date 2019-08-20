@@ -20,7 +20,6 @@ a {
 	color: blue;
 }
 
-/*
 a:link {
   color: black;
   background-color: transparent;
@@ -43,7 +42,7 @@ a:active {
   color: white;
   background-color: transparent;
   text-decoration: underline;
-} */
+}
 
 h2,h3,h4 {
 	margin: 0;
@@ -59,6 +58,7 @@ table, th, td {
 	padding-top: 30px;
 	padding-bottom: 30px;
 	font-size: 120%;
+}
 
 iframe {
 	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);

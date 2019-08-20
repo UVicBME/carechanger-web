@@ -60,7 +60,7 @@ function open_patient_graph(patient_id) {
 				var recent_times=[];
 				var recent_temps=[];
 				var recent_hum=[];
-				var num_of_samples = 180;      // Change this value to adjust amount of data shown on chart
+				var num_of_samples = 180; // Change this value to adjust amount of data shown on chart. this is an 1.5 hours of samples
 
 				if(len>num_of_samples){
 					recent = data.slice(data.length-num_of_samples, data.length);
@@ -145,6 +145,22 @@ function open_patient_graph(patient_id) {
 		p.animate({height:ah},200);
 		cvs.css("display", "none"); // close the image
 	}
+}
+
+function addData(chart, label, data) {
+	chart.data.labels.push(label);
+	chart.data.datasets.forEach((dataset) => {
+		dataset.data.push(data);
+	});
+	chart.update();
+}
+
+function removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
 }
 
 /* This function changes the caregroup patients being currently viewed */
