@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<title>Login</title>
-		<link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
 		<link rel="icon" type="image/png" href="{% static 'favicon.png' %}"/>
 	</head>
 	<!-- Redirect to dashboard if user is logged in -->
@@ -19,7 +19,7 @@
 					{% csrf_token %}
 					<br>
 					<!-- CareChanger logo -->
-					<img id="logo" src="{% static "carechanger_logo_white.png" %}" alt="CareChanger Logo"/>
+					<img id="logo" src="{% static 'carechanger_logo_white.png' %}" alt="CareChanger Logo"/>
 					<br>
 					<!-- Login field -->
 					<input class="login" type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}"
@@ -33,6 +33,11 @@
 					<br>
 					<!-- Login button -->
 					<button class="login" type="submit">Login</button>
+					<br>
+					<br>
+					<!-- Using label makes it so that clicking the text also toggles the checkbox -->
+					<label><input id="{{ form.remember_me.id_for_label }}" name="{{ form.remember_me.html_name }}"
+								  type="checkbox">Keep me logged in</label>
 				</form>
 			</div>
 			<!-- Error Message -->

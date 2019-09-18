@@ -125,6 +125,10 @@ LOGGING = {
     },
 }
 
+# Session stuff for remembering users who have logged in
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+SESSION_COOKIE_AGE = 60*60*24*30    # Default cookie length of a month
+
 # Redirection URLs
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/login'

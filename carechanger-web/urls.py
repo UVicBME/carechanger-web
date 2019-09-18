@@ -1,8 +1,8 @@
 from django.urls import path, include
 from django.conf.urls import url
 from django.contrib import admin
-admin.autodiscover()
 import sensors.views
+admin.autodiscover()
 
 # To add a new path, first import the app:
 # import blog
