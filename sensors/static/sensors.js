@@ -62,7 +62,7 @@ function open_patient_graph(patient_id) {
 				var events=[];
 				for(var i=0; i<len; i++){
 					// draw 'event'
-					if(data[i].fields.event==1){
+					if(data[i].fields.event==2){
 						events.push(100);
 					} else {
 						events.push(0);
@@ -70,8 +70,11 @@ function open_patient_graph(patient_id) {
 					unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
 					var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
 					var day;
-					if(i == len-1) day = date.getDate();
-					var day = date.getDate();
+					if (i == len-1) {
+					    day = date.getDate();
+					    month = date.getMonth();
+					    title = month + day;
+					}
 					var hour = date.getHours();                 // Get the hour of day
 					var minute = "0" + date.getMinutes();       // Get the minute
 					var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
@@ -139,8 +142,8 @@ function open_patient_graph(patient_id) {
 								},
 								title: {
 								    display: true,
-								    text: day
-								}
+								    text: title
+								},
 						}
 				});
 			}
