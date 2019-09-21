@@ -36,108 +36,124 @@ $(function () { /* Using $(function () {}); Ensures that the document (webpage h
 	});
 });
 
+/* This function gets patient data via ajax, hopefully on an interval. */
+function get_patient_data(patient_id) {
+	var result;
+	$.ajax({ // this literally fires off an ajax request
+		url: '/ajax/get_patient_data/',
+		async:false, // will lock browser while waiting for response from server- allows time to load
+		//type: 'post',
+		data: {
+			'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+			'patient_id': patient_id
+		},
+		dataType: 'json',
+		success: function (data) { // this data is literally sensors data pertaining to the patient id. 'data' is passed into 'success' function
+			//console.log(data);
+			result= data;
+			//handleData(data);
+		}
+	}); // end ajax
+
+	return result;
+}
+
 /* This function controls the toggle of a patient object to open/close a patient graph. It also instantiates a canvas for the patient graph when opened.*/
 function open_patient_graph(patient_id) {
 	console.log(patient_id);
 	var p = $('patient_'+patient_id);
 	var ctx = document.getElementById(patient_id+'_graph').getContext('2d'); // instantiates opened graph
 	var cvs = $("#"+patient_id+"_graph");
+	var myChart; // instantiate new chart object
+	var data;
+
 	if(cvs.css('display') == 'none'){ // open the div
 		console.log("FLAG1");
 		console.log(patient_id);
-		$.ajax({ // this literally fires off an ajax request
-			url: '/ajax/get_patient_data/',
-			//type: 'post',
-			data: {
-				'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-				'patient_id': patient_id
-			},
-			dataType: 'json',
-			success: function (data) { // this data is literally sensors data pertaining to the patient id
-				console.log(data)
-				var len = data.length;
-				var times=[];
-				var temps=[];
-				var hum=[];
-				var events=[];
-				for(var i=0; i<len; i++){
-					// draw 'event'
-					if(data[i].fields.event==1){
-						events.push(100);
-					} else {
-						events.push(0);
-					}
-					unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
-					var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
-					var hour = date.getHours();                 // Get the hour of day
-					var minute = "0" + date.getMinutes();       // Get the minute
-					var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
-					var time = hour + ':' + minute.substr(-2) + ':' + second.substr(-2);
-					times.push(time);
-					temps.push(data[i].fields.temperature);
-					hum.push(data[i].fields.humidity);
-				}
 
-				var myChart = new Chart(ctx, {
-						type: 'line',
-						data: {
-								labels: times,
-								datasets: [{
-										label: 'Temperature',
-										data: temps,
-										backgroundColor: [
-												'rgba(255, 255, 255, 0)',
-										],
-										borderColor: [
-												'rgba(200, 50, 50, 1)',
-										],
-										borderWidth: 3,
-								}, {
-										label: 'Humidity',
-										data: hum,
-										backgroundColor: [
-												'rgba(255, 255, 255, 0)',
-										],
-										borderColor: [
-												'rgba(50, 50, 200, 1)',
-										],
-										borderWidth: 3,
-								}, {
-										label: 'Event',
-										data: events,
-										backgroundColor: [
-												'rgba(255, 255, 255, 0)',
-										],
-										borderColor: [
-												'rgba(200, 200, 50, 1)',
-										],
-										borderWidth: 3,
+		data = get_patient_data(patient_id); // returns array of sensor_data objects (hopefully);
+		//console.log(data);
+		var len = data.length;
+		var times=[];
+		var temps=[];
+		var hum=[];
+		var events=[];
+		for(var i=0; i<len; i++) {
+			// draw 'event'
+			if(data[i].fields.event==1){
+				events.push(100);
+			} else {
+				events.push(0);
+			}
+			unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
+			var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
+			var hour = date.getHours();                 // Get the hour of day
+			var minute = "0" + date.getMinutes();       // Get the minute
+			var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
+			var time = hour + ':' + minute.substr(-2) + ':' + second.substr(-2);
+			times.push(time);
+			temps.push(data[i].fields.temperature);
+			hum.push(data[i].fields.humidity);
+		}
+
+		myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+						labels: times,
+						datasets: [{
+								label: 'Temperature',
+								data: temps,
+								backgroundColor: [
+										'rgba(255, 255, 255, 0)',
+								],
+								borderColor: [
+										'rgba(200, 50, 50, 1)',
+								],
+								borderWidth: 3,
+						}, {
+								label: 'Humidity',
+								data: hum,
+								backgroundColor: [
+										'rgba(255, 255, 255, 0)',
+								],
+								borderColor: [
+										'rgba(50, 50, 200, 1)',
+								],
+								borderWidth: 3,
+						}, {
+								label: 'Event',
+								data: events,
+								backgroundColor: [
+										'rgba(255, 255, 255, 0)',
+								],
+								borderColor: [
+										'rgba(200, 200, 50, 1)',
+								],
+								borderWidth: 3,
+						}]
+				},
+				options: {
+						scales: {
+								yAxes: [{
+										ticks: {
+												beginAtZero: true
+										}
+								}],
+								xAxes: [{
+										//type: 'time',
+										ticks: {
+												autoSkip: true,
+												maxTicksLimit: 20
+										}
 								}]
 						},
-						options: {
-								scales: {
-										yAxes: [{
-												ticks: {
-														beginAtZero: true
-												}
-										}],
-										xAxes: [{
-										    //type: 'time',
-										    ticks: {
-										        autoSkip: true,
-										        maxTicksLimit: 20
-										    }
-										}]
-								},
-								elements: {
-										point: {
-												radius: 0      // Gets rid of the data point dots on the line
-										}
-								},
-						}
-				});
-			}
-		}); // end ajax
+						elements: {
+								point: {
+										radius: 0      // Gets rid of the data point dots on the line
+								}
+						},
+				}
+		});
 		setTimeout(function(){ // Set timeout to ensure that the ajax request has fired and canvas has loaded...
 			cvs.css("display", "block"); // Open the image (make it visible) without animation
 			p.css('height', 'auto'); // Set div to auto height
@@ -154,14 +170,22 @@ function open_patient_graph(patient_id) {
 		p.animate({height:ah},200);
 		cvs.css("display", "none"); // close the image
 	}
+	/*
+	while(cvs.css('display') != 'none'){
+		setTimeout(function(){ // Set timeout to ensure that the ajax request has fired and canvas has loaded...
+			data = get_patient_data(patient_id);
+			console.log(data);
+		}, 1000);
+	}
+	*/
 }
 
 function addData(chart, label, data) {
-	chart.data.labels.push(label);
-	chart.data.datasets.forEach((dataset) => {
-		dataset.data.push(data);
-	});
-	chart.update();
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    chart.update();
 }
 
 function removeData(chart) {
