@@ -80,7 +80,7 @@ function open_patient_graph(patient_id) {
 		var events=[];
 		for(var i=0; i<len; i++) {
 			// draw 'event'
-			if(data[i].fields.event==1){
+			if(data[i].fields.event==2){
 				events.push(100);
 			} else {
 				events.push(0);
