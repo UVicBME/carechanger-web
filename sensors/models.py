@@ -41,6 +41,5 @@ class Data(models.Model):
     humidity = models.FloatField()
     event = models.PositiveIntegerField(default=0)
     time = models.IntegerField()
-    #device = models.IntegerField()
     device = models.ForeignKey(Device, on_delete=models.PROTECT)
     patient = models.ForeignKey(Patient, null=True, on_delete=models.PROTECT) # this form, originally

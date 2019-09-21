@@ -64,6 +64,14 @@ def ajax_get_patient_data(request):
     return HttpResponse(patient_data, content_type="application/json")
 
 
+def ajax_update_patient_status(request):
+    device_id = 1 # Hardcoded for now since we only have 1 device
+    data = Data.objects.order_by('time').filter(device_id=device_id)
+    data = serializers.serialize('json', data)
+
+    return HttpResponse(data, content_type="application/json")
+
+
 # TODO: make this work properly, currently doesn't seem to actually get used at all.
 # I think the problem is that the default Django login stuff is getting used instead, but I'm not really sure how
 # to fix that. Supposed to set cookie to expire after browser close if remember me isn't checked.
@@ -77,6 +85,7 @@ def ajax_get_patient_data(request):
         url = self.get_redirect_url()
         return url
         '''
+
 
 def add_patient(request, *args, **kwargs):
     # If the form has been submitted

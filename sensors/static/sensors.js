@@ -61,6 +61,7 @@ function open_patient_graph(patient_id) {
 				var recent_temps=[];
 				var recent_hum=[];
 				var num_of_samples = 180;      // Change this value to adjust amount of data shown on chart
+				data = data.objects.order_by('time') // Hopefully sorts the database by timestamp
 
 				if(len>num_of_samples){
 					recent = data.slice(data.length-num_of_samples, data.length);
