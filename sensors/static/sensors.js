@@ -15,7 +15,7 @@ $(function () { /* Using $(function () {}); Ensures that the document (webpage h
 
 		console.log($ul.height())
 
-		page = $(this)      // Don't wanna make this call a bunch, so just make a var with it
+		page = $(this) // Don't wanna make this call a bunch, so just make a var with it
 
 		$nav.toggleClass('scrolled', page.scrollTop() > $nav.height());
 		$ul.toggleClass('scrolled', page.scrollTop() > $nav.height());
@@ -60,13 +60,18 @@ function open_patient_graph(patient_id) {
 				var recent_times=[];
 				var recent_temps=[];
 				var recent_hum=[];
+				var recent_events=[];
 				var num_of_samples = 180; // Change this value to adjust amount of data shown on chart. this is an 1.5 hours of samples
-
 				if(len>num_of_samples){
 					recent = data.slice(data.length-num_of_samples, data.length);
 					console.log(recent.length);
 					for(var i=0; i<recent.length; i++){
-						/*console.log(i);*/
+						// draw 'event'
+						if(recent[i].fields.event==1){
+							recent_events.push(100);
+						} else {
+							recent_events.push(0);
+						}
 						unix_timestamp = recent[i].fields.time;     // Grab the initial unix timestamp
 						var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
 						var hour = date.getHours();                 // Get the hour of day
@@ -101,6 +106,16 @@ function open_patient_graph(patient_id) {
 										],
 										borderColor: [
 												'rgba(50, 50, 200, 1)',
+										],
+										borderWidth: 3,
+								}, {
+										label: 'Event',
+										data: recent_events,
+										backgroundColor: [
+												'rgba(255, 255, 255, 0)',
+										],
+										borderColor: [
+												'rgba(200, 200, 50, 1)',
 										],
 										borderWidth: 3,
 								}]
