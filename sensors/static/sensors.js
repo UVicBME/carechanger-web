@@ -69,7 +69,7 @@ function open_patient_graph(patient_id) {
 					}
 					unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
 					var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
-					var today = new Date().toLocaleDateString('en-US', {
+					var title = date.toLocaleDateString('en-US', {
                         day : 'numeric',
                         month : 'short',
                     })
@@ -140,7 +140,7 @@ function open_patient_graph(patient_id) {
 								},
 								title: {
 								    display: true,
-								    text: today
+								    text: title
 								},
 						}
 				});
