@@ -72,6 +72,7 @@ function open_patient_graph(patient_id) {
 					var title = date.toLocaleDateString('en-US', {
                         day : 'numeric',
                         month : 'short',
+                        year : 'numeric',
                     })
 					var hour = date.getHours();                 // Get the hour of day
 					var minute = "0" + date.getMinutes();       // Get the minute
@@ -140,7 +141,8 @@ function open_patient_graph(patient_id) {
 								},
 								title: {
 								    display: true,
-								    text: title
+								    text: title,
+								    fontSize: 18,
 								},
 						}
 				});
