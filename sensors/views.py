@@ -55,13 +55,21 @@ def ajax_change_caregroup(request):
 # returns patient temperature, humidity data from table in postgres
 def ajax_get_patient_data(request):
     print("FLAG0")
-    patient_id = request.GET.get('patient_id', False)
-    print("PATIENT ID:")  # debug check patient
-    print(patient_id)
-    patient_data = Data.objects.order_by('time').filter(patient_id=patient_id) # Contains a list of 'Data' Django objects
-
+    patient_id = request.GET.get('patient_id', False) # get patient id for lookup of values in sensors_data table
+    #print("PATIENT ID:")  # debug check patient
+    #print(patient_id)
+    patient_data = Data.objects.order_by('time').filter(patient_id=patient_id)[:180] # Contains a list of 'Data' Django objects
     patient_data = serializers.serialize('json', patient_data) # import Django rest framework to allow serialization of django objects to JSON
+
     return HttpResponse(patient_data, content_type="application/json")
+
+
+def ajax_update_patient_status(request):
+    device_id = 1 # Hardcoded for now since we only have 1 device
+    data = Data.objects.order_by('time').filter(device_id=device_id)
+    data = serializers.serialize('json', data)
+
+    return HttpResponse(data, content_type="application/json")
 
 
 # TODO: make this work properly, currently doesn't seem to actually get used at all.
@@ -77,6 +85,7 @@ def ajax_get_patient_data(request):
         url = self.get_redirect_url()
         return url
         '''
+
 
 def add_patient(request, *args, **kwargs):
     # If the form has been submitted
@@ -156,5 +165,3 @@ def receive_data(request):
     print("FLAG!!!")
     print(request)
     return render(request, 'data/data.html', {'form': form})
-
-

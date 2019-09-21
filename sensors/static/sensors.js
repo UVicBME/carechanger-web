@@ -56,41 +56,35 @@ function open_patient_graph(patient_id) {
 			success: function (data) { // this data is literally sensors data pertaining to the patient id
 				console.log(data)
 				var len = data.length;
-				var recent;
-				var recent_times=[];
-				var recent_temps=[];
-				var recent_hum=[];
-				var recent_events=[];
-				var num_of_samples = 180; // Change this value to adjust amount of data shown on chart. this is an 1.5 hours of samples
-				if(len>num_of_samples){
-					recent = data.slice(data.length-num_of_samples, data.length);
-					console.log(recent.length);
-					for(var i=0; i<recent.length; i++){
-						// draw 'event'
-						if(recent[i].fields.event==1){
-							recent_events.push(100);
-						} else {
-							recent_events.push(0);
-						}
-						unix_timestamp = recent[i].fields.time;     // Grab the initial unix timestamp
-						var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
-						var hour = date.getHours();                 // Get the hour of day
-						var minute = "0" + date.getMinutes();       // Get the minute
-						var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
-						var time = hour + ':' + minute.substr(-2) + ':' + second.substr(-2);
-						recent_times.push(time);
-						recent_temps.push(recent[i].fields.temperature);
-						recent_hum.push(recent[i].fields.humidity);
+				var times=[];
+				var temps=[];
+				var hum=[];
+				var events=[];
+				for(var i=0; i<len; i++){
+					// draw 'event'
+					if(data[i].fields.event==1){
+						events.push(100);
+					} else {
+						events.push(0);
 					}
+					unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
+					var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
+					var hour = date.getHours();                 // Get the hour of day
+					var minute = "0" + date.getMinutes();       // Get the minute
+					var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
+					var time = hour + ':' + minute.substr(-2) + ':' + second.substr(-2);
+					times.push(time);
+					temps.push(data[i].fields.temperature);
+					hum.push(data[i].fields.humidity);
 				}
 
 				var myChart = new Chart(ctx, {
 						type: 'line',
 						data: {
-								labels: recent_times,
+								labels: times,
 								datasets: [{
 										label: 'Temperature',
-										data: recent_temps,
+										data: temps,
 										backgroundColor: [
 												'rgba(255, 255, 255, 0)',
 										],
@@ -100,7 +94,7 @@ function open_patient_graph(patient_id) {
 										borderWidth: 3,
 								}, {
 										label: 'Humidity',
-										data: recent_hum,
+										data: hum,
 										backgroundColor: [
 												'rgba(255, 255, 255, 0)',
 										],
@@ -110,7 +104,7 @@ function open_patient_graph(patient_id) {
 										borderWidth: 3,
 								}, {
 										label: 'Event',
-										data: recent_events,
+										data: events,
 										backgroundColor: [
 												'rgba(255, 255, 255, 0)',
 										],
