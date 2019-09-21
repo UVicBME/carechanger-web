@@ -14,6 +14,20 @@ class PatientCreationForm(forms.ModelForm):
             'age',
         )
 
+
+# Custom login form that also sends the remember me setting.
+class LoginForm(forms.ModelForm):
+    remember_me = forms.BooleanField()
+
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'password',
+            'remember_me',
+        )
+
+
 # Form for adding a new device to the database
 class DeviceCreationForm(forms.ModelForm):
     active = forms.BooleanField()   # TODO: figure out why this comes up as 0 in the database
@@ -23,6 +37,7 @@ class DeviceCreationForm(forms.ModelForm):
         fields = (
             'active',
         )
+
 
 # Form for user creation TODO: Send a confirmation email to the provided address
 class SignUpForm(UserCreationForm):
@@ -36,7 +51,7 @@ class SignUpForm(UserCreationForm):
 
 
 # Form for care group creation
-#TODO: Send a confirmation email to the provided admin address
+# TODO: Send a confirmation email to the provided admin address
 class CareGroupCreationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, required=True)
     password_confirmation = forms.CharField(widget=forms.PasswordInput, required=True)

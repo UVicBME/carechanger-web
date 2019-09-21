@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import login, authenticate
-from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm, DeviceCreationForm
+from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm, DeviceCreationForm, LoginForm
 from django.contrib.auth.password_validation import validate_password
 from django.template import RequestContext
 from sensors.models import CareGroup, Patient, User, Data # import custom user model
 from django.core import serializers
 import logging
-
+from django.contrib.auth.views import LoginView
 logger = logging.getLogger(__name__)
 
+# This does nothing right now. Oops.
+# TODO: actually do this
 def handler403(request, *args, **argv):
     response = render_to_response('errors/403.html', {}, context_instance=RequestContext(request))
     response.status_code = 403
@@ -58,21 +60,23 @@ def ajax_get_patient_data(request):
     print(patient_id)
     patient_data = Data.objects.order_by('time').filter(patient_id=patient_id) # Contains a list of 'Data' Django objects
 
-    """
-    data = {
-        'patient_data': Data.objects.filter(patient=id),
-        'success': True,
-    }
-    """
     patient_data = serializers.serialize('json', patient_data) # import Django rest framework to allow serialization of django objects to JSON
     return HttpResponse(patient_data, content_type="application/json")
-    """
-    try:
-        return JsonResponse(data)
-    except Exception as e:
-        return JsonResponse({"success": False})
-    return JsonResponse(data)
-    """
+
+
+# TODO: make this work properly, currently doesn't seem to actually get used at all.
+# I think the problem is that the default Django login stuff is getting used instead, but I'm not really sure how
+# to fix that. Supposed to set cookie to expire after browser close if remember me isn't checked.
+#class LoginUser(LoginView):
+   # form_class = LoginForm
+
+    '''def get_success_url(self):
+        request = self.request.GET
+        if not request.POST.get('remember_me', None):
+            request.session.set_expiry(0)
+        url = self.get_redirect_url()
+        return url
+        '''
 
 def add_patient(request, *args, **kwargs):
     # If the form has been submitted
@@ -113,7 +117,6 @@ def add_care_group(request):
             validate_password(form.cleaned_data.get('password'))  # Ensure password is strong enough
             form.validate()  # Ensure password matches password_confirmation
             caregroup=form.save()  # Save the form
-            #user = User.objects.get(id=request.user.id) # get current user
             user = request.user # get current user
             caregroup.users.add(user) # add user to caregroup internal list
             user.active_caregroup = caregroup
@@ -153,3 +156,5 @@ def receive_data(request):
     print("FLAG!!!")
     print(request)
     return render(request, 'data/data.html', {'form': form})
+
+
