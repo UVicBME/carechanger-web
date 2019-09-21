@@ -69,12 +69,10 @@ function open_patient_graph(patient_id) {
 					}
 					unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
 					var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
-					var day;
-					if (i == len-1) {
-					    day = date.getDate();
-					    month = date.getMonth();
-					    title = month + day;
-					}
+					var today = new Date().toLocaleDateString('en-US', {
+                        day : 'numeric',
+                        month : 'short',
+                    })
 					var hour = date.getHours();                 // Get the hour of day
 					var minute = "0" + date.getMinutes();       // Get the minute
 					var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
@@ -142,7 +140,7 @@ function open_patient_graph(patient_id) {
 								},
 								title: {
 								    display: true,
-								    text: title
+								    text: today
 								},
 						}
 				});
