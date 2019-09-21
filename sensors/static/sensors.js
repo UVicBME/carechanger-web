@@ -177,10 +177,8 @@ function open_patient_graph(patient_id) {
 								    text: title,
 								    fontSize: 18,
 								},
-						}
-				});
-			}
-		}); // end ajax
+					}
+		});
 		setTimeout(function(){ // Set timeout to ensure that the ajax request has fired and canvas has loaded...
 			cvs.css("display", "block"); // Open the image (make it visible) without animation
 			p.css('height', 'auto'); // Set div to auto height
