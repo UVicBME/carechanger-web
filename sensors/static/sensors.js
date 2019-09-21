@@ -87,6 +87,11 @@ function open_patient_graph(patient_id) {
 			}
 			unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
 			var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
+			var title = date.toLocaleDateString('en-US', {
+										day : 'numeric',
+										month : 'short',
+										year : 'numeric',
+								})
 			var hour = date.getHours();                 // Get the hour of day
 			var minute = "0" + date.getMinutes();       // Get the minute
 			var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
@@ -147,13 +152,35 @@ function open_patient_graph(patient_id) {
 										}
 								}]
 						},
-						elements: {
-								point: {
-										radius: 0      // Gets rid of the data point dots on the line
-								}
-						},
-				}
-		});
+						options: {
+								scales: {
+										yAxes: [{
+												ticks: {
+														beginAtZero: true
+												}
+										}],
+										xAxes: [{
+										    //type: 'time',
+										    ticks: {
+										        autoSkip: true,
+										        maxTicksLimit: 20
+										    }
+										}]
+								},
+								elements: {
+										point: {
+												radius: 0      // Gets rid of the data point dots on the line
+										}
+								},
+								title: {
+								    display: true,
+								    text: title,
+								    fontSize: 18,
+								},
+						}
+				});
+			}
+		}); // end ajax
 		setTimeout(function(){ // Set timeout to ensure that the ajax request has fired and canvas has loaded...
 			cvs.css("display", "block"); // Open the image (make it visible) without animation
 			p.css('height', 'auto'); // Set div to auto height
