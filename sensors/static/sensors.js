@@ -145,39 +145,24 @@ function open_patient_graph(patient_id) {
 										}
 								}],
 								xAxes: [{
-										//type: 'time',
-										ticks: {
-												autoSkip: true,
-												maxTicksLimit: 20
-										}
+								    //type: 'time',
+								    ticks: {
+								        autoSkip: true,
+								        maxTicksLimit: 20
+								    }
 								}]
 						},
-						options: {
-								scales: {
-										yAxes: [{
-												ticks: {
-														beginAtZero: true
-												}
-										}],
-										xAxes: [{
-										    //type: 'time',
-										    ticks: {
-										        autoSkip: true,
-										        maxTicksLimit: 20
-										    }
-										}]
-								},
-								elements: {
-										point: {
-												radius: 0      // Gets rid of the data point dots on the line
-										}
-								},
-								title: {
-								    display: true,
-								    text: title,
-								    fontSize: 18,
-								},
-					}
+						elements: {
+								point: {
+										radius: 0      // Gets rid of the data point dots on the line
+								}
+						},
+						title: {
+						    display: true,
+						    text: title,
+						    fontSize: 18,
+						},
+				}
 		});
 		setTimeout(function(){ // Set timeout to ensure that the ajax request has fired and canvas has loaded...
 			cvs.css("display", "block"); // Open the image (make it visible) without animation
