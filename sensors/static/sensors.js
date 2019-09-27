@@ -175,7 +175,8 @@ function open_patient_graph(patient_id) {
 		}, 1000);
 		intervalId = setInterval(function(){ // set interval to pull new data/update chart every 30 seconds
 			data = get_patient_data(patient_id);
-			//console.log(data);
+			console.log("FETCH FROM DATABASE + UPDATE");
+			console.log(data);
 
 			var len = data.length;
 			var times=[];
