@@ -78,14 +78,7 @@ function open_patient_graph(patient_id) {
 		var times=[];
 		var temps=[];
 		var hum=[];
-		var events=[];
 		for(var i=0; i<len; i++) {
-			// draw 'event'
-			if(data[i].fields.event==2){
-				events.push(100);
-			} else {
-				events.push(0);
-			}
 			unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
 			var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
 			var title = date.toLocaleDateString('en-US', {
@@ -124,16 +117,6 @@ function open_patient_graph(patient_id) {
 								],
 								borderColor: [
 										'rgba(50, 50, 200, 1)',
-								],
-								borderWidth: 3,
-						}, {
-								label: 'Event',
-								data: events,
-								backgroundColor: [
-										'rgba(255, 255, 255, 0)',
-								],
-								borderColor: [
-										'rgba(200, 200, 50, 1)',
 								],
 								borderWidth: 3,
 						}]
@@ -182,14 +165,7 @@ function open_patient_graph(patient_id) {
 			var times=[];
 			var temps=[];
 			var hum=[];
-			var events=[];
 			for(var i=0; i<len; i++) {
-				// draw 'event'
-				if(data[i].fields.event==1){
-					events.push(100);
-				} else {
-					events.push(0);
-				}
 				unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
 				var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
 				var title = date.toLocaleDateString('en-US', {
@@ -206,11 +182,10 @@ function open_patient_graph(patient_id) {
 				hum.push(data[i].fields.humidity);
 			}
 
-			for(var i=0; i<180; i++){
+			for(var i=0; i<len; i++){ // update existing x chart labels, temp/humidity values to reflect most recent pull from db
 				myChart.data.labels[i] = times[i];
 				myChart.data.datasets[0].data[i] = temps[i];
 				myChart.data.datasets[1].data[i] = hum[i];
-				myChart.data.datasets[2].data[i] = events[i];
 			}
 			myChart.update();
 
