@@ -161,15 +161,15 @@ def receive_data(request):
         if form.is_valid():
             data = request.POST.copy()
             form.save()
-            # Update the patient's status
+            # Update the patient's status here
             event = data.get('event')
-            event = int(event)
-            device_id = data.get('device')
-            patient = Patient.objects.get(device_id=device_id)
-            if event == 2:
+            event = int(event)  # Force event to be an int instead of some weird device id object
+            device_id = data.get('device')  # Get the device ID from the data packet
+            patient = Patient.objects.get(device_id=device_id)  # Get the patient object corresponding to the device
+            if event == 2:  # If a void event has occurred, update the status
                 patient.status = 'd'
                 patient.save()
-            else:
+            else:  # If no void event, reset the status back to clean
                 patient.status = 'c'
                 patient.save()
             return HttpResponse("We got your data!")
