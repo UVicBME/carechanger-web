@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse, JsonResponse
+from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from sensors.forms import PatientCreationForm, CareGroupCreationForm, SignUpForm, DataForm, DeviceCreationForm, LoginForm
 from django.contrib.auth.password_validation import validate_password
 from django.template import RequestContext
-from sensors.models import CareGroup, Patient, User, Data # import custom user model
+from sensors.models import CareGroup, Patient, User, Data, Device # import custom user model
 from django.core import serializers
 import logging
 from django.contrib.auth.views import LoginView
@@ -158,7 +159,19 @@ def receive_data(request):
     if request.method == 'POST':
         form = DataForm(request.POST)
         if form.is_valid():
+            data = request.POST.copy()
             form.save()
+            # Update the patient's status
+            event = data.get('event')
+            event = int(event)
+            device_id = data.get('device')
+            patient = Patient.objects.get(device_id=device_id)
+            if event == 2:
+                patient.status = 'd'
+                patient.save()
+            else:
+                patient.status = 'c'
+                patient.save()
             return HttpResponse("We got your data!")
     else:
         form = DataForm()

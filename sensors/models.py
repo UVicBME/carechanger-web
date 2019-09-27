@@ -17,11 +17,13 @@ class User(AbstractUser):
 
 """
 
+
 # https://docs.djangoproject.com/en/2.1/ref/models/fields/
 class Device(models.Model):
     history = models.TextField()
     active = models.BooleanField(null=True) # Boolean for if this device currently recording for a patient
     caregroup = models.ForeignKey(CareGroup, on_delete=models.CASCADE) # many devices to one care group; if caregroup deleted cascade delete devices
+
 
 class Patient(models.Model):
     STATUSES = (
@@ -35,6 +37,7 @@ class Patient(models.Model):
     caregroup = models.ForeignKey(CareGroup, null=True, on_delete=models.CASCADE) # many patients to one care group
     status = models.CharField(max_length=20, choices=STATUSES, default='c')
     last_event = models.DateTimeField(null=True)
+
 
 class Data(models.Model):
     temperature = models.FloatField()
