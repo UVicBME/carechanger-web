@@ -66,6 +66,7 @@ function open_patient_graph(patient_id) {
 	var cvs = $("#"+patient_id+"_graph");
 	var myChart; // instantiate new chart object
 	var data;
+	var intervalId;
 
 	if(cvs.css('display') == 'none'){ // open the div
 		console.log("FLAG1");
@@ -172,6 +173,47 @@ function open_patient_graph(patient_id) {
 			p.animate({height:ch},200);
 			cvs.css("display", "block"); // Open the image
 		}, 1000);
+		intervalId = setInterval(function(){ // set interval to pull new data/update chart every 30 seconds
+			data = get_patient_data(patient_id);
+			//console.log(data);
+
+			var len = data.length;
+			var times=[];
+			var temps=[];
+			var hum=[];
+			var events=[];
+			for(var i=0; i<len; i++) {
+				// draw 'event'
+				if(data[i].fields.event==1){
+					events.push(100);
+				} else {
+					events.push(0);
+				}
+				unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
+				var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
+				var title = date.toLocaleDateString('en-US', {
+											day : 'numeric',
+											month : 'short',
+											year : 'numeric',
+									})
+				var hour = date.getHours();                 // Get the hour of day
+				var minute = "0" + date.getMinutes();       // Get the minute
+				var second = "0" + date.getSeconds();       // Get the seconds. Probably don't need
+				var time = hour + ':' + minute.substr(-2) + ':' + second.substr(-2);
+				times.push(time);
+				temps.push(data[i].fields.temperature);
+				hum.push(data[i].fields.humidity);
+			}
+
+			for(var i=0; i<180; i++){
+				myChart.data.labels[i] = times[i];
+				myChart.data.datasets[0].data[i] = temps[i];
+				myChart.data.datasets[1].data[i] = hum[i];
+				myChart.data.datasets[2].data[i] = events[i];
+			}
+			myChart.update();
+
+		}, 30000); // every 30 sec
 	} else { // close the div
 		cvs.css("display", "none"); // close the image
 		p.css('height', 'auto'); // Set div to auto height
@@ -179,31 +221,8 @@ function open_patient_graph(patient_id) {
 		cvs.css("display", "block"); // Open the image
 		p.animate({height:ah},200);
 		cvs.css("display", "none"); // close the image
+		clearInterval(intervalId);
 	}
-	/*
-	while(cvs.css('display') != 'none'){
-		setTimeout(function(){ // Set timeout to ensure that the ajax request has fired and canvas has loaded...
-			data = get_patient_data(patient_id);
-			console.log(data);
-		}, 1000);
-	}
-	*/
-}
-
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    chart.update();
-}
-
-function removeData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
-    chart.update();
 }
 
 /* This function changes the caregroup patients being currently viewed */
