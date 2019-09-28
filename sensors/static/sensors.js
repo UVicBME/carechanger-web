@@ -73,6 +73,8 @@ function open_patient_graph(patient_id) {
 		console.log(patient_id);
 
 		data = get_patient_data(patient_id); // returns array of sensor_data objects (hopefully);
+		data.sort('time')                    // Sort the data by timestamp because it's backwards I believe
+		                                     // Could maybe replace this sort with a simple reverse instead
 		//console.log(data);
 		var len = data.length;
 		var times=[];
