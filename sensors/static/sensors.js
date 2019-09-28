@@ -50,7 +50,7 @@ function get_patient_data(patient_id) {
 		dataType: 'json',
 		success: function (data) { // this data is literally sensors data pertaining to the patient id. 'data' is passed into 'success' function
 			//console.log(data);
-			result= data;
+			result = data;
 			//handleData(data);
 		}
 	}); // end ajax
@@ -73,14 +73,12 @@ function open_patient_graph(patient_id) {
 		console.log(patient_id);
 
 		data = get_patient_data(patient_id); // returns array of sensor_data objects (hopefully);
-		data.sort('time')                    // Sort the data by timestamp because it's backwards I believe
-		                                     // Could maybe replace this sort with a simple reverse instead
 		//console.log(data);
 		var len = data.length;
 		var times=[];
 		var temps=[];
 		var hum=[];
-		for(var i=0; i<len; i++) {
+		for(var i=len; i>0; i--) {
 			unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
 			var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
 			var title = date.toLocaleDateString('en-US', {
