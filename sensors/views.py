@@ -59,7 +59,7 @@ def ajax_get_patient_data(request):
     patient_id = request.GET.get('patient_id', False) # get patient id for lookup of values in sensors_data table
     #print("PATIENT ID:")  # debug check patient
     #print(patient_id)
-    patient_data = Data.objects.filter(patient_id=patient_id).order_by('-time')[:180] # Contains a list of 'Data' Django objects
+    patient_data = Data.objects.filter(patient_id=patient_id).order_by('time')[:180] # Contains a list of 'Data' Django objects
     patient_data = serializers.serialize('json', patient_data) # import Django rest framework to allow serialization of django objects to JSON
 
     return HttpResponse(patient_data, content_type="application/json")

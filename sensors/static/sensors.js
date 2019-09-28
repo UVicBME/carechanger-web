@@ -78,7 +78,7 @@ function open_patient_graph(patient_id) {
 		var times=[];
 		var temps=[];
 		var hum=[];
-		for(var i=len; i>0; i--) {
+		for(var i=0; i<len; i++) {
 			unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
 			var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
 			var title = date.toLocaleDateString('en-US', {
