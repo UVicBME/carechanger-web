@@ -126,7 +126,7 @@ def add_care_group(request):
         if form.is_valid():
             validate_password(form.cleaned_data.get('password'))  # Ensure password is strong enough
             form.validate()  # Ensure password matches password_confirmation
-            caregroup=form.save()  # Save the form
+            caregroup = form.save()  # Save the form
             user = request.user # get current user
             caregroup.users.add(user) # add user to caregroup internal list
             user.active_caregroup = caregroup
@@ -160,7 +160,6 @@ def receive_data(request):
         form = DataForm(request.POST)
         if form.is_valid():
             data = request.POST.copy()
-            form.save()
             # Update the patient's status here
             event = data.get('event')
             event = int(event)  # Force event to be an int instead of some weird device id object
@@ -168,10 +167,10 @@ def receive_data(request):
             patient = Patient.objects.get(device_id=device_id)  # Get the patient object corresponding to the device
             if event == 2:  # If a void event has occurred, update the status
                 patient.status = 'd'
-                patient.save()
             else:  # If no void event, reset the status back to clean
                 patient.status = 'c'
-                patient.save()
+            patient.save()  # Save the modified patient object
+            form.save()
             return HttpResponse("We got your data!")
     else:
         form = DataForm()

@@ -96,3 +96,13 @@ class DataForm(forms.ModelForm):
             'device',
             'time',
         )
+
+    # Overrides the default save method to update the patient_id in the database
+    def save(self, commit=True):
+        instance = super(DataForm, self).save(commit=False) # Create an instance of the data form
+        device_id = self.cleaned_data.get('device')  # Get the device ID from the data packet
+        patient = Patient.objects.get(device_id=device_id)  # Get the patient object corresponding to the device
+        instance.patient_id = patient.pk  # Send the patient's primary key to the database along with the form
+        if commit:
+            instance.save()  # Save the form
+        return instance
