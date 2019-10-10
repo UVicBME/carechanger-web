@@ -9,6 +9,7 @@ from sensors.models import CareGroup, Patient, User, Data, Device # import custo
 from django.core import serializers
 import logging
 from django.contrib.auth.views import LoginView
+from datetime import datetime
 logger = logging.getLogger(__name__)
 
 # This does nothing right now. Oops.
@@ -162,7 +163,7 @@ def receive_data(request):
             data = request.POST.copy()
             # Update the patient's status here
             event = data.get('event')
-            time = datetime.fromtimestamp(data.get('time'))
+            time = datetime.fromtimestamp(int(data.get('time')))
             event = int(event)
             print("FLAG0!!!!")
             print(time);

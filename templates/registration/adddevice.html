@@ -12,7 +12,11 @@
           {% csrf_token %}
           <br>
           <!-- Submit button -->
-          <button class="login" type="submit">Add Patient</button>
+          {% for c in caregroups %}
+          <!--<input class="radio" type="text" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}" value= {{c.name}} >
+          <br>
+          <br>-->
+          <button class="login" type="submit">Add Device</button>
         </form>
       </div>
       <footer>&copy; CareChanger</footer>
