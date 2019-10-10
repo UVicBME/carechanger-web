@@ -95,6 +95,7 @@ function open_patient_graph(patient_id) {
 			hum.push(data[i].fields.humidity);
 		}
 
+
 		myChart = new Chart(ctx, {
 				type: 'line',
 				data: {

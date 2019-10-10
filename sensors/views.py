@@ -163,11 +163,15 @@ def receive_data(request):
             form.save()
             # Update the patient's status
             event = data.get('event')
+            time = datetime.fromtimestamp(data.get('time'))
             event = int(event)
+            print("FLAG0!!!!")
+            print(time);
             device_id = data.get('device')
             patient = Patient.objects.get(device_id=device_id)
             if event == 2:
                 patient.status = 'd'
+                patient.last_event = time;
                 patient.save()
             else:
                 patient.status = 'c'
@@ -175,6 +179,6 @@ def receive_data(request):
             return HttpResponse("We got your data!")
     else:
         form = DataForm()
-    print("FLAG!!!")
-    print(request)
+    #print("FLAG!!!")
+    #print(request)
     return render(request, 'data/data.html', {'form': form})
