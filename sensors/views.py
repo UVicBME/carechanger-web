@@ -59,7 +59,7 @@ def ajax_get_patient_data(request):
     patient_id = request.GET.get('patient_id', False) # get patient id for lookup of values in sensors_data table
     #print("PATIENT ID:")  # debug check patient
     #print(patient_id)
-    patient_data = Data.objects.filter(patient_id=patient_id).order_by('time')[:180] # Contains a list of 'Data' Django objects
+    patient_data = Data.objects.filter(patient_id=patient_id).order_by('-time')[:180] # Contains a list of 'Data' Django objects.. order by descending timestamp vals to ensure the most recent rows are used
     patient_data = serializers.serialize('json', patient_data) # import Django rest framework to allow serialization of django objects to JSON
 
     return HttpResponse(patient_data, content_type="application/json")
@@ -162,7 +162,6 @@ def receive_data(request):
             data = request.POST.copy()
             # Update the patient's status here
             event = data.get('event')
-<<<<<<< HEAD
             time = datetime.fromtimestamp(data.get('time'))
             event = int(event)
             print("FLAG0!!!!")
@@ -174,14 +173,6 @@ def receive_data(request):
                 patient.last_event = time;
                 patient.save()
             else:
-=======
-            event = int(event)  # Force event to be an int instead of some weird device id object
-            device_id = data.get('device')  # Get the device ID from the data packet
-            patient = Patient.objects.get(device_id=device_id)  # Get the patient object corresponding to the device
-            if event == 2:  # If a void event has occurred, update the status
-                patient.status = 'd'
-            else:  # If no void event, reset the status back to clean
->>>>>>> 0f3648a7e665b8e7254797eec316ed31f9313fe3
                 patient.status = 'c'
             patient.save()  # Save the modified patient object
             form.save()

@@ -78,7 +78,7 @@ function open_patient_graph(patient_id) {
 		var times=[];
 		var temps=[];
 		var hum=[];
-		for(var i=0; i<len; i++) {
+		for(var i=len-1; i>=0; i--) { // patient data array we receive is listed from most to least recent; so read it out backwards
 			unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
 			var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
 			var title = date.toLocaleDateString('en-US', {
@@ -166,7 +166,7 @@ function open_patient_graph(patient_id) {
 			var times=[];
 			var temps=[];
 			var hum=[];
-			for(var i=0; i<len; i++) {
+			for(var i=len-1; i>=0; i--) { // patient data array we receive is listed from most to least recent; so read it out backwards
 				unix_timestamp = data[i].fields.time;     // Grab the initial unix timestamp
 				var date = new Date(unix_timestamp * 1000);   // Multiply by 1000 so it's in ms
 				var title = date.toLocaleDateString('en-US', {
@@ -183,7 +183,7 @@ function open_patient_graph(patient_id) {
 				hum.push(data[i].fields.humidity);
 			}
 
-			for(var i=0; i<len; i++){ // update existing x chart labels, temp/humidity values to reflect most recent pull from db
+			for(var i=len-1; i>=0; i--){ // update existing x chart labels, temp/humidity values to reflect most recent pull from db
 				myChart.data.labels[i] = times[i];
 				myChart.data.datasets[0].data[i] = temps[i];
 				myChart.data.datasets[1].data[i] = hum[i];
