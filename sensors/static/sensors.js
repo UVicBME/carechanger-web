@@ -50,7 +50,7 @@ function get_patient_data(patient_id) {
 		dataType: 'json',
 		success: function (data) { // this data is literally sensors data pertaining to the patient id. 'data' is passed into 'success' function
 			//console.log(data);
-			result= data;
+			result = data;
 			//handleData(data);
 		}
 	}); // end ajax

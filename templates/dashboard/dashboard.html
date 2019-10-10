@@ -53,9 +53,8 @@
 						<div class="patient" id="patient_{{p.id}}" onclick="open_patient_graph('{{p.id}}');">
 								{% if p.status == "c" %} <!-- if no current patient event (clean) -->
 									<p class="th status_clean">clean</p>
-
 								{% else %}
-									<p class="th status_dirty">dirty</p>
+									<p class="th status_dirty">event</p>
 								{% endif %}
 								<p class="th">{{p.first_name}} {{p.last_name}}</p>
 								<p class="th">Device: {{p.device}}</p>
