@@ -4,7 +4,6 @@ April/May 2019
 
 These jquery functions control visual aspects of the dashboard and home pages of the CareChanger site.
 */
-document.addEventListener('contextmenu', event => event.preventDefault());
 
 /* This function controls the dynamic nav bar color/height change due to a user scroll*/
 $(function () { /* Using $(function () {}); Ensures that the document (webpage has fully loaded- then compiles js) */
@@ -14,7 +13,7 @@ $(function () { /* Using $(function () {}); Ensures that the document (webpage h
         var $a = $("a"); //new
 		var $nav_link = $(".nav_link");
 
-		//console.log($ul.height())
+		console.log($ul.height())
 
 		page = $(this) // Don't wanna make this call a bunch, so just make a var with it
 
@@ -22,7 +21,7 @@ $(function () { /* Using $(function () {}); Ensures that the document (webpage h
 		$ul.toggleClass('scrolled', page.scrollTop() > $nav.height());
 		$nav_link.toggleClass('scrolled', page.scrollTop() > $nav.height());
     $a.toggleClass('scrolled', page.scrollTop() > $nav.height());
-		//console.log($("#dash_nav").length);
+		console.log($("#dash_nav").length);
 		if($("#dash_nav").length == 0) { //check to see if the div with id="dashnav" exists. If so, currently viewing dashboard
 			var $dash_nav = document.getElementById('dash_nav');
 			if(page.scrollTop() > $nav.height()){
@@ -37,49 +36,9 @@ $(function () { /* Using $(function () {}); Ensures that the document (webpage h
 	});
 });
 
-/* This function gets patient data via ajax on an interval determined in the "open_patient_graph" function */
-function get_patient_status(patient_id) {
-	var result;
-	var patient_tag = "#patient_"+patient_id; // reserve the tag id
-	//console.log("PATIENT TAG:")
-	//console.log(patient_tag); // this is used to access the html div that the patient is stored in
-
-	$.ajax({ // this literally fires off an ajax request -> urls.py "ajax/get_patient/" -> views.py "ajax_get_patient"
-		url: '/ajax/get_patient/',
-		async:false, // will lock browser while waiting for response from server: allows time to load
-		//type: 'post',
-		data: {
-			'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-			'patient_id': patient_id
-		},
-		dataType: 'json',
-		success: function (data) { // this data is literally sensors data pertaining to the patient id. 'data' is passed into 'success' function
-			var $patient = $(patient_tag); // this is the patient div
-
-			if(data[0].fields.status == "c"){
-				$patient.find(".status_clean").text("clean");
-				$patient.find(".status_clean").addClass("status_clean");
-				$patient.find(".status_dirty").removeClass("status_dirty");
-
-			} else if(data[0].fields.status == "d"){
-				$patient.find(".status_clean").text("event");
-				$patient.find(".status_clean").addClass("status_dirty");
-				$patient.find(".status_dirty").removeClass("status_clean");
-
-				$patient.find(".patient_last_event").text("Last Event: "+data[0].fields.last_event);
-			}
-			console.log(data[0].fields);
-		}
-	}); // end ajax request
-	return result;
-}
-
-/* This function gets patient data via ajax on an interval determined in the "open_patient_graph" function */
+/* This function gets patient data via ajax, hopefully on an interval. */
 function get_patient_data(patient_id) {
 	var result;
-	var patient_tag = "#patient_"+patient_id; // reserve the tag id
-	//console.log("PATIENT TAG:")
-	//console.log(patient_tag); // this is used to access the html div that the patient is stored in
 	$.ajax({ // this literally fires off an ajax request
 		url: '/ajax/get_patient_data/',
 		async:false, // will lock browser while waiting for response from server- allows time to load
@@ -92,44 +51,9 @@ function get_patient_data(patient_id) {
 		success: function (data) { // this data is literally sensors data pertaining to the patient id. 'data' is passed into 'success' function
 			//console.log(data);
 			result = data;
-
-			$.ajax({ // this literally fires off an ajax request -> urls.py "ajax/get_patient/" -> views.py "ajax_get_patient"
-				url: '/ajax/get_patient/',
-				async:false, // will lock browser while waiting for response from server: allows time to load
-				//type: 'post',
-				data: {
-					'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-					'patient_id': patient_id
-				},
-				dataType: 'json',
-				success: function (data) { // this data is literally sensors data pertaining to the patient id. 'data' is passed into 'success' function
-					var $patient = $(patient_tag); // this is the patient div
-
-					if(data[0].fields.status == "c"){
-						$patient.find(".status_clean").text("clean");
-						$patient.find(".status_clean").addClass("status_clean");
-						$patient.find(".status_dirty").removeClass("status_dirty");
-
-					} else if(data[0].fields.status == "d"){
-						$patient.find(".status_clean").text("event");
-						$patient.find(".status_clean").addClass("status_dirty");
-						$patient.find(".status_dirty").removeClass("status_clean");
-
-						$patient.find(".patient_last_event").text("Last Event: "+data[0].fields.last_event);
-					}
-					console.log(data[0].fields);
-				}
-			}); // end ajax request
-
+			//handleData(data);
 		}
-	}); // end ajax request
-	console.log("FLAG10");
-	console.log(patient_id);
-
-	/* October 29th
-	/* AT THIS POINT, the patient object in the database will have been updated
-	during the AJAX request to include whether the patient is clean or dirty and when the last event occured */
-	/* so access it */
+	}); // end ajax
 
 	return result;
 }
@@ -137,14 +61,14 @@ function get_patient_data(patient_id) {
 /* This function controls the toggle of a patient object to open/close a patient graph. It also instantiates a canvas for the patient graph when opened.*/
 function open_patient_graph(patient_id) {
 	console.log(patient_id);
-	var p = $('#patient_'+patient_id);
+	var p = $('patient_'+patient_id);
 	var ctx = document.getElementById(patient_id+'_graph').getContext('2d'); // instantiates opened graph
 	var cvs = $("#"+patient_id+"_graph");
 	var myChart; // instantiate new chart object
 	var data;
 	var intervalId;
-	if(cvs.css('display') == 'none'){ // open the div
 
+	if(cvs.css('display') == 'none'){ // open the div
 		console.log("FLAG1");
 		console.log(patient_id);
 
@@ -170,6 +94,7 @@ function open_patient_graph(patient_id) {
 			temps.push(data[i].fields.temperature);
 			hum.push(data[i].fields.humidity);
 		}
+
 
 		myChart = new Chart(ctx, {
 				type: 'line',
@@ -231,10 +156,6 @@ function open_patient_graph(patient_id) {
 			cvs.css("display", "none"); // close the image
 			p.animate({height:ch},200);
 			cvs.css("display", "block"); // Open the image
-			p.find(".status_clean").css("border-bottom-left-radius", "0");
-			p.find(".status_dirty").css("border-bottom-left-radius", "0");
-			p.find(".status_clean").css("border-bottom-right-radius", "10px");
-			p.find(".status_dirty").css("border-bottom-right-radius", "10px");
 		}, 1000);
 		intervalId = setInterval(function(){ // set interval to pull new data/update chart every 30 seconds
 			data = get_patient_data(patient_id);
@@ -278,53 +199,8 @@ function open_patient_graph(patient_id) {
 		p.animate({height:ah},200);
 		cvs.css("display", "none"); // close the image
 		clearInterval(intervalId);
-		p.find(".status_clean").css("border-bottom-left-radius", "10px");
-		p.find(".status_dirty").css("border-bottom-left-radius", "10px");
-		p.find(".status_clean").css("border-bottom-right-radius", "0px");
-		p.find(".status_dirty").css("border-bottom-right-radius", "0px");
 	}
 }
-
-// this function is called by every patient object on page load, creating a new thread 30 second interval
-function get_patient_status(patient_id) {
-	console.log("get_patient_status");
-	var intervalId = setInterval(function(){ // set interval to pull new data/update chart every 30 seconds
-		console.log("new interval");
-
-		var patient_tag = "#patient_"+patient_id; // reserve the tag id
-		//console.log("PATIENT TAG:")
-		//console.log(patient_tag); // this is used to access the html div that the patient is stored in
-
-		$.ajax({ // this literally fires off an ajax request -> urls.py "ajax/get_patient/" -> views.py "ajax_get_patient"
-			url: '/ajax/get_patient/',
-			async:false, // will lock browser while waiting for response from server: allows time to load
-			//type: 'post',
-			data: {
-				'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-				'patient_id': patient_id
-			},
-			dataType: 'json',
-			success: function (data) { // this data is literally sensors data pertaining to the patient id. 'data' is passed into 'success' function
-				var $patient = $(patient_tag); // this is the patient div
-
-				if(data[0].fields.status == "c"){
-					$patient.find(".status_clean").text("clean");
-					$patient.find(".status_clean").addClass("status_clean");
-					$patient.find(".status_dirty").removeClass("status_dirty");
-
-				} else if(data[0].fields.status == "d"){
-					$patient.find(".status_clean").text("event");
-					$patient.find(".status_clean").addClass("status_dirty");
-					$patient.find(".status_dirty").removeClass("status_clean");
-
-					$patient.find(".patient_last_event").text("Last Event: "+data[0].fields.last_event);
-				}
-				console.log(data[0].fields);
-			}
-		}); // end ajax request
-	}, 30000); // every 30 sec
-}
-
 
 /* This function changes the caregroup patients being currently viewed */
 $(function(){
@@ -351,41 +227,3 @@ $(function(){
 	  });
 	});
 });
-
-function on_hover_dirty_status(patient_id) {
-	var patient_tag = "#patient_"+patient_id; // reserve the tag id
-	var $patient = $(patient_tag); // this is the patient div
-	$patient.find(".status_dirty").text("resolve");
-}
-function on_leave_dirty_status(patient_id) {
-	var patient_tag = "#patient_"+patient_id; // reserve the tag id
-	var $patient = $(patient_tag); // this is the patient div
-	$patient.find(".status_dirty").text("event");
-}
-
-// the patient status will be dirty at this point. resolve to clean
-function resolve_event(patient_id) {
-	var patient_tag = "#patient_"+patient_id; // reserve the tag id
-	var $patient = $(patient_tag); // this is the patient div
-	console.log("FLAG3");
-	console.log(patient_tag);
-	console.log($patient);
-	$patient.find(".status_dirty").addClass("status_clean");
-	$patient.find(".status_dirty").removeClass("status_dirty");
-	console.log("DONE!")
-	$patient.find(".status_clean").text("clean");
-
-	$.ajax({ // this literally fires off an ajax request -> urls.py "ajax/get_patient/" -> views.py "ajax_get_patient"
-		url: '/ajax/set_patient_status_clean/',
-		async:false, // will lock browser while waiting for response from server: allows time to load
-		//type: 'post',
-		data: {
-			'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
-			'patient_id': patient_id
-		},
-		dataType: 'json',
-		success: function (data) { // this data is literally sensors data pertaining to the patient id. 'data' is passed into 'success' function
-
-		}
-	}); // end ajax request
-}

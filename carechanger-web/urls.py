@@ -25,8 +25,5 @@ urlpatterns = [
     path("login/", sensors.views.login, name='login'),
     url(r'^ajax/change_caregroup/$', sensors.views.ajax_change_caregroup, name='ajax_change_caregroup'), # uses ajax to change the 'active_caregroup' value of a user in the database
     url(r'^ajax/get_patient_data/$', sensors.views.ajax_get_patient_data, name='ajax_get_patient_data'), # uses ajax to get patient data for unique graphs
-    url(r'^ajax/get_patient/$', sensors.views.ajax_get_patient, name='ajax_get_patient'), # uses ajax to get patient data for unique graphs
     url(r'^ajax/update_patient_status/$', sensors.views.ajax_update_patient_status, name='ajax_update_patient_status'), # uses ajax to update the patient status
-    url(r'^ajax/set_patient_status_clean/$', sensors.views.ajax_set_patient_status_clean, name='ajax_set_patient_status_clean'), # uses ajax to update the patient status
-
 ]

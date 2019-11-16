@@ -41,13 +41,7 @@ h2,h3,h4 {
 	box-shadow: 0px 0px 10px #dddddd;
 	border-spacing: 0px;
 	cursor:pointer;
-	transition-duration: 0.5s;
 	/*display: inline-block;*/ /*makes divs smaller, rather than a list that takes up full width */
-}
-
-.patient:hover {
-	box-shadow: 0px 0px 10px #bbbbbb;
-	transition-duration: 0.5s;
 }
 
 .patient_last_event {
@@ -67,40 +61,23 @@ h2,h3,h4 {
 }
 
 .status_clean {
-	margin-left: -12px; /* 10 for padding, 2 for border */
-	margin-top:-12px;
-	margin-bottom:-12px;
-	line-height:52px;
 	background-color: #66dd44;
-	border-bottom-left-radius:10px;
-	border-top-left-radius:10px;
+	border-radius:50px;
 	text-align: center;
-	padding-left:15px;
-	padding-right:15px;
+	padding-left:10px;
+	padding-right:10px;
 	padding-top:5px;
 	padding-bottom:5px;
 }
 
 .status_dirty {
-	/*position:relative;*/
-	margin-left: -12px; /* 10 for padding, 2 for border */
-	margin-top:-12px;
-	margin-bottom:-12px;
-	line-height:52px;
 	background-color: #dd6644;
-	border-bottom-left-radius:10px;
-	border-top-left-radius:10px;
+	border-radius:50px;
 	text-align: center;
-	padding-left:15px;
-	padding-right:15px;
+	padding-left:10px;
+	padding-right:10px;
 	padding-top:5px;
 	padding-bottom:5px;
-	transition: 0.5s;
-}
-
-.status_dirty:hover {
-	background-color: #cc5533;
-	transition: 0.5s;
 }
 
 .login {

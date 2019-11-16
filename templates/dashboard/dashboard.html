@@ -54,14 +54,13 @@
 								{% if p.status == "c" %} <!-- if no current patient event (clean) -->
 									<p class="th status_clean">clean</p>
 								{% else %}
-									<p class="th status_dirty" onmouseleave="on_leave_dirty_status('{{p.id}}')" onmouseover="on_hover_dirty_status('{{p.id}}')" onclick="resolve_event('{{p.id}}')">event</p>
+									<p class="th status_dirty">event</p>
 								{% endif %}
 								<p class="th">{{p.first_name}} {{p.last_name}}</p>
 								<p class="th">Device: {{p.device}}</p>
 								<p class="th">Age: {{p.age}}</p>
 								<p class="th patient_last_event">Last Event: {{p.last_event}}</p>
 								<canvas class="patient_graph" id="{{p.id}}_graph" style="display:none" width="500" height="250"></canvas>
-								<script type="text/javascript"> get_patient_status('{{p.id}}'); </script>
 						</div>
 					{% endfor %}
 				{% else %}
