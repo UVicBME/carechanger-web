@@ -227,8 +227,6 @@ $(function(){
 	  });
 	});
 });
-<<<<<<< HEAD
-=======
 
 // if mouse is over the "dirty" status of a patient, content of blurb is changed to 'resolve'
 function on_hover_dirty_status(patient_id) {
@@ -270,4 +268,3 @@ function resolve_event(patient_id) {
 		}
 	}); // end ajax request
 }
->>>>>>> tmp
