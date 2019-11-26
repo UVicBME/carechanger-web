@@ -352,15 +352,18 @@ $(function(){
 	});
 });
 
+// if mouse is over the "dirty" status of a patient, content of blurb is changed to 'resolve'
 function on_hover_dirty_status(patient_id) {
 	var patient_tag = "#patient_"+patient_id; // reserve the tag id
 	var $patient = $(patient_tag); // this is the patient div
-	$patient.find(".status_dirty").text("resolve");
+	$patient.find(".status_dirty").text("resolve"); // this ensures that only a patient with a class "status_dirty" is affected
 }
+
+// if mouse is over the "dirty" status of a patient, content of blurb is changed to 'event'
 function on_leave_dirty_status(patient_id) {
 	var patient_tag = "#patient_"+patient_id; // reserve the tag id
 	var $patient = $(patient_tag); // this is the patient div
-	$patient.find(".status_dirty").text("event");
+	$patient.find(".status_dirty").text("event"); // this ensures that only a patient with a class "status_dirty" is affected
 }
 
 // the patient status will be dirty at this point. resolve to clean

@@ -52,7 +52,7 @@
 					{% for p in patients %}
 						<div class="patient" id="patient_{{p.id}}" onclick="open_patient_graph('{{p.id}}');">
 								{% if p.status == "c" %} <!-- if no current patient event (clean) -->
-									<p class="th status_clean">clean</p>
+									<p class="th status_clean" onmouseleave="on_leave_dirty_status('{{p.id}}')" onmouseover="on_hover_dirty_status('{{p.id}}')" onclick="resolve_event('{{p.id}}')">clean</p>
 								{% else %}
 									<p class="th status_dirty" onmouseleave="on_leave_dirty_status('{{p.id}}')" onmouseover="on_hover_dirty_status('{{p.id}}')" onclick="resolve_event('{{p.id}}')">event</p>
 								{% endif %}
