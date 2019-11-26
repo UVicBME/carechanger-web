@@ -55,9 +55,6 @@ def ajax_change_caregroup(request):
     return JsonResponse(data)
 
 # returns patient temperature, humidity data from table in postgres
-# used by get_patient_data function in sensors.js
-#
-
 def ajax_get_patient_data(request):
     print("FLAG0")
     patient_id = request.GET.get('patient_id', False) # get patient id for lookup of values in sensors_data table
@@ -69,17 +66,6 @@ def ajax_get_patient_data(request):
     return HttpResponse(patient_data, content_type="application/json")
 
 
-def ajax_get_patient(request):
-    print("FLAG0")
-    patient_id = request.GET.get('patient_id', False) # get patient id for lookup of values in sensors_data table
-    #print("PATIENT ID:")  # debug check patient
-    #print(patient_id)
-    patient = Patient.objects.filter(id=patient_id) # Contains a list of 'Patient' Django objects
-    patient = serializers.serialize('json', patient) # import Django rest framework to allow serialization of django objects to JSON
-
-    return HttpResponse(patient, content_type="application/json")
-
-# I have no idea what this does currently... cant find its originating class function. Note to document this when I do figure it out
 def ajax_update_patient_status(request):
     device_id = 1 # Hardcoded for now since we only have 1 device
     data = Data.objects.order_by('time').filter(device_id=device_id)
@@ -87,13 +73,6 @@ def ajax_update_patient_status(request):
 
     return HttpResponse(data, content_type="application/json")
 
-def ajax_set_patient_status_clean(request):
-    patient_id = request.GET.get('patient_id', False) # get patient id for lookup of values in sensors_data table
-    patient = Patient.objects.get(id=patient_id)
-    #print("FLAG!")
-    #print(patient.status)
-    patient.status='c'
-    patient.save()
 
 # TODO: make this work properly, currently doesn't seem to actually get used at all.
 # I think the problem is that the default Django login stuff is getting used instead, but I'm not really sure how
@@ -176,7 +155,7 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-# this function is called whenever the incoming data form is completed by the microcontroller (roughly every 30 seconds)
+
 def receive_data(request):
     if request.method == 'POST':
         form = DataForm(request.POST)
@@ -190,11 +169,12 @@ def receive_data(request):
             print(time);
             device_id = data.get('device')
             patient = Patient.objects.get(device_id=device_id)
-            # event status of 2 == event has occurred. status of 1 == patient clean. Require user to reset flag on their own
             if event == 2:
                 patient.status = 'd'
                 patient.last_event = time;
                 patient.save()
+            else:
+                patient.status = 'c'
             patient.save()  # Save the modified patient object
             form.save()
             return HttpResponse("We got your data!")
