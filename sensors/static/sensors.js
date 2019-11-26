@@ -227,3 +227,47 @@ $(function(){
 	  });
 	});
 });
+<<<<<<< HEAD
+=======
+
+// if mouse is over the "dirty" status of a patient, content of blurb is changed to 'resolve'
+function on_hover_dirty_status(patient_id) {
+	var patient_tag = "#patient_"+patient_id; // reserve the tag id
+	var $patient = $(patient_tag); // this is the patient div
+	$patient.find(".status_dirty").text("resolve"); // this ensures that only a patient with a class "status_dirty" is affected
+}
+
+// if mouse is over the "dirty" status of a patient, content of blurb is changed to 'event'
+function on_leave_dirty_status(patient_id) {
+	var patient_tag = "#patient_"+patient_id; // reserve the tag id
+	var $patient = $(patient_tag); // this is the patient div
+	$patient.find(".status_dirty").text("event"); // this ensures that only a patient with a class "status_dirty" is affected
+}
+
+// the patient status will be dirty at this point. resolve to clean
+function resolve_event(patient_id) {
+	var patient_tag = "#patient_"+patient_id; // reserve the tag id
+	var $patient = $(patient_tag); // this is the patient div
+	console.log("FLAG3");
+	console.log(patient_tag);
+	console.log($patient);
+	$patient.find(".status_dirty").addClass("status_clean");
+	$patient.find(".status_dirty").removeClass("status_dirty");
+	console.log("DONE!")
+	$patient.find(".status_clean").text("clean");
+
+	$.ajax({ // this literally fires off an ajax request -> urls.py "ajax/get_patient/" -> views.py "ajax_get_patient"
+		url: '/ajax/set_patient_status_clean/',
+		async:false, // will lock browser while waiting for response from server: allows time to load
+		//type: 'post',
+		data: {
+			'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val(),
+			'patient_id': patient_id
+		},
+		dataType: 'json',
+		success: function (data) { // this data is literally sensors data pertaining to the patient id. 'data' is passed into 'success' function
+
+		}
+	}); // end ajax request
+}
+>>>>>>> tmp
