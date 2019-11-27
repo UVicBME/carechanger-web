@@ -45,7 +45,7 @@ function get_patient_status(patient_id) {
 	//console.log(patient_tag); // this is used to access the html div that the patient is stored in
 
 	$.ajax({ // this literally fires off an ajax request -> urls.py "ajax/get_patient/" -> views.py "ajax_get_patient"
-		url: '/ajax/get_patient/',
+		url: '/ajax/get_patient_data/',
 		async:false, // will lock browser while waiting for response from server: allows time to load
 		//type: 'post',
 		data: {
